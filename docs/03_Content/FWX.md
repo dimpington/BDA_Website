@@ -33,3 +33,5 @@ Internal records may include research notes, provenance documentation, preservat
 FWX serves as the Bureau's institutional memory.
 
 It provides a unified system for documenting Digital Objects throughout their lifecycle and preserves the relationships between Digital Objects, publications, assessments and archival activities.
+
+FWX records are created following qualification and cataloguing of accepted Digital Objects.

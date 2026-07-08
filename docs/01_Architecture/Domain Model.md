@@ -23,3 +23,11 @@ Digital Objects may represent a wide variety of historically significant digital
 - Gopher Sites
 
 Additional Digital Object types may be introduced as required.
+
+## Lifecycle
+
+Digital Objects transition through defined operational states throughout their existence within the Bureau.
+
+The lifecycle is documented separately in:
+
+`docs/03_Content/Digital Object Lifecycle.md`
