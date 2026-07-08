@@ -31,3 +31,9 @@ Digital Objects transition through defined operational states throughout their e
 The lifecycle is documented separately in:
 
 `docs/03_Content/Digital Object Lifecycle.md`
+
+## Public Presentation
+
+Digital Objects are presented to the public through approved FWX records exposed by the Bureau website.
+
+The website represents a public interface to FWX rather than the complete archival system.

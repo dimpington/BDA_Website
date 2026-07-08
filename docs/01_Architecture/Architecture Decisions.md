@@ -65,3 +65,44 @@ A shared schema ensures consistency across FWX while allowing the Bureau to docu
 
 This structure also supports future administrative tools such as a “New Digital Object” interface where Bureau personnel can create records through a guided form.
 
+---
+
+## ADR-004 — Public Portal
+
+**Status:** Accepted
+
+### Decision
+
+The Bureau website serves two primary purposes:
+
+1. Present the Bureau of Digital Antiquities as a public institution.
+2. Provide public access to approved FWX records, publications and collections.
+
+### Rationale
+
+The website is not the Bureau itself.
+
+It is the public-facing interface to the Bureau and selected information contained within the Forgotten Web Exchange (FWX).
+
+---
+
+## ADR-005 — Information Architecture
+
+**Status:** Accepted
+
+### Decision
+
+The public website shall be organized around five primary destinations:
+
+- Home
+- FWX
+- Publications
+- Collections
+- About
+
+### Rationale
+
+The Bureau website exists to orient visitors to the institution while providing structured access to the public archival collection.
+
+Additional pages shall support these primary destinations rather than replace them.
+
