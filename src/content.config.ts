@@ -1,7 +1,8 @@
 import { defineCollection, z } from "astro:content";
+import { glob } from "astro/loaders";
 
 const digitalObjects = defineCollection({
-  type: "content",
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/digital-objects" }),
   schema: z.object({
     // Identification
     fwxId: z.string(),
@@ -9,11 +10,7 @@ const digitalObjects = defineCollection({
     objectType: z.string(),
 
     // Access
-    classification: z.enum([
-      "Public",
-      "Internal",
-      "Restricted",
-    ]),
+    classification: z.enum(["Public", "Internal", "Restricted"]),
 
     // Status
     operationalStatus: z.string(),
@@ -35,7 +32,7 @@ const digitalObjects = defineCollection({
 });
 
 const publications = defineCollection({
-  type: "content",
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/publications" }),
   schema: z.object({
     id: z.string(),
     title: z.string(),
@@ -54,7 +51,7 @@ const publications = defineCollection({
 });
 
 const exhibitions = defineCollection({
-  type: "content",
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/exhibitions" }),
   schema: z.object({
     id: z.string(),
     title: z.string(),
