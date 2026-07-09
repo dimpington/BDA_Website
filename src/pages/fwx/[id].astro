@@ -1,5 +1,6 @@
 ---
 import { getCollection } from "astro:content";
+import FWXRecord from "../../components/FWXRecord.astro";
 
 export async function getStaticPaths() {
   const objects = await getCollection("digital-objects");
@@ -17,29 +18,4 @@ export async function getStaticPaths() {
 const { object } = Astro.props;
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>{object.data.title}</title>
-  </head>
-
-  <body>
-
-    <h1>{object.data.title}</h1>
-
-    <p><strong>FWX ID:</strong> {object.data.fwxId}</p>
-
-    <p><strong>Object Type:</strong> {object.data.objectType}</p>
-
-    <p><strong>Classification:</strong> {object.data.classification}</p>
-
-    <p><strong>Operational Status:</strong> {object.data.operationalStatus}</p>
-
-    <p><strong>Preservation Status:</strong> {object.data.preservationStatus}</p>
-
-    <h2>Summary</h2>
-
-    <p>{object.data.summary}</p>
-
-  </body>
-</html>
+<FWXRecord object={object} />
