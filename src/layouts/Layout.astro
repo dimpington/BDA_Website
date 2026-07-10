@@ -1,23 +1,38 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
-</html>
+---
+import "../styles/global.css";
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+const { title = "Bureau of Digital Antiquities" } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title}</title>
+  </head>
+
+  <body>
+    <div class="site-shell">
+      <header class="site-header">
+        <h1 class="site-title">Bureau of Digital Antiquities</h1>
+        <p class="site-subtitle">Preserving historically significant digital heritage since 1998.</p>
+      </header>
+
+      <nav class="site-nav">
+        <a href="/">Home</a>
+        <a href="/fwx">FWX</a>
+        <a href="/publications">Publications</a>
+        <a href="/collections">Collections</a>
+        <a href="/about">About</a>
+      </nav>
+
+      <main class="site-main">
+        <slot />
+      </main>
+
+      <footer class="site-footer">
+        <p>Forgotten Web Exchange · Public Portal</p>
+      </footer>
+    </div>
+  </body>
+</html>

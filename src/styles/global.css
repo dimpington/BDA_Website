@@ -1,0 +1,115 @@
+:root {
+  --color-background: #f7f5ef;
+  --color-surface: #ffffff;
+  --color-text: #1f1f1f;
+  --color-muted: #5f5f5f;
+  --color-border: #b8b2a4;
+  --color-accent: #1f3b2d;
+
+  --font-heading: Georgia, "Times New Roman", serif;
+  --font-body: Arial, Helvetica, sans-serif;
+
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 2rem;
+  --space-xl: 4rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(180deg, #f7f5ef 0%, #efe8dc 100%);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  line-height: 1.6;
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.site-shell {
+  max-width: 1100px;
+  margin: 0 auto;
+  background: var(--color-surface);
+  min-height: 100vh;
+  border-left: 1px solid var(--color-border);
+  border-right: 1px solid var(--color-border);
+  box-shadow: 0 8px 30px rgba(31, 59, 45, 0.08);
+}
+
+.site-header {
+  padding: var(--space-lg);
+  border-bottom: 2px solid var(--color-accent);
+  background: linear-gradient(90deg, #f8f4eb 0%, #f2ebdd 100%);
+}
+
+.site-title {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  letter-spacing: 0.02em;
+}
+
+.site-subtitle {
+  margin: 0.5rem 0 0;
+  color: var(--color-muted);
+  font-size: 0.95rem;
+}
+
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  padding: var(--space-md) var(--space-lg);
+  border-bottom: 1px solid var(--color-border);
+  background: #fcfaf6;
+}
+
+.site-nav a {
+  padding: 0.35rem 0.5rem;
+  border-radius: 0.35rem;
+}
+
+.site-nav a:hover {
+  background: rgba(31, 59, 45, 0.08);
+}
+
+.site-main {
+  padding: var(--space-lg);
+}
+
+.site-main section {
+  background: linear-gradient(180deg, #ffffff 0%, #fcfaf7 100%);
+  border: 1px solid var(--color-border);
+  border-radius: 0.75rem;
+  padding: var(--space-lg);
+  box-shadow: 0 4px 16px rgba(31, 59, 45, 0.05);
+}
+
+.site-main h2 {
+  margin-top: 0;
+  font-family: var(--font-heading);
+  color: var(--color-accent);
+}
+
+.site-main p {
+  margin-bottom: 0;
+  color: var(--color-text);
+}
+
+.site-footer {
+  padding: var(--space-lg);
+  border-top: 1px solid var(--color-border);
+  color: var(--color-muted);
+  font-size: 0.9rem;
+  background: #f8f4eb;
+}
