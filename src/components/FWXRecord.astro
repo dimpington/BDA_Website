@@ -1,31 +1,22 @@
 ---
+import RecordHeader from "./RecordHeader.astro";
+
 const { object } = Astro.props;
 ---
 
 <article>
-  <header>
-    <p><strong>{object.data.fwxId}</strong></p>
-    <h1>{object.data.title}</h1>
-    <p>Digital Object Record</p>
-  </header>
+  <RecordHeader object={object} />
 
-  <hr>
+  <hr />
 
-  <dl>
-    <dt>Classification</dt>
-    <dd>{object.data.classification}</dd>
-
+<dl>
+  <div>
     <dt>Object Type</dt>
     <dd>{object.data.objectType}</dd>
+  </div>
+</dl>
 
-    <dt>Operational Status</dt>
-    <dd>{object.data.operationalStatus}</dd>
-
-    <dt>Preservation Status</dt>
-    <dd>{object.data.preservationStatus}</dd>
-  </dl>
-
-  <hr>
+  <hr />
 
   <section>
     <h2>Summary</h2>
