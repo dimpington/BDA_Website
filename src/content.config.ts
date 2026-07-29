@@ -30,6 +30,15 @@ const digitalObjects = defineCollection({
     firstPublished: z.string().optional(),
     lastVerified: z.string().optional(),
 
+  preservation: z
+  .object({
+    accessibility: z.string().optional(),
+    integrity: z.string().optional(),
+    monitoring: z.string().optional(),
+    observingOffice: z.string().optional(),
+  })
+  .optional(),
+
     // Tags
     tags: z.array(z.string()).default([]),
   }),

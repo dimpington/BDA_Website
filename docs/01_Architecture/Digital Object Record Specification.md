@@ -1,5 +1,17 @@
 # Digital Object Record Specification
 
+Document Reference
+BDA-STD-0001
+
+Version
+1.0
+
+Status
+Active
+
+Approved By
+Office of Digital Preservation
+
 ## Purpose
 
 A Digital Object Record defines the information the Bureau records about a Digital Object within FWX.
@@ -170,3 +182,48 @@ Public visibility is determined by classification and publication approval.
 The public website shall expose only fields approved for public release.
 
 Internal fields remain restricted to Bureau use.
+
+## Public Record Structure
+
+Every published Digital Object Record shall present information using the
+following document structure.
+
+1. Document Header
+2. Administrative Record
+3. Historical Record
+   - Historical Overview
+4. Object Documentation
+   - Narrative Record
+5. Technical Assessment
+6. Preservation Assessment
+7. Related Records
+8. Publication Record
+
+## Public Record Mapping
+
+Not every stored field is intended for public release.
+
+The Bureau maintains a complete internal record for each Digital Object.
+Public Digital Object Records expose only information approved for public
+distribution.
+
+Examples:
+
+| Internal Field | Public |
+|---------------|--------|
+| Verification Notes | No |
+| Pending Actions | No |
+| Review History | No |
+| Historical Significance | Yes |
+| Preservation Status | Yes |
+| Operational Timeline | Yes |
+
+## Editorial Standards
+
+Digital Object Records shall be written in a neutral,
+descriptive and institutional tone.
+
+Records describe observations rather than opinions.
+
+The Bureau documents Digital Objects.
+It does not review, rank or recommend them.
