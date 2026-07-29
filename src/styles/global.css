@@ -992,3 +992,198 @@ img {
     gap: 0.15rem;
   }
 }
+
+/* =========================================================
+   FWX Catalogue
+   ========================================================= */
+
+.fwx-masthead {
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  align-items: start;
+  gap: 2rem;
+  margin-top: 2rem;
+  padding: 2rem 0;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.fwx-logo {
+  width: 100%;
+  max-width: 240px;
+  height: auto;
+  margin: 0;
+}
+
+.fwx-masthead__text h1 {
+  margin: 0 0 0.75rem;
+}
+
+.fwx-masthead__text .catalogue-lead {
+  margin: 0;
+}
+
+   .catalogue-intro {
+  padding: 2.5rem 0 2rem;
+  border-bottom: 1px solid var(--border-color, #b8b1a4);
+}
+
+.catalogue-intro h1 {
+  margin-top: 0rem;
+  margin-bottom: 1rem;
+}
+
+.catalogue-lead {
+  max-width: 48rem;
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+.section-label {
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.catalogue-reference {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: 2rem;
+  border: 1px solid var(--border-color, #b8b1a4);
+  background: var(--border-color, #b8b1a4);
+}
+
+.catalogue-reference div {
+  padding: 1rem;
+  background: var(--page-background, #f5f1e8);
+}
+
+.catalogue-reference dt {
+  margin-bottom: 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.catalogue-reference dd {
+  margin: 0;
+  font-family: "Courier New", monospace;
+  font-size: 0.9rem;
+}
+
+.catalogue-register {
+  padding: 2.5rem 0;
+}
+
+.catalogue-register__heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 1rem;
+}
+
+.catalogue-register__heading h2 {
+  margin: 0.35rem 0 0;
+}
+
+.catalogue-register__heading > p {
+  margin: 0;
+  font-size: 0.85rem;
+  font-style: italic;
+}
+
+.catalogue-table-wrapper {
+  overflow-x: auto;
+  border-top: 3px solid var(--heading-color, #17335f);
+  border-bottom: 1px solid var(--border-color, #b8b1a4);
+}
+
+.catalogue-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 950px;
+}
+
+.catalogue-table th,
+.catalogue-table td {
+  padding: 1rem 0.85rem;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--border-color, #d0c9bc);
+}
+
+.catalogue-table th {
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: rgba(23, 51, 95, 0.07);
+}
+
+.catalogue-table tbody tr:hover {
+  background: rgba(23, 51, 95, 0.04);
+}
+
+.catalogue-id {
+  white-space: nowrap;
+  font-family: "Courier New", monospace;
+  font-weight: 700;
+}
+
+.catalogue-title {
+  min-width: 18rem;
+}
+
+.catalogue-title > a {
+  font-weight: 700;
+}
+
+.catalogue-title p {
+  margin: 0.4rem 0 0;
+  max-width: 34rem;
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.record-badge {
+  display: inline-block;
+  padding: 0.28rem 0.45rem;
+  border: 1px solid currentColor;
+  font-size: 0.68rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.record-badge--classification {
+  background: rgba(23, 51, 95, 0.07);
+}
+
+@media (max-width: 760px) {
+  .catalogue-reference {
+    grid-template-columns: 1fr;
+  }
+
+  .catalogue-register__heading {
+    display: block;
+  }
+
+  .catalogue-register__heading > p {
+    margin-top: 0.75rem;
+  }
+
+    .fwx-masthead {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .fwx-logo {
+    max-width: 320px;
+  }
+}

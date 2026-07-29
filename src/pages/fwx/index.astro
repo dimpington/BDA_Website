@@ -10,59 +10,109 @@ const sortedObjects = objects.sort((a, b) =>
 ---
 
 <Layout title="Forgotten Web Exchange | Bureau of Digital Antiquities">
-  <main class="fwx-catalogue">
-    <header class="catalogue-header">
-      <p class="section-label">Public Catalogue</p>
+  <section class="catalogue-intro">
+    <p class="section-label">Public Catalogue</p>
 
-      <h1>Forgotten Web Exchange</h1>
+    <div class="fwx-masthead">
+      <img
+        src="/images/FWX_Logo.png"
+        alt="Forgotten Web Exchange"
+        class="fwx-logo"
+      />
+
+      <div class="fwx-masthead__text">
+        <h1>Forgotten Web Exchange</h1>
+
+        <p class="catalogue-lead">
+          The Forgotten Web Exchange provides public access to catalogued
+          Digital Objects held by the Bureau of Digital Antiquities.
+        </p>
+      </div>
+    </div>
+
+    <dl class="catalogue-reference">
+      <div>
+        <dt>Document Reference</dt>
+        <dd>BDA-FWX-CATALOGUE-001</dd>
+      </div>
+
+      <div>
+        <dt>Release Status</dt>
+        <dd>Public Release</dd>
+      </div>
+
+      <div>
+        <dt>Catalogue Records</dt>
+        <dd>{sortedObjects.length}</dd>
+      </div>
+    </dl>
+  </section>
+
+  <section class="catalogue-register" aria-labelledby="catalogue-records">
+    <div class="catalogue-register__heading">
+      <div>
+        <p class="section-label">Register</p>
+        <h2 id="catalogue-records">Digital Object Records</h2>
+      </div>
 
       <p>
-        The Forgotten Web Exchange provides public access to catalogued
-        Digital Objects held by the Bureau of Digital Antiquities.
+        Ordered by permanent FWX identifier
       </p>
-    </header>
+    </div>
 
-    <section aria-labelledby="catalogue-records">
-      <div class="catalogue-heading">
-        <h2 id="catalogue-records">Catalogue Records</h2>
-        <p>{sortedObjects.length} records</p>
-      </div>
+    <div class="catalogue-table-wrapper">
+      <table class="catalogue-table">
+        <thead>
+          <tr>
+            <th scope="col">FWX ID</th>
+            <th scope="col">Title</th>
+            <th scope="col">Object Type</th>
+            <th scope="col">Operational Status</th>
+            <th scope="col">Preservation Status</th>
+            <th scope="col">Classification</th>
+          </tr>
+        </thead>
 
-      <div class="catalogue-list">
-        {sortedObjects.map((object) => (
-          <article class="catalogue-record">
-            <div class="record-reference">
-              <span>{object.data.fwxId}</span>
-              <span>{object.data.objectType}</span>
-            </div>
+        <tbody>
+          {sortedObjects.map((object) => (
+            <tr>
+              <td class="catalogue-id">
+                <a href={`/fwx/${object.data.fwxId}`}>
+                  {object.data.fwxId}
+                </a>
+              </td>
 
-            <h3>
-              <a href={`/fwx/${object.data.fwxId}`}>
-                {object.data.title}
-              </a>
-            </h3>
+              <td class="catalogue-title">
+                <a href={`/fwx/${object.data.fwxId}`}>
+                  {object.data.title}
+                </a>
 
-            <p>{object.data.summary}</p>
+                <p>{object.data.summary}</p>
+              </td>
 
-            <dl class="catalogue-metadata">
-              <div>
-                <dt>Operational Status</dt>
-                <dd>{object.data.operationalStatus}</dd>
-              </div>
+              <td>{object.data.objectType}</td>
 
-              <div>
-                <dt>Preservation Status</dt>
-                <dd>{object.data.preservationStatus}</dd>
-              </div>
+              <td>
+                <span class="record-badge">
+                  {object.data.operationalStatus}
+                </span>
+              </td>
 
-              <div>
-                <dt>Classification</dt>
-                <dd>{object.data.classification}</dd>
-              </div>
-            </dl>
-          </article>
-        ))}
-      </div>
-    </section>
-  </main>
+              <td>
+                <span class="record-badge">
+                  {object.data.preservationStatus}
+                </span>
+              </td>
+
+              <td>
+                <span class="record-badge record-badge--classification">
+                  {object.data.classification}
+                </span>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
 </Layout>
