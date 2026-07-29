@@ -1,5 +1,5 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 import FWXRecord from "../../components/FWXRecord.astro";
 
@@ -17,8 +17,11 @@ export async function getStaticPaths() {
 }
 
 const { object } = Astro.props;
+const { Content } = await render(object);
 ---
 
 <Layout title={`${object.data.title} | FWX`}>
-  <FWXRecord object={object} />
+  <FWXRecord object={object}>
+    <Content />
+  </FWXRecord>
 </Layout>
