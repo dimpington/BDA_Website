@@ -2,7 +2,11 @@ import { defineCollection, z } from "astro:content";
 import { glob } from "astro/loaders";
 
 const digitalObjects = defineCollection({
-  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/digital-objects" }),
+  loader: glob({
+    pattern: "**/*.{md,mdx}",
+    base: "./src/content/digital-objects",
+  }),
+
   schema: z.object({
     // Identification
     fwxId: z.string(),
@@ -26,13 +30,17 @@ const digitalObjects = defineCollection({
     firstPublished: z.string().optional(),
     lastVerified: z.string().optional(),
 
-    // Classification
+    // Tags
     tags: z.array(z.string()).default([]),
   }),
 });
 
 const publications = defineCollection({
-  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/publications" }),
+  loader: glob({
+    pattern: "**/*.{md,mdx}",
+    base: "./src/content/publications",
+  }),
+
   schema: z.object({
     id: z.string(),
     title: z.string(),
@@ -45,13 +53,16 @@ const publications = defineCollection({
     ]),
 
     published: z.string(),
-
     summary: z.string(),
   }),
 });
 
 const exhibitions = defineCollection({
-  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/exhibitions" }),
+  loader: glob({
+    pattern: "**/*.{md,mdx}",
+    base: "./src/content/exhibitions",
+  }),
+
   schema: z.object({
     id: z.string(),
     title: z.string(),

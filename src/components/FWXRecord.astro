@@ -2,24 +2,108 @@
 import RecordHeader from "./RecordHeader.astro";
 
 const { object } = Astro.props;
+
+const {
+  objectType,
+  classification,
+  operationalStatus,
+  preservationStatus,
+  summary,
+  creator,
+  originalUrl,
+  currentUrl,
+  firstPublished,
+  lastVerified,
+  tags,
+} = object.data;
 ---
 
-<article>
+<article class="fwx-record">
   <RecordHeader object={object} />
 
-  <hr />
+  <section class="record-section" aria-labelledby="record-details">
+    <h2 id="record-details">Record Details</h2>
 
-<dl>
-  <div>
-    <dt>Object Type</dt>
-    <dd>{object.data.objectType}</dd>
-  </div>
-</dl>
+    <dl class="record-metadata">
+      <div>
+        <dt>Object Type</dt>
+        <dd>{objectType}</dd>
+      </div>
 
-  <hr />
+      <div>
+        <dt>Classification</dt>
+        <dd>{classification}</dd>
+      </div>
 
-  <section>
-    <h2>Summary</h2>
-    <p>{object.data.summary}</p>
+      <div>
+        <dt>Operational Status</dt>
+        <dd>{operationalStatus}</dd>
+      </div>
+
+      <div>
+        <dt>Preservation Status</dt>
+        <dd>{preservationStatus}</dd>
+      </div>
+
+      {creator && (
+        <div>
+          <dt>Creator</dt>
+          <dd>{creator}</dd>
+        </div>
+      )}
+
+      {firstPublished && (
+        <div>
+          <dt>First Published</dt>
+          <dd>{firstPublished}</dd>
+        </div>
+      )}
+
+      {lastVerified && (
+        <div>
+          <dt>Last Verified</dt>
+          <dd>{lastVerified}</dd>
+        </div>
+      )}
+
+      {originalUrl && (
+        <div>
+          <dt>Original URL</dt>
+          <dd>
+            <a href={originalUrl}>{originalUrl}</a>
+          </dd>
+        </div>
+      )}
+
+      {currentUrl && (
+        <div>
+          <dt>Current URL</dt>
+          <dd>
+            <a href={currentUrl}>{currentUrl}</a>
+          </dd>
+        </div>
+      )}
+    </dl>
   </section>
+
+  <section class="record-section" aria-labelledby="record-summary">
+    <h2 id="record-summary">Summary</h2>
+    <p>{summary}</p>
+  </section>
+
+  <section class="record-section record-body">
+  <slot />
+</section>
+
+  {tags.length > 0 && (
+    <section class="record-section" aria-labelledby="record-tags">
+      <h2 id="record-tags">Tags</h2>
+
+      <ul class="record-tags">
+        {tags.map((tag) => (
+          <li>{tag}</li>
+        ))}
+      </ul>
+    </section>
+  )}
 </article>

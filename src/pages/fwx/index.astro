@@ -1,0 +1,68 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+
+const objects = await getCollection("digital-objects");
+
+const sortedObjects = objects.sort((a, b) =>
+  a.data.fwxId.localeCompare(b.data.fwxId)
+);
+---
+
+<Layout title="Forgotten Web Exchange | Bureau of Digital Antiquities">
+  <main class="fwx-catalogue">
+    <header class="catalogue-header">
+      <p class="section-label">Public Catalogue</p>
+
+      <h1>Forgotten Web Exchange</h1>
+
+      <p>
+        The Forgotten Web Exchange provides public access to catalogued
+        Digital Objects held by the Bureau of Digital Antiquities.
+      </p>
+    </header>
+
+    <section aria-labelledby="catalogue-records">
+      <div class="catalogue-heading">
+        <h2 id="catalogue-records">Catalogue Records</h2>
+        <p>{sortedObjects.length} records</p>
+      </div>
+
+      <div class="catalogue-list">
+        {sortedObjects.map((object) => (
+          <article class="catalogue-record">
+            <div class="record-reference">
+              <span>{object.data.fwxId}</span>
+              <span>{object.data.objectType}</span>
+            </div>
+
+            <h3>
+              <a href={`/fwx/${object.data.fwxId}`}>
+                {object.data.title}
+              </a>
+            </h3>
+
+            <p>{object.data.summary}</p>
+
+            <dl class="catalogue-metadata">
+              <div>
+                <dt>Operational Status</dt>
+                <dd>{object.data.operationalStatus}</dd>
+              </div>
+
+              <div>
+                <dt>Preservation Status</dt>
+                <dd>{object.data.preservationStatus}</dd>
+              </div>
+
+              <div>
+                <dt>Classification</dt>
+                <dd>{object.data.classification}</dd>
+              </div>
+            </dl>
+          </article>
+        ))}
+      </div>
+    </section>
+  </main>
+</Layout>
