@@ -35,3 +35,13 @@ FWX serves as the Bureau's institutional memory.
 It provides a unified system for documenting Digital Objects throughout their lifecycle and preserves the relationships between Digital Objects, publications, assessments and archival activities.
 
 FWX records are created following qualification and cataloguing of accepted Digital Objects.
+
+## Relationship to Publications
+
+FWX stores Digital Object Records.
+
+Publications are official Bureau documents that may reference one or more Digital Objects stored within FWX.
+
+Publications do not replace Digital Object Records, nor do Digital Object Records replace Publications.
+
+The two serve complementary purposes.

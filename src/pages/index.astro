@@ -1,11 +1,365 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const departments = [
+  {
+    name: "Office of Digital Preservation",
+    description:
+      "Preservation planning, technical standards, and long-term digital custody."
+  },
+  {
+    name: "Records & Provenance Division",
+    description:
+      "Catalogue authority, record histories, accession control, and provenance documentation."
+  },
+  {
+    name: "Digital Forensics Unit",
+    description:
+      "Technical examination of recovered media, files, and legacy computing environments."
+  },
+  {
+    name: "Recovery Operations Division",
+    description:
+      "Identification, retrieval, and stabilization of endangered digital objects."
+  },
+  {
+    name: "Bureau Archives",
+    description:
+      "Institutional records, finding aids, restricted holdings, and administrative history."
+  },
+  {
+    name: "Publications Office",
+    description:
+      "Field reports, preservation bulletins, technical notes, and public information releases."
+  }
+];
+
+const publications = [
+  {
+    type: "Preservation Bulletin",
+    id: "PB-2026-018",
+    title: "Recovering Animated Image Assets from Partial Web Captures",
+    date: "18 July 2026"
+  },
+  {
+    type: "Field Report",
+    id: "FR-2026-012",
+    title: "Preliminary Survey of Surviving Personal Homepage Networks",
+    date: "03 July 2026"
+  },
+  {
+    type: "Technical Note",
+    id: "TN-2026-004",
+    title: "Dating HTML Documents Through Browser-Specific Metadata",
+    date: "21 June 2026"
+  }
+];
+
+const recentRecords = [
+  {
+    id: "FWX-000428",
+    title: "The Mars Pathfinder Web Archive",
+    meta: "Government publication · 1996–1998"
+  },
+  {
+    id: "FWX-000427",
+    title: "Northern Webring Directory",
+    meta: "Community index · 1998–2001"
+  },
+  {
+    id: "FWX-000426",
+    title: "Internet Café Operating Manual",
+    meta: "Commercial document · 1999"
+  },
+  {
+    id: "FWX-000425",
+    title: "The Unofficial Weather Station Network",
+    meta: "Distributed service · 1997–2004"
+  }
+];
 ---
 
-<Layout>
-	<Welcome />
+<Layout
+  title="Bureau of Digital Antiquities"
+  description="Search the Forgotten Web Exchange and access public records, publications, and institutional information from the Bureau of Digital Antiquities."
+>
+  <div class="home-page">
+    <section class="catalogue-hero" aria-labelledby="catalogue-heading">
+      <div class="catalogue-hero__content">
+        <p class="section-kicker">Forgotten Web Exchange</p>
+
+        <h2 id="catalogue-heading">Search the Public Catalogue</h2>
+
+        <p class="catalogue-hero__introduction">
+          Search published records of historically significant websites,
+          digital communities, network services, documents, software environments,
+          and recovered digital artefacts.
+        </p>
+
+        <form class="catalogue-search" action="/fwx" method="get" role="search">
+          <label for="catalogue-query">
+            Search by title, object number, subject, organisation, or date
+          </label>
+
+          <div class="catalogue-search__controls">
+            <input
+              id="catalogue-query"
+              name="q"
+              type="search"
+              placeholder="Example: FWX-000143 or personal homepage"
+            />
+
+            <button type="submit">Search catalogue</button>
+          </div>
+        </form>
+
+        <nav class="catalogue-links" aria-label="Catalogue browsing options">
+          <a href="/fwx">Browse all public records</a>
+          <a href="/collections">Browse by collection</a>
+          <a href="/fwx?status=cataloged">Recently catalogued</a>
+        </nav>
+      </div>
+
+      <aside class="public-information" aria-labelledby="public-information-heading">
+        <p class="public-information__label" id="public-information-heading">
+          Public Access System
+        </p>
+
+        <dl>
+          <div>
+            <dt>Catalogue</dt>
+            <dd>Forgotten Web Exchange</dd>
+          </div>
+
+          <div>
+            <dt>Public records</dt>
+            <dd>2,641</dd>
+          </div>
+
+          <div>
+            <dt>Current release</dt>
+            <dd>FWX Public Index 3.4</dd>
+          </div>
+
+          <div>
+            <dt>Last synchronisation</dt>
+            <dd>27 July 2026 · 20:40 UTC</dd>
+          </div>
+
+          <div>
+            <dt>Record authority</dt>
+            <dd>Records & Provenance Division</dd>
+          </div>
+        </dl>
+      </aside>
+    </section>
+
+    <section class="bureau-notice" aria-labelledby="bureau-notice-heading">
+      <div class="bureau-notice__heading">
+        <span>Bureau Notice</span>
+        <span>BN-2026-014</span>
+      </div>
+
+      <div class="bureau-notice__body">
+        <h2 id="bureau-notice-heading">
+          July public catalogue release completed
+        </h2>
+
+        <p>
+          The Records & Provenance Division has completed the July publication
+          cycle for the Forgotten Web Exchange. Twenty-seven newly catalogued
+          records and fourteen revised finding aids are now available for public access.
+        </p>
+
+        <p>
+          Records undergoing provenance verification, legal review, or technical
+          stabilization remain unavailable until formal release.
+        </p>
+      </div>
+    </section>
+
+    <div class="home-grid">
+      <section class="record-panel featured-record" aria-labelledby="featured-record-heading">
+        <header class="panel-heading">
+          <div>
+            <p class="section-kicker">Curatorial Selection</p>
+            <h2 id="featured-record-heading">Featured Digital Object</h2>
+          </div>
+
+          <span class="record-number">FWX-000143</span>
+        </header>
+
+        <div class="featured-record__image" aria-hidden="true">
+          <div class="browser-fragment">
+            <div class="browser-fragment__bar">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+
+            <div class="browser-fragment__content">
+              <span>WELCOME TO MY HOMEPAGE</span>
+              <small>Best viewed at 800 × 600</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="featured-record__content">
+          <p class="record-type">Personal / Enthusiast Publication</p>
+
+          <h3>The Unofficial X-Files Homepage</h3>
+
+          <p>
+            A partially recovered personal website documenting fan communities,
+            episode guides, webring affiliations, correspondence, and downloadable
+            desktop assets.
+          </p>
+
+          <dl class="record-metadata">
+            <div>
+              <dt>Original publication</dt>
+              <dd>1997–2002</dd>
+            </div>
+
+            <div>
+              <dt>Preservation status</dt>
+              <dd><span class="status-label">Stable</span></dd>
+            </div>
+
+            <div>
+              <dt>Asset condition</dt>
+              <dd>Partial loss</dd>
+            </div>
+
+            <div>
+              <dt>Public access</dt>
+              <dd>Unrestricted</dd>
+            </div>
+          </dl>
+
+          <a class="text-button" href="/fwx/FWX-000143">
+            View catalogue record
+          </a>
+        </div>
+      </section>
+
+      <section class="record-panel recent-records" aria-labelledby="recent-records-heading">
+        <header class="panel-heading">
+          <div>
+            <p class="section-kicker">Catalogue Activity</p>
+            <h2 id="recent-records-heading">Recently Catalogued</h2>
+          </div>
+        </header>
+
+        <ol class="record-list">
+          {
+            recentRecords.map((record) => (
+              <li>
+                <a href={`/fwx/${record.id}`}>
+                  <span class="record-list__id">{record.id}</span>
+                  <span class="record-list__title">{record.title}</span>
+                  <span class="record-list__meta">{record.meta}</span>
+                </a>
+              </li>
+            ))
+          }
+        </ol>
+
+        <a class="panel-footer-link" href="/fwx">
+          View all public catalogue records
+        </a>
+      </section>
+    </div>
+
+    <section class="publications-section" aria-labelledby="publications-heading">
+      <header class="section-heading">
+        <div>
+          <p class="section-kicker">Bureau Publications</p>
+          <h2 id="publications-heading">Latest Publications</h2>
+        </div>
+
+        <a href="/publications">Publication index</a>
+      </header>
+
+      <div class="publication-list">
+        {
+          publications.map((publication) => (
+            <article class="publication-entry">
+              <div class="publication-entry__reference">
+                <span>{publication.type}</span>
+                <strong>{publication.id}</strong>
+              </div>
+
+              <div class="publication-entry__body">
+                <h3>
+                  <a href="/publications">{publication.title}</a>
+                </h3>
+
+                <p>Issued {publication.date}</p>
+              </div>
+
+              <span class="publication-entry__format">HTML</span>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <section
+      class="departments-section"
+      id="departments"
+      aria-labelledby="departments-heading"
+    >
+      <header class="section-heading">
+        <div>
+          <p class="section-kicker">Organisation</p>
+          <h2 id="departments-heading">Departments and Offices</h2>
+        </div>
+
+        <a href="/about#departments">Organisation directory</a>
+      </header>
+
+      <div class="department-grid">
+        {
+          departments.map((department) => (
+            <article class="department-entry">
+              <span class="department-entry__marker" aria-hidden="true"></span>
+
+              <div>
+                <h3>
+                  <a href="/about#departments">{department.name}</a>
+                </h3>
+
+                <p>{department.description}</p>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="about-bureau" aria-labelledby="about-bureau-heading">
+      <div class="about-bureau__date">
+        <span>Established</span>
+        <strong>1998</strong>
+      </div>
+
+      <div class="about-bureau__content">
+        <p class="section-kicker">Institutional Mandate</p>
+
+        <h2 id="about-bureau-heading">
+          Preserving the documentary record of the early public web
+        </h2>
+
+        <p>
+          The Bureau of Digital Antiquities identifies, documents, assesses,
+          and preserves historically significant digital heritage. Its holdings
+          include websites, network services, digital publications, software
+          environments, and supporting records.
+        </p>
+
+        <a class="text-button" href="/about">Read about the Bureau</a>
+      </div>
+    </section>
+  </div>
 </Layout>

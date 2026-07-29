@@ -1,0 +1,27 @@
+---
+const { object } = Astro.props;
+---
+
+<header>
+  <p><strong>{object.data.fwxId}</strong></p>
+  <p><strong>Digital Object Record</strong></p>
+
+  <h1>{object.data.title}</h1>
+
+  <dl>
+    <div>
+      <dt>Classification</dt>
+      <dd>{object.data.classification}</dd>
+    </div>
+
+    <div>
+      <dt>Operational Status</dt>
+      <dd>{object.data.operationalStatus}</dd>
+    </div>
+
+    <div>
+      <dt>Preservation Status</dt>
+      <dd>{object.data.preservationStatus}</dd>
+    </div>
+  </dl>
+</header>

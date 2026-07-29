@@ -1,0 +1,25 @@
+---
+import RecordHeader from "./RecordHeader.astro";
+
+const { object } = Astro.props;
+---
+
+<article>
+  <RecordHeader object={object} />
+
+  <hr />
+
+<dl>
+  <div>
+    <dt>Object Type</dt>
+    <dd>{object.data.objectType}</dd>
+  </div>
+</dl>
+
+  <hr />
+
+  <section>
+    <h2>Summary</h2>
+    <p>{object.data.summary}</p>
+  </section>
+</article>

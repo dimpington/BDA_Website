@@ -1,0 +1,24 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import FWXRecord from "../../components/FWXRecord.astro";
+
+export async function getStaticPaths() {
+  const objects = await getCollection("digital-objects");
+
+  return objects.map((object) => ({
+    params: {
+      id: object.data.fwxId,
+    },
+    props: {
+      object,
+    },
+  }));
+}
+
+const { object } = Astro.props;
+---
+
+<Layout title={`${object.data.title} | FWX`}>
+  <FWXRecord object={object} />
+</Layout>
