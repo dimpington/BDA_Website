@@ -1,9 +1,9 @@
 ---
-import RecordHeader from "./RecordHeader.astro";
-
 const { object } = Astro.props;
 
 const {
+  fwxId,
+  title,
   objectType,
   classification,
   operationalStatus,
@@ -14,77 +14,152 @@ const {
   currentUrl,
   firstPublished,
   lastVerified,
-  tags,
-} = object.data;
+  tags = [],
+} = object.data as {
+  fwxId: string;
+  title: string;
+  objectType: string;
+  classification: string;
+  operationalStatus: string;
+  preservationStatus: string;
+  summary: string;
+  creator?: string;
+  originalUrl?: string;
+  currentUrl?: string;
+  firstPublished?: string;
+  lastVerified?: string;
+  tags?: string[];
+};
 ---
 
 <article class="fwx-record">
-  <RecordHeader object={object} />
+<header class="fwx-record-header">
+  <p class="section-label">Public Digital Object Record</p>
 
-  <section class="record-section" aria-labelledby="record-details">
-    <h2 id="record-details">Record Details</h2>
+  <div class="fwx-record-masthead">
+    <img
+      src="/images/FWX_Logo.png"
+      alt="Forgotten Web Exchange"
+      class="fwx-record-logo"
+    />
 
-    <dl class="record-metadata">
+    <div class="fwx-record-identity">
+      <p class="fwx-record-id">{fwxId}</p>
+
+      <h1>{title}</h1>
+
+      <p class="fwx-record-summary">
+        {summary}
+      </p>
+    </div>
+  </div>
+
+  <dl class="fwx-document-control">
+    <div>
+      <dt>Record Number</dt>
+      <dd>{fwxId}</dd>
+    </div>
+
+    <div>
+      <dt>Release</dt>
+      <dd>{classification}</dd>
+    </div>
+
+    <div>
+      <dt>Record Status</dt>
+      <dd>{preservationStatus}</dd>
+    </div>
+
+    <div>
+      <dt>Authority</dt>
+      <dd>Forgotten Web Exchange</dd>
+    </div>
+  </dl>
+</header>
+
+<section
+  class="record-section record-administrative"
+  aria-labelledby="administrative-record"
+>
+  <div class="record-section-heading">
+    <p class="section-label">Administrative Record</p>
+    <h2 id="administrative-record">Object Registration</h2>
+  </div>
+
+  <dl class="administrative-grid">
+    <div>
+      <dt>Digital Object ID</dt>
+      <dd>{fwxId}</dd>
+    </div>
+
+    <div>
+      <dt>Object Type</dt>
+      <dd>{objectType}</dd>
+    </div>
+
+    <div>
+      <dt>Classification</dt>
+      <dd>
+        <span class="record-badge record-badge--classification">
+          {classification}
+        </span>
+      </dd>
+    </div>
+
+    <div>
+      <dt>Operational Status</dt>
+      <dd>
+        <span class="status-label">
+          {operationalStatus}
+        </span>
+      </dd>
+    </div>
+
+    <div>
+      <dt>Preservation Status</dt>
+      <dd>{preservationStatus}</dd>
+    </div>
+
+    {creator && (
       <div>
-        <dt>Object Type</dt>
-        <dd>{objectType}</dd>
+        <dt>Creator</dt>
+        <dd>{creator}</dd>
       </div>
+    )}
 
+    {firstPublished && (
       <div>
-        <dt>Classification</dt>
-        <dd>{classification}</dd>
+        <dt>First Published</dt>
+        <dd>{firstPublished}</dd>
       </div>
+    )}
 
+    {lastVerified && (
       <div>
-        <dt>Operational Status</dt>
-        <dd>{operationalStatus}</dd>
+        <dt>Last Verified</dt>
+        <dd>{lastVerified}</dd>
       </div>
+    )}
 
-      <div>
-        <dt>Preservation Status</dt>
-        <dd>{preservationStatus}</dd>
+    {originalUrl && (
+      <div class="administrative-grid__wide">
+        <dt>Original Address</dt>
+        <dd>
+          <a href={originalUrl}>{originalUrl}</a>
+        </dd>
       </div>
+    )}
 
-      {creator && (
-        <div>
-          <dt>Creator</dt>
-          <dd>{creator}</dd>
-        </div>
-      )}
-
-      {firstPublished && (
-        <div>
-          <dt>First Published</dt>
-          <dd>{firstPublished}</dd>
-        </div>
-      )}
-
-      {lastVerified && (
-        <div>
-          <dt>Last Verified</dt>
-          <dd>{lastVerified}</dd>
-        </div>
-      )}
-
-      {originalUrl && (
-        <div>
-          <dt>Original URL</dt>
-          <dd>
-            <a href={originalUrl}>{originalUrl}</a>
-          </dd>
-        </div>
-      )}
-
-      {currentUrl && (
-        <div>
-          <dt>Current URL</dt>
-          <dd>
-            <a href={currentUrl}>{currentUrl}</a>
-          </dd>
-        </div>
-      )}
-    </dl>
-  </section>
+    {currentUrl && (
+      <div class="administrative-grid__wide">
+        <dt>Current Address</dt>
+        <dd>
+          <a href={currentUrl}>{currentUrl}</a>
+        </dd>
+      </div>
+    )}
+  </dl>
+</section>
 
   <section class="record-section" aria-labelledby="record-summary">
     <h2 id="record-summary">Summary</h2>

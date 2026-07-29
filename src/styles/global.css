@@ -1023,13 +1023,13 @@ img {
   margin: 0;
 }
 
-   .catalogue-intro {
+.catalogue-intro {
   padding: 2.5rem 0 2rem;
-  border-bottom: 1px solid var(--border-color, #b8b1a4);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .catalogue-intro h1 {
-  margin-top: 0rem;
+  margin-top: 0;
   margin-bottom: 1rem;
 }
 
@@ -1041,6 +1041,7 @@ img {
 
 .section-label {
   margin: 0;
+  color: var(--color-burgundy);
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.14em;
@@ -1052,13 +1053,13 @@ img {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1px;
   margin-top: 2rem;
-  border: 1px solid var(--border-color, #b8b1a4);
-  background: var(--border-color, #b8b1a4);
+  border: 1px solid var(--color-border);
+  background: var(--color-border);
 }
 
 .catalogue-reference div {
   padding: 1rem;
-  background: var(--page-background, #f5f1e8);
+  background: var(--color-paper-light);
 }
 
 .catalogue-reference dt {
@@ -1071,7 +1072,7 @@ img {
 
 .catalogue-reference dd {
   margin: 0;
-  font-family: "Courier New", monospace;
+  font-family: var(--font-mono);
   font-size: 0.9rem;
 }
 
@@ -1099,38 +1100,38 @@ img {
 
 .catalogue-table-wrapper {
   overflow-x: auto;
-  border-top: 3px solid var(--heading-color, #17335f);
-  border-bottom: 1px solid var(--border-color, #b8b1a4);
+  border-top: 3px solid var(--color-navy);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .catalogue-table {
   width: 100%;
-  border-collapse: collapse;
   min-width: 950px;
+  border-collapse: collapse;
 }
 
 .catalogue-table th,
 .catalogue-table td {
   padding: 1rem 0.85rem;
+  border-bottom: 1px solid var(--color-border);
   text-align: left;
   vertical-align: top;
-  border-bottom: 1px solid var(--border-color, #d0c9bc);
 }
 
 .catalogue-table th {
+  background: rgba(23, 50, 74, 0.07);
   font-size: 0.72rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  background: rgba(23, 51, 95, 0.07);
 }
 
 .catalogue-table tbody tr:hover {
-  background: rgba(23, 51, 95, 0.04);
+  background: rgba(23, 50, 74, 0.04);
 }
 
 .catalogue-id {
   white-space: nowrap;
-  font-family: "Courier New", monospace;
+  font-family: var(--font-mono);
   font-weight: 700;
 }
 
@@ -1143,8 +1144,8 @@ img {
 }
 
 .catalogue-title p {
-  margin: 0.4rem 0 0;
   max-width: 34rem;
+  margin: 0.4rem 0 0;
   font-size: 0.88rem;
   line-height: 1.5;
 }
@@ -1162,8 +1163,164 @@ img {
 }
 
 .record-badge--classification {
-  background: rgba(23, 51, 95, 0.07);
+  background: rgba(23, 50, 74, 0.07);
 }
+
+/* =========================================================
+   FWX Digital Object Record
+   ========================================================= */
+
+.fwx-record {
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.fwx-record-header {
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.fwx-record-masthead {
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  align-items: start;
+  gap: 2rem;
+  margin-top: 2rem;
+  padding: 2rem 0;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.fwx-record-logo {
+  width: 100%;
+  max-width: 240px;
+  height: auto;
+  margin: 0;
+}
+
+.fwx-record-id {
+  margin: 0 0 0.45rem;
+  color: var(--color-burgundy);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: bold;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.fwx-record-identity h1 {
+  margin: 0;
+  color: var(--color-navy-dark);
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-weight: normal;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+}
+
+.fwx-record-summary {
+  max-width: 48rem;
+  margin: 1rem 0 0;
+  color: var(--color-muted);
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+}
+
+.fwx-document-control {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  margin: 2rem 0 0;
+  border: 1px solid var(--color-border);
+  background: var(--color-border);
+}
+
+.fwx-document-control div {
+  padding: 1rem;
+  background: var(--color-surface-muted);
+}
+
+.fwx-document-control dt {
+  color: var(--color-faint);
+  font-size: 0.67rem;
+  font-weight: bold;
+  letter-spacing: 0.075em;
+  text-transform: uppercase;
+}
+
+.fwx-document-control dd {
+  margin: 0.25rem 0 0;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+}
+
+/* =========================================================
+   FWX Administrative Record
+   ========================================================= */
+
+.record-section {
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.record-section-heading {
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 3px double var(--color-border-dark);
+}
+
+.record-section-heading h2 {
+  margin: 0.25rem 0 0;
+  color: var(--color-navy-dark);
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  font-weight: normal;
+}
+
+.administrative-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 0;
+  border-top: 1px solid var(--color-border);
+  border-left: 1px solid var(--color-border);
+}
+
+.administrative-grid > div {
+  min-width: 0;
+  padding: 1rem;
+  border-right: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.administrative-grid dt {
+  margin-bottom: 0.3rem;
+  color: var(--color-faint);
+  font-size: 0.66rem;
+  font-weight: bold;
+  letter-spacing: 0.075em;
+  text-transform: uppercase;
+}
+
+.administrative-grid dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+}
+
+.administrative-grid__wide {
+  grid-column: span 2;
+}
+
+.administrative-grid__wide dd {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+}
+
+/* =========================================================
+   FWX Responsive Layout
+   ========================================================= */
 
 @media (max-width: 760px) {
   .catalogue-reference {
@@ -1178,12 +1335,42 @@ img {
     margin-top: 0.75rem;
   }
 
-    .fwx-masthead {
+  .fwx-masthead,
+  .fwx-record-masthead {
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
 
-  .fwx-logo {
-    max-width: 320px;
+  .fwx-logo,
+  .fwx-record-logo {
+    max-width: 300px;
   }
+
+  .fwx-document-control {
+    grid-template-columns: 1fr 1fr;
+  }
+
+.administrative-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.administrative-grid__wide {
+  grid-column: span 2;
+}
+
+}
+
+@media (max-width: 460px) {
+  .fwx-document-control {
+    grid-template-columns: 1fr;
+  }
+
+.administrative-grid {
+  grid-template-columns: 1fr;
+}
+
+.administrative-grid__wide {
+  grid-column: auto;
+}
+
 }
