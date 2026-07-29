@@ -1319,6 +1319,51 @@ img {
 }
 
 /* =========================================================
+   FWX Record Narrative
+   ========================================================= */
+
+.record-prose {
+  max-width: 760px;
+}
+
+.record-prose p {
+  margin: 0 0 1.4rem;
+  color: var(--color-ink);
+  font-family: var(--font-heading);
+  font-size: 1.08rem;
+  line-height: 1.8;
+}
+
+.record-prose p:last-child {
+  margin-bottom: 0;
+}
+
+.record-prose h3 {
+  margin: 2rem 0 0.75rem;
+  color: var(--color-navy-dark);
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: normal;
+}
+
+.record-prose ul,
+.record-prose ol {
+  margin: 1rem 0 1.5rem 1.5rem;
+}
+
+.record-prose li {
+  margin-bottom: 0.5rem;
+}
+
+.record-prose blockquote {
+  margin: 2rem 0;
+  padding-left: 1.25rem;
+  border-left: 3px solid var(--color-brass);
+  color: var(--color-muted);
+  font-style: italic;
+}
+
+/* =========================================================
    FWX Responsive Layout
    ========================================================= */
 

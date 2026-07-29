@@ -161,13 +161,38 @@ const {
   </dl>
 </section>
 
-  <section class="record-section" aria-labelledby="record-summary">
-    <h2 id="record-summary">Summary</h2>
-    <p>{summary}</p>
-  </section>
+<section
+  class="record-section record-overview"
+  aria-labelledby="historical-overview"
+>
+  <div class="record-section-heading">
+    <p class="section-label">Historical Record</p>
 
-  <section class="record-section record-body">
-  <slot />
+    <h2 id="historical-overview">
+      Historical Overview
+    </h2>
+  </div>
+
+  <div class="record-prose">
+    <p>{summary}</p>
+  </div>
+</section>
+
+<section
+  class="record-section record-body"
+  aria-labelledby="report-body"
+>
+  <div class="record-section-heading">
+    <p class="section-label">Documentation</p>
+
+    <h2 id="report-body">
+      Detailed Record
+    </h2>
+  </div>
+
+  <div class="record-prose">
+    <slot />
+  </div>
 </section>
 
   {tags.length > 0 && (
