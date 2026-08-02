@@ -1,0 +1,59 @@
+---
+import { getCollection } from "astro:content";
+
+import Layout from "../../layouts/Layout.astro";
+
+const publications = await getCollection("publications");
+
+const sortedPublications = publications.sort((a, b) =>
+  b.data.published.localeCompare(a.data.published)
+);
+---
+
+<Layout title="Publications | Bureau of Digital Antiquities">
+  <section class="page-header">
+    <p class="section-label">Official Publications</p>
+
+    <h1>Publications</h1>
+
+    <p class="page-introduction">
+      The Bureau publishes Field Reports, Preservation Bulletins,
+      Technical Notes and Annual Reports for public reference.
+    </p>
+  </section>
+
+  <section class="record-section">
+    <div class="record-section-heading">
+      <p class="section-label">Publication Register</p>
+
+      <h2>Available Publications</h2>
+    </div>
+
+    <div class="publication-list">
+      {
+        sortedPublications.map((publication) => (
+          <article class="publication-entry">
+            <div class="publication-entry__reference">
+              <strong>{publication.data.id}</strong>
+              <span>{publication.data.type}</span>
+            </div>
+
+            <div>
+              <h3>
+                <a href={`/publications/${publication.data.id}`}>
+                  {publication.data.title}
+                </a>
+              </h3>
+
+              <p>{publication.data.summary}</p>
+            </div>
+
+            <span class="publication-entry__format">
+              {publication.data.published}
+            </span>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+</Layout>

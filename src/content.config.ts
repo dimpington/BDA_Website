@@ -99,9 +99,22 @@ const publications = defineCollection({
 
     published: z.string(),
     summary: z.string(),
+
+    issuingOffice: z.string(),
+
+    classification: z
+      .enum(["Public", "Internal", "Restricted"])
+      .default("Public"),
+
+    documentReference: z.string(),
+
+    revision: z.string().default("1.0"),
+
+    relatedObjects: z.array(z.string()).default([]),
+
+    tags: z.array(z.string()).default([]),
   }),
 });
-
 const exhibitions = defineCollection({
   loader: glob({
     pattern: "**/*.{md,mdx}",
