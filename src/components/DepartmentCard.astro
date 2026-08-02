@@ -1,0 +1,50 @@
+---
+const { department } = Astro.props;
+
+const {
+  id,
+  name,
+  motto,
+  summary,
+  responsibilities,
+  emblem,
+  officeType,
+} = department.data;
+---
+
+<article class="department-card">
+  <img
+    src={emblem}
+    alt={`${name} emblem`}
+    class="department-card__emblem"
+  />
+
+  <p class="section-label">{officeType}</p>
+
+  <h2>{name}</h2>
+
+  <p class="department-card__motto">
+    “{motto}”
+  </p>
+
+  <p class="department-card__summary">
+    {summary}
+  </p>
+
+  <div class="department-card__responsibilities">
+    <h3>Primary Responsibilities</h3>
+
+    <ul>
+      {responsibilities.slice(0, 4).map((item: string) => (
+        <li>{item}</li>
+      ))}
+    </ul>
+  </div>
+
+  <a
+    href={`/departments/${id}`}
+    class="department-card__link"
+  >
+    View Department →
+  </a>
+</article>

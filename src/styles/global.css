@@ -1530,3 +1530,173 @@ img {
 }
 
 }
+
+/* =========================================================
+   Department Directory
+   ========================================================= */
+
+.page-header {
+  margin-bottom: 3rem;
+}
+
+.page-introduction {
+  max-width: 46rem;
+  color: var(--color-muted);
+  font-family: var(--font-heading);
+  line-height: 1.7;
+}
+
+.department-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+.department-card {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-muted);
+}
+
+.department-card__emblem {
+  width: 120px;
+  margin: 0 auto 1.5rem;
+}
+
+.department-card h2 {
+  margin: 0.5rem 0;
+}
+
+.department-card__motto {
+  margin-bottom: 1rem;
+  color: var(--color-muted);
+  font-style: italic;
+}
+
+.department-card__summary {
+  line-height: 1.7;
+}
+
+.department-card__responsibilities {
+  margin-top: 1.5rem;
+}
+
+.department-card__responsibilities ul {
+  padding-left: 1.25rem;
+}
+
+.department-card__link {
+  margin-top: auto;
+  padding-top: 1.5rem;
+  font-weight: bold;
+}
+
+/* =========================================================
+   Department Record
+   ========================================================= */
+
+.department-record {
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.department-record__header {
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.department-record__masthead {
+  display: grid;
+  grid-template-columns: 190px minmax(0, 1fr);
+  align-items: center;
+  gap: 2rem;
+  margin-top: 2rem;
+  padding: 2rem 0;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.department-record__emblem {
+  width: 100%;
+  max-width: 170px;
+  height: auto;
+  margin: 0 auto;
+  object-fit: contain;
+}
+
+.department-record__type {
+  margin: 0 0 0.35rem;
+  color: var(--color-burgundy);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.department-record__masthead h1 {
+  margin: 0;
+  color: var(--color-navy-dark);
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 5vw, 3.1rem);
+  font-weight: normal;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+}
+
+.department-record__motto {
+  margin: 0.8rem 0 0;
+  color: var(--color-muted);
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-style: italic;
+}
+
+.department-record__summary {
+  max-width: 48rem;
+  margin: 1rem 0 0;
+  color: var(--color-muted);
+  font-family: var(--font-heading);
+  line-height: 1.7;
+}
+
+.department-responsibility-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  margin: 0;
+  padding: 1px;
+  background: var(--color-border);
+  list-style: none;
+}
+
+.department-responsibility-list li {
+  padding: 1rem;
+  background: var(--color-surface-muted);
+  font-family: var(--font-heading);
+}
+
+.department-responsibility-list li::before {
+  margin-right: 0.55rem;
+  color: var(--color-burgundy);
+  content: "■";
+  font-size: 0.55rem;
+  vertical-align: 0.15em;
+}
+
+@media (max-width: 760px) {
+  .department-record__masthead {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+
+  .department-record__emblem {
+    max-width: 180px;
+    margin: 0;
+  }
+
+  .department-responsibility-list {
+    grid-template-columns: 1fr;
+  }
+}

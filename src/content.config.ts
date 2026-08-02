@@ -54,6 +54,32 @@ const digitalObjects = defineCollection({
   }),
 });
 
+const departments = defineCollection({
+  loader: glob({
+    pattern: "**/*.{md,mdx}",
+    base: "./src/content/departments",
+  }),
+
+  schema: z.object({
+    id: z.string(),
+    name: z.string(),
+    motto: z.string(),
+    summary: z.string(),
+    mission: z.string(),
+
+    responsibilities: z.array(z.string()),
+
+    emblem: z.string(),
+
+    officeType: z.enum([
+      "Office",
+      "Division",
+      "Unit",
+      "Archives",
+    ]),
+  }),
+});
+
 const publications = defineCollection({
   loader: glob({
     pattern: "**/*.{md,mdx}",
@@ -91,6 +117,7 @@ const exhibitions = defineCollection({
 
 export const collections = {
   "digital-objects": digitalObjects,
+  departments,
   publications,
   exhibitions,
 };
