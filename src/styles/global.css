@@ -1363,6 +1363,88 @@ img {
   font-style: italic;
 }
 
+/* =========================================================
+   FWX Related Records
+   ========================================================= */
+
+.related-records {
+  display: grid;
+  gap: 1rem;
+}
+
+.related-record {
+  padding: 1.25rem;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-muted);
+}
+
+.related-record__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.related-record-id {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: bold;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.related-record-id a {
+  color: var(--color-burgundy);
+}
+
+.related-record h3 {
+  margin: 0.45rem 0 1rem;
+  color: var(--color-navy-dark);
+  font-family: var(--font-heading);
+  font-size: 1.45rem;
+  font-weight: normal;
+}
+
+.related-record__metadata {
+  margin: 0 0 1rem;
+}
+
+.related-record__metadata div {
+  padding: 0.75rem;
+  border-left: 4px solid var(--color-brass);
+  background: var(--color-surface);
+}
+
+.related-record__metadata dt {
+  color: var(--color-faint);
+  font-size: 0.66rem;
+  font-weight: bold;
+  letter-spacing: 0.075em;
+  text-transform: uppercase;
+}
+
+.related-record__metadata dd {
+  margin: 0.2rem 0 0;
+  font-family: var(--font-heading);
+}
+
+.related-record__summary {
+  max-width: 48rem;
+  margin: 0 0 1rem;
+  color: var(--color-muted);
+  font-family: var(--font-heading);
+  line-height: 1.7;
+}
+
+.related-record__link {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: bold;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
 /* ==========================================================================
    FWX Publication Footer
    ========================================================================== */

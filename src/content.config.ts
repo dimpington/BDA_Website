@@ -39,6 +39,16 @@ const digitalObjects = defineCollection({
   })
   .optional(),
 
+      // Related Digital Objects
+    relatedObjects: z
+      .array(
+        z.object({
+          fwxId: z.string(),
+          relationship: z.string().optional(),
+        })
+      )
+      .default([]),
+
     // Tags
     tags: z.array(z.string()).default([]),
   }),

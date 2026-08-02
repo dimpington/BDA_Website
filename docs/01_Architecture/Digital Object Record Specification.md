@@ -124,7 +124,16 @@ Optional fields:
 
 - Related FWX ID
 - Relationship Type
+- Relationship Description
 - Notes
+
+Purpose
+
+Related Digital Objects establish navigable relationships between
+catalogued records within the Forgotten Web Exchange.
+
+Relationships should describe meaningful historical, technical,
+cultural or preservation connections.
 
 ---
 

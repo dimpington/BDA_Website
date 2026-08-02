@@ -1,4 +1,6 @@
 ---
+import { getCollection } from "astro:content";
+
 const { object } = Astro.props;
 
 const {
@@ -15,6 +17,7 @@ const {
   firstPublished,
   lastVerified,
   preservation,
+  relatedObjects = [],
   tags = [],
 } = object.data as {
   fwxId: string;
@@ -30,15 +33,37 @@ const {
   firstPublished?: string;
   lastVerified?: string;
 
-  preservation?: {
+preservation?: {
   accessibility?: string;
   integrity?: string;
   monitoring?: string;
   observingOffice?: string;
 };
 
-  tags?: string[];
+relatedObjects?: {
+  fwxId: string;
+  relationship?: string;
+}[];
+
+tags?: string[];
 };
+
+const allObjects = await getCollection("digital-objects");
+
+const resolvedRelatedObjects = relatedObjects.flatMap((relation) => {
+  const relatedRecord = allObjects.find(
+    (entry) => entry.data.fwxId === relation.fwxId
+  );
+
+  return relatedRecord
+    ? [
+        {
+          relationship: relation.relationship,
+          record: relatedRecord,
+        },
+      ]
+    : [];
+});
 ---
 
 <article class="fwx-record">
@@ -241,6 +266,65 @@ const {
         <dd>{preservation.accessibility}</dd>
       </div>
     </dl>
+  </section>
+)}
+
+{resolvedRelatedObjects.length > 0 && (
+  <section
+    class="record-section"
+    aria-labelledby="related-digital-objects"
+  >
+    <div class="record-section-heading">
+      <p class="section-label">Related Records</p>
+
+      <h2 id="related-digital-objects">
+        Related Digital Objects
+      </h2>
+    </div>
+
+<div class="related-records">
+  {resolvedRelatedObjects.map(({ relationship, record }) => (
+    <article class="related-record">
+      <div class="related-record__header">
+        <p class="related-record-id">
+          <a href={`/fwx/${record.data.fwxId}`}>
+            {record.data.fwxId}
+          </a>
+        </p>
+
+        <span class="record-badge">
+          {record.data.objectType}
+        </span>
+      </div>
+
+      <h3>
+        <a href={`/fwx/${record.data.fwxId}`}>
+          {record.data.title}
+        </a>
+      </h3>
+
+      {relationship && (
+        <dl class="related-record__metadata">
+          <div>
+            <dt>Relationship</dt>
+            <dd>{relationship}</dd>
+          </div>
+        </dl>
+      )}
+
+      <p class="related-record__summary">
+        {record.data.summary}
+      </p>
+
+      <a
+        class="related-record__link"
+        href={`/fwx/${record.data.fwxId}`}
+      >
+        Access Public Record →
+      </a>
+    </article>
+  ))}
+</div>
   </section>
 )}
 
