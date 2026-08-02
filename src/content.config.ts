@@ -128,9 +128,35 @@ const exhibitions = defineCollection({
   }),
 });
 
+const curatedCollections = defineCollection({
+  loader: glob({
+    pattern: "**/*.{md,mdx}",
+    base: "./src/content/collections",
+  }),
+
+  schema: z.object({
+    id: z.string(),
+    title: z.string(),
+    summary: z.string(),
+    curator: z.string(),
+    published: z.string(),
+
+    status: z
+      .enum(["Current", "Archived", "Planned"])
+      .default("Current"),
+
+    featuredObjects: z.array(z.string()).default([]),
+
+    relatedPublications: z.array(z.string()).default([]),
+
+    tags: z.array(z.string()).default([]),
+  }),
+});
+
 export const collections = {
   "digital-objects": digitalObjects,
   departments,
   publications,
+  collections: curatedCollections,
   exhibitions,
 };

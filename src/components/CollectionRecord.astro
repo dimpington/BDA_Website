@@ -1,0 +1,193 @@
+---
+import { getCollection } from "astro:content";
+
+const { collection } = Astro.props;
+
+const {
+  id,
+  title,
+  summary,
+  curator,
+  published,
+  status,
+  featuredObjects = [],
+  relatedPublications = [],
+  tags = [],
+} = collection.data;
+
+const allObjects = await getCollection("digital-objects");
+const allPublications = await getCollection("publications");
+
+const resolvedObjects = featuredObjects.flatMap((fwxId: string) => {
+  const record = allObjects.find(
+    (entry) => entry.data.fwxId === fwxId
+  );
+
+  return record ? [record] : [];
+});
+
+const resolvedPublications = relatedPublications.flatMap(
+  (publicationId: string) => {
+    const publication = allPublications.find(
+      (entry) => entry.data.id === publicationId
+    );
+
+    return publication ? [publication] : [];
+  }
+);
+---
+
+<article class="collection-record">
+  <header class="collection-record__header">
+    <p class="section-label">Curated Bureau Collection</p>
+
+    <p class="collection-record__id">{id}</p>
+
+    <h1>{title}</h1>
+
+    <p class="collection-record__summary">
+      {summary}
+    </p>
+
+    <dl class="fwx-document-control">
+      <div>
+        <dt>Collection ID</dt>
+        <dd>{id}</dd>
+      </div>
+
+      <div>
+        <dt>Status</dt>
+        <dd>{status}</dd>
+      </div>
+
+      <div>
+        <dt>Curator</dt>
+        <dd>{curator}</dd>
+      </div>
+
+      <div>
+        <dt>Published</dt>
+        <dd>{published}</dd>
+      </div>
+    </dl>
+  </header>
+
+  <section
+    class="record-section record-body"
+    aria-labelledby="collection-documentation"
+  >
+    <div class="record-section-heading">
+      <p class="section-label">Collection Documentation</p>
+
+      <h2 id="collection-documentation">
+        Curatorial Record
+      </h2>
+    </div>
+
+    <div class="record-prose">
+      <slot />
+    </div>
+  </section>
+
+  {resolvedObjects.length > 0 && (
+    <section
+      class="record-section"
+      aria-labelledby="featured-digital-objects"
+    >
+      <div class="record-section-heading">
+        <p class="section-label">Collection Holdings</p>
+
+        <h2 id="featured-digital-objects">
+          Featured Digital Objects
+        </h2>
+      </div>
+
+      <div class="related-records">
+        {resolvedObjects.map((record) => (
+          <article class="related-record">
+            <div class="related-record__header">
+              <p class="related-record-id">
+                <a href={`/fwx/${record.data.fwxId}`}>
+                  {record.data.fwxId}
+                </a>
+              </p>
+
+              <span class="record-badge">
+                {record.data.objectType}
+              </span>
+            </div>
+
+            <h3>
+              <a href={`/fwx/${record.data.fwxId}`}>
+                {record.data.title}
+              </a>
+            </h3>
+
+            <p class="related-record__summary">
+              {record.data.summary}
+            </p>
+
+            <a
+              class="related-record__link"
+              href={`/fwx/${record.data.fwxId}`}
+            >
+              Access Public Record →
+            </a>
+          </article>
+        ))}
+      </div>
+    </section>
+  )}
+
+  {resolvedPublications.length > 0 && (
+    <section
+      class="record-section"
+      aria-labelledby="related-publications"
+    >
+      <div class="record-section-heading">
+        <p class="section-label">Supporting Documentation</p>
+
+        <h2 id="related-publications">
+          Related Publications
+        </h2>
+      </div>
+
+      <div class="publication-list">
+        {resolvedPublications.map((publication) => (
+          <article class="publication-entry">
+            <div class="publication-entry__reference">
+              <strong>{publication.data.id}</strong>
+              <span>{publication.data.type}</span>
+            </div>
+
+            <div>
+              <h3>
+                <a href={`/publications/${publication.data.id}`}>
+                  {publication.data.title}
+                </a>
+              </h3>
+
+              <p>{publication.data.summary}</p>
+            </div>
+
+            <span class="publication-entry__format">
+              {publication.data.published}
+            </span>
+          </article>
+        ))}
+      </div>
+    </section>
+  )}
+
+  {tags.length > 0 && (
+    <section class="record-section" aria-labelledby="collection-tags">
+      <h2 id="collection-tags">Tags</h2>
+
+      <ul class="record-tags">
+        {tags.map((tag: string) => (
+          <li>{tag}</li>
+        ))}
+      </ul>
+    </section>
+  )}
+</article>
