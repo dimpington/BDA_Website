@@ -1,0 +1,62 @@
+---
+const { notice } = Astro.props;
+
+const {
+  id,
+  title,
+  published,
+  summary,
+  type,
+  status,
+} = notice.data;
+---
+
+<article class="notice-record">
+  <header class="notice-record__header">
+    <p class="section-label">{type}</p>
+
+    <p class="notice-record__id">{id}</p>
+
+    <h1>{title}</h1>
+
+    <p class="notice-record__summary">
+      {summary}
+    </p>
+
+    <dl class="fwx-document-control">
+      <div>
+        <dt>Notice ID</dt>
+        <dd>{id}</dd>
+      </div>
+
+      <div>
+        <dt>Status</dt>
+        <dd>{status}</dd>
+      </div>
+
+      <div>
+        <dt>Published</dt>
+        <dd>{published}</dd>
+      </div>
+
+      <div>
+        <dt>Authority</dt>
+        <dd>Bureau of Digital Antiquities</dd>
+      </div>
+    </dl>
+  </header>
+
+  <section
+    class="record-section record-body"
+    aria-labelledby="notice-text"
+  >
+    <div class="record-section-heading">
+      <p class="section-label">Official Notice</p>
+      <h2 id="notice-text">Notice Text</h2>
+    </div>
+
+    <div class="record-prose">
+      <slot />
+    </div>
+  </section>
+</article>

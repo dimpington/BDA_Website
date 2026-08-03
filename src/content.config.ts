@@ -23,6 +23,8 @@ const digitalObjects = defineCollection({
     // Summary
     summary: z.string(),
 
+    featured: z.boolean().default(false),
+
     // Optional metadata
     creator: z.string().optional(),
     originalUrl: z.string().url().optional(),
@@ -153,10 +155,39 @@ const curatedCollections = defineCollection({
   }),
 });
 
+const notices = defineCollection({
+  loader: glob({
+    pattern: "**/*.{md,mdx}",
+    base: "./src/content/notices",
+  }),
+
+  schema: z.object({
+    id: z.string(),
+
+    title: z.string(),
+
+    published: z.string(),
+
+    summary: z.string(),
+
+    type: z.enum([
+      "Bureau Notice",
+      "Public Notice",
+      "System Notice",
+    ]),
+
+    status: z.enum([
+      "Current",
+      "Archived",
+    ]),
+  }),
+});
+
 export const collections = {
   "digital-objects": digitalObjects,
   departments,
   publications,
-  collections: curatedCollections,
   exhibitions,
+  collections: curatedCollections,
+  notices,
 };
