@@ -17,7 +17,7 @@ responsibilities:
   - Preservation assessments
   - Oversight of Digital Object stewardship
 
-emblem: /images/BDA_Emblem_1.png
+emblem: /images/Office_of_Digital_Preservation.png
 officeType: Office
 ---
 
