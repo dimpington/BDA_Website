@@ -60,6 +60,130 @@ const sortedObjects = objects.sort((a, b) =>
       </p>
     </div>
 
+<form
+  class="catalogue-search"
+  action="/fwx"
+  method="get"
+  role="search"
+>
+  <label for="fwx-catalogue-query">
+    Search Public Catalogue
+  </label>
+
+  <div class="catalogue-search__controls">
+    <input
+      id="fwx-catalogue-query"
+      name="q"
+      type="search"
+      placeholder="Title, FWX ID, object type, status..."
+    />
+
+    <button type="submit">
+      Search Catalogue
+    </button>
+  </div>
+</form>
+
+<div class="catalogue-filters">
+  <div class="catalogue-filter">
+    <label for="object-type-filter">
+      Object Type
+    </label>
+
+    <select id="object-type-filter" name="type">
+      <option value="">All object types</option>
+
+      {
+        [...new Set(objects.map((object) => object.data.objectType))]
+          .sort()
+          .map((type) => (
+            <option value={type.toLowerCase()}>
+              {type}
+            </option>
+          ))
+      }
+    </select>
+  </div>
+
+  <div class="catalogue-filter">
+    <label for="preservation-status-filter">
+      Preservation Status
+    </label>
+
+    <select id="preservation-status-filter" name="preservation">
+      <option value="">All preservation statuses</option>
+
+      {
+        [...new Set(objects.map((object) => object.data.preservationStatus))]
+          .sort()
+          .map((status) => (
+            <option value={status.toLowerCase()}>
+              {status}
+            </option>
+          ))
+      }
+    </select>
+  </div>
+
+  <div class="catalogue-filter">
+    <label for="operational-status-filter">
+      Operational Status
+    </label>
+
+    <select id="operational-status-filter" name="operational">
+      <option value="">All operational statuses</option>
+
+      {
+        [...new Set(objects.map((object) => object.data.operationalStatus))]
+          .sort()
+          .map((status) => (
+            <option value={status.toLowerCase()}>
+              {status}
+            </option>
+          ))
+      }
+    </select>
+  </div>
+
+  <div class="catalogue-filter">
+    <label for="classification-filter">
+      Classification
+    </label>
+
+    <select id="classification-filter" name="classification">
+      <option value="">All classifications</option>
+
+      {
+        [...new Set(objects.map((object) => object.data.classification))]
+          .sort()
+          .map((classification) => (
+            <option value={classification.toLowerCase()}>
+              {classification}
+            </option>
+          ))
+      }
+    </select>
+  </div>
+</div>
+
+<div
+  id="catalogue-search-status"
+  class="catalogue-search-status"
+  hidden
+>
+
+  <p>
+    <strong>Catalogue query:</strong>
+    <span id="catalogue-search-query"></span>
+  </p>
+
+  <p>
+    <span id="catalogue-search-count"></span>
+    ·
+    <a href="/fwx">Clear search & filters</a>
+  </p>
+</div>
+
     <div class="catalogue-table-wrapper">
       <table class="catalogue-table">
         <thead>
@@ -73,46 +197,250 @@ const sortedObjects = objects.sort((a, b) =>
           </tr>
         </thead>
 
-        <tbody>
-          {sortedObjects.map((object) => (
-            <tr>
-              <td class="catalogue-id">
-                <a href={`/fwx/${object.data.fwxId}`}>
-                  {object.data.fwxId}
-                </a>
-              </td>
+          <tbody>
+          {
+            sortedObjects.map((object) => {
+              const searchText = [
+                object.data.fwxId,
+                object.data.title,
+                object.data.summary,
+                object.data.objectType,
+                object.data.operationalStatus,
+                object.data.preservationStatus,
+                object.data.classification,
+              ]
+                .filter(Boolean)
+                .join(" ")
+                .toLowerCase();
 
-              <td class="catalogue-title">
-                <a href={`/fwx/${object.data.fwxId}`}>
-                  {object.data.title}
-                </a>
+              return (
+                <tr
+                  data-search={searchText}
+                  data-object-type={object.data.objectType.toLowerCase()}
+                  data-preservation-status={object.data.preservationStatus.toLowerCase()}
+                  data-operational-status={object.data.operationalStatus.toLowerCase()}
+                  data-classification={object.data.classification.toLowerCase()}
+                >
+                  <td class="catalogue-id">
+                    <a href={`/fwx/${object.data.fwxId}`}>
+                      {object.data.fwxId}
+                    </a>
+                  </td>
 
-                <p>{object.data.summary}</p>
-              </td>
+                  <td class="catalogue-title">
+                    <a href={`/fwx/${object.data.fwxId}`}>
+                      {object.data.title}
+                    </a>
 
-              <td>{object.data.objectType}</td>
+                    <p>{object.data.summary}</p>
+                  </td>
 
-              <td>
-                <span class="record-badge">
-                  {object.data.operationalStatus}
-                </span>
-              </td>
+                  <td>{object.data.objectType}</td>
 
-              <td>
-                <span class="record-badge">
-                  {object.data.preservationStatus}
-                </span>
-              </td>
+                  <td>
+                    <span class="record-badge">
+                      {object.data.operationalStatus}
+                    </span>
+                  </td>
 
-              <td>
-                <span class="record-badge record-badge--classification">
-                  {object.data.classification}
-                </span>
-              </td>
-            </tr>
-          ))}
+                  <td>
+                    <span class="record-badge">
+                      {object.data.preservationStatus}
+                    </span>
+                  </td>
+
+                  <td>
+                    <span class="record-badge record-badge--classification">
+                      {object.data.classification}
+                    </span>
+                  </td>
+                </tr>
+              );
+            })
+          }
         </tbody>
       </table>
+            <div
+        id="catalogue-no-results"
+        class="catalogue-no-results"
+        hidden
+      >
+        <p><strong>No records located</strong></p>
+
+        <p>
+          No public catalogue records correspond to the supplied search criteria.
+        </p>
+
+        <p>
+          <a href="/fwx">Return to the complete catalogue</a>
+        </p>
+      </div>
     </div>
   </section>
 </Layout>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+
+  const query = (params.get("q") ?? "").trim().toLowerCase();
+  const originalQuery = (params.get("q") ?? "").trim();
+
+  const searchInput =
+  document.querySelector<HTMLInputElement>("#fwx-catalogue-query");
+
+  if (searchInput) {
+  searchInput.value = originalQuery;
+}
+
+  const typeFilter =
+  document.querySelector<HTMLSelectElement>("#object-type-filter");
+
+  const selectedType =
+  (params.get("type") ?? "").trim().toLowerCase();
+
+  const preservationFilter =
+  document.querySelector<HTMLSelectElement>("#preservation-status-filter");
+
+  const selectedPreservation =
+  (params.get("preservation") ?? "").trim().toLowerCase();
+
+  const rows = document.querySelectorAll<HTMLTableRowElement>(
+    "tbody tr[data-search]"
+
+  );
+
+  const operationalFilter =
+    document.querySelector<HTMLSelectElement>("#operational-status-filter");
+
+  const selectedOperational =
+    (params.get("operational") ?? "").trim().toLowerCase();
+
+  const classificationFilter =
+  document.querySelector<HTMLSelectElement>("#classification-filter");
+
+  const selectedClassification =
+  (params.get("classification") ?? "").trim().toLowerCase();
+
+  let matchCount = 0;
+
+  rows.forEach((row) => {
+    const searchableText = row.dataset.search ?? "";
+    const rowType = row.dataset.objectType ?? "";
+    const rowPreservation = row.dataset.preservationStatus ?? "";
+    const rowOperational = row.dataset.operationalStatus ?? "";
+    const rowClassification = row.dataset.classification ?? "";
+
+    const matchesQuery =
+      !query || searchableText.includes(query);
+
+    const matchesType =
+      !selectedType || rowType === selectedType;
+
+    const matchesPreservation =
+      !selectedPreservation || rowPreservation === selectedPreservation;
+
+    const matchesOperational =
+     !selectedOperational || rowOperational === selectedOperational;
+
+    const matchesClassification =
+     !selectedClassification || rowClassification === selectedClassification;
+
+    const matches =
+      matchesQuery &&
+      matchesType &&
+      matchesPreservation &&
+      matchesOperational;
+      matchesClassification;
+
+    row.style.display = matches ? "" : "none";
+
+    if (matches) {
+      matchCount++;
+    }
+  });
+
+    if (typeFilter) {
+      typeFilter.value = selectedType;
+
+      typeFilter.addEventListener("change", () => {
+        const nextParams = new URLSearchParams(window.location.search);
+
+        if (typeFilter.value) {
+          nextParams.set("type", typeFilter.value);
+        } else {
+          nextParams.delete("type");
+        }
+
+        window.location.search = nextParams.toString();
+      });
+    }
+
+    if (preservationFilter) {
+  preservationFilter.value = selectedPreservation;
+
+  preservationFilter.addEventListener("change", () => {
+    const nextParams = new URLSearchParams(window.location.search);
+
+    if (preservationFilter.value) {
+      nextParams.set("preservation", preservationFilter.value);
+    } else {
+      nextParams.delete("preservation");
+    }
+
+    window.location.search = nextParams.toString();
+  });
+}
+
+if (operationalFilter) {
+  operationalFilter.value = selectedOperational;
+
+  operationalFilter.addEventListener("change", () => {
+    const nextParams = new URLSearchParams(window.location.search);
+
+    if (operationalFilter.value) {
+      nextParams.set("operational", operationalFilter.value);
+    } else {
+      nextParams.delete("operational");
+    }
+
+    window.location.search = nextParams.toString();
+  });
+}
+
+if (classificationFilter) {
+  classificationFilter.value = selectedClassification;
+
+  classificationFilter.addEventListener("change", () => {
+    const nextParams = new URLSearchParams(window.location.search);
+
+    if (classificationFilter.value) {
+      nextParams.set("classification", classificationFilter.value);
+    } else {
+      nextParams.delete("classification");
+    }
+
+    window.location.search = nextParams.toString();
+  });
+}
+
+  const status = document.getElementById("catalogue-search-status");
+  const queryElement = document.getElementById("catalogue-search-query");
+  const countElement = document.getElementById("catalogue-search-count");
+
+  if (query && status && queryElement && countElement) {
+    queryElement.textContent = originalQuery;
+
+    countElement.textContent =
+      matchCount === 1
+        ? "1 record located"
+        : `${matchCount} records located`;
+
+    status.hidden = false;
+  }
+
+  const noResults = document.getElementById("catalogue-no-results");
+
+if (noResults && query && matchCount === 0) {
+  noResults.hidden = false;
+}
+</script>

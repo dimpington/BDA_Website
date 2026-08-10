@@ -82,21 +82,22 @@ Introduce a protected administrative interface for creating content through form
 - [x] Preservation assessment
 - [x] Related Digital Objects
 - [x] Publication details
-- [ ] Functional catalogue search
-- [ ] Filter by object type
-- [ ] Filter by operational status
-- [ ] Filter by preservation status
+- [X] Functional catalogue search
+- [X] Filter by object type
+- [X] Filter by operational status
+- [X] Filter by preservation status
+- [X] Filter by Classification
 - [ ] Filter by period or first-publication date
 - [ ] Filter by collection
 - [ ] Sort results by title, FWX ID, date and verification date
 - [ ] Pagination or progressive result loading when the catalogue grows
-- [ ] Clear empty-results message
-- [ ] Preserve search state in URL parameters
+- [X] Clear empty-results message
+- [X] Preserve search state in URL parameters
 - [ ] Add screenshot or preview-image support
-- [ ] Add “Appears in Collections”
-- [ ] Add “Referenced by Publications”
-- [ ] Make observing or responsible offices clickable
-- [ ] Add graceful handling for unresolved related IDs
+- [X] Add “Appears in Collections”
+- [X] Add “Referenced by Publications”
+- [X] Make observing or responsible offices clickable
+- [X] Add graceful handling for unresolved related IDs
 
 A static client-side search index is the safest first implementation because it avoids introducing a public API or database. The current search button should not remain apparently operational unless it actually processes the query.
 
@@ -152,10 +153,10 @@ A static client-side search index is the safest first implementation because it 
 - [x] Homepage displays newest notice
 - [x] Dynamic notice route
 - [x] Notice record component
-- [ ] Create `/notices/index.astro`
-- [ ] Sort notices newest first
-- [ ] Separate Current and Archived notices
-- [ ] Display publication date and status
+- [X] Create `/notices/index.astro`
+- [X] Sort notices newest first
+- [X] Separate Current and Archived notices
+- [X] Display publication date and status
 - [ ] Link relevant Notices to FWX releases, Publications or Collections
 - [ ] Add “Superseded by” support if policies change
 

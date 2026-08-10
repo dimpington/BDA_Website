@@ -50,19 +50,37 @@ tags?: string[];
 
 const allObjects = await getCollection("digital-objects");
 
-const resolvedRelatedObjects = relatedObjects.flatMap((relation) => {
+const allCollections = await getCollection("collections");
+
+const appearingCollections = allCollections.filter((collection) =>
+  collection.data.featuredObjects.includes(fwxId)
+);
+
+const allPublications = await getCollection("publications");
+
+const referencingPublications = allPublications.filter((publication) =>
+  publication.data.relatedObjects.includes(fwxId)
+);
+
+const allDepartments = await getCollection("departments");
+
+const observingDepartment = preservation?.observingOffice
+  ? allDepartments.find(
+      (department) =>
+        department.data.name === preservation.observingOffice
+    )
+  : undefined;
+
+const resolvedRelatedObjects = relatedObjects.map((relation) => {
   const relatedRecord = allObjects.find(
     (entry) => entry.data.fwxId === relation.fwxId
   );
 
-  return relatedRecord
-    ? [
-        {
-          relationship: relation.relationship,
-          record: relatedRecord,
-        },
-      ]
-    : [];
+  return {
+    fwxId: relation.fwxId,
+    relationship: relation.relationship,
+    record: relatedRecord ?? null,
+  };
 });
 ---
 
@@ -247,9 +265,18 @@ const resolvedRelatedObjects = relatedObjects.flatMap((relation) => {
 
     <dl class="administrative-grid">
       <div>
-        <dt>Observing Office</dt>
-        <dd>{preservation.observingOffice}</dd>
-      </div>
+  <dt>Observing Office</dt>
+
+  <dd>
+    {observingDepartment ? (
+      <a href={`/departments/${observingDepartment.id}`}>
+        {preservation.observingOffice}
+      </a>
+    ) : (
+      preservation.observingOffice
+    )}
+  </dd>
+</div>
 
       <div>
         <dt>Monitoring Programme</dt>
@@ -282,49 +309,185 @@ const resolvedRelatedObjects = relatedObjects.flatMap((relation) => {
       </h2>
     </div>
 
-<div class="related-records">
-  {resolvedRelatedObjects.map(({ relationship, record }) => (
-    <article class="related-record">
-      <div class="related-record__header">
-        <p class="related-record-id">
-          <a href={`/fwx/${record.data.fwxId}`}>
-            {record.data.fwxId}
-          </a>
-        </p>
+    <div class="related-records">
+      {
+        resolvedRelatedObjects.map(({ fwxId, relationship, record }) => (
+          <article class="related-record">
+            {record ? (
+              <>
+                <div class="related-record__header">
+                  <p class="related-record-id">
+                    <a href={`/fwx/${record.data.fwxId}`}>
+                      {record.data.fwxId}
+                    </a>
+                  </p>
 
-        <span class="record-badge">
-          {record.data.objectType}
-        </span>
-      </div>
+                  <span class="record-badge">
+                    {record.data.objectType}
+                  </span>
+                </div>
 
-      <h3>
-        <a href={`/fwx/${record.data.fwxId}`}>
-          {record.data.title}
-        </a>
-      </h3>
+                <h3>
+                  <a href={`/fwx/${record.data.fwxId}`}>
+                    {record.data.title}
+                  </a>
+                </h3>
 
-      {relationship && (
-        <dl class="related-record__metadata">
-          <div>
-            <dt>Relationship</dt>
-            <dd>{relationship}</dd>
-          </div>
-        </dl>
-      )}
+                {relationship && (
+                  <dl class="related-record__metadata">
+                    <div>
+                      <dt>Relationship</dt>
+                      <dd>{relationship}</dd>
+                    </div>
+                  </dl>
+                )}
 
-      <p class="related-record__summary">
-        {record.data.summary}
-      </p>
+                <p class="related-record__summary">
+                  {record.data.summary}
+                </p>
 
-      <a
-        class="related-record__link"
-        href={`/fwx/${record.data.fwxId}`}
-      >
-        Access Public Record →
-      </a>
-    </article>
-  ))}
-</div>
+                <a
+                  class="related-record__link"
+                  href={`/fwx/${record.data.fwxId}`}
+                >
+                  Access Public Record →
+                </a>
+              </>
+            ) : (
+              <>
+                <div class="related-record__header">
+                  <p class="related-record-id">
+                    {fwxId}
+                  </p>
+
+                  <span class="record-badge">
+                    Record Unavailable
+                  </span>
+                </div>
+
+                <h3>
+                  Unresolved Digital Object Reference
+                </h3>
+
+                {relationship && (
+                  <dl class="related-record__metadata">
+                    <div>
+                      <dt>Relationship</dt>
+                      <dd>{relationship}</dd>
+                    </div>
+                  </dl>
+                )}
+
+                <p class="related-record__summary">
+                  The referenced Digital Object is not currently available in
+                  the public Forgotten Web Exchange catalogue.
+                </p>
+              </>
+            )}
+          </article>
+        ))
+      }
+    </div>
+  </section>
+)}
+
+{appearingCollections.length > 0 && (
+  <section
+    class="record-section"
+    aria-labelledby="appears-in-collections"
+  >
+    <div class="record-section-heading">
+      <p class="section-label">Collections</p>
+
+      <h2 id="appears-in-collections">
+        Appears in Collections
+      </h2>
+    </div>
+
+    <div class="related-records">
+      {
+        appearingCollections.map((collection) => (
+          <article class="related-record">
+            <div class="related-record__header">
+              <p class="related-record-id">
+                {collection.data.id}
+              </p>
+
+              <span class="record-badge">
+                {collection.data.status}
+              </span>
+            </div>
+
+            <h3>
+              <a href={`/collections/${collection.data.id}`}>
+                {collection.data.title}
+              </a>
+            </h3>
+
+            <p class="related-record__summary">
+              {collection.data.summary}
+            </p>
+
+            <a
+              class="related-record__link"
+              href={`/collections/${collection.data.id}`}
+            >
+              Access Collection →
+            </a>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+)}
+
+{referencingPublications.length > 0 && (
+  <section
+    class="record-section"
+    aria-labelledby="referenced-by-publications"
+  >
+    <div class="record-section-heading">
+      <p class="section-label">Publications</p>
+
+      <h2 id="referenced-by-publications">
+        Referenced by Publications
+      </h2>
+    </div>
+
+    <div class="related-records">
+      {
+        referencingPublications.map((publication) => (
+          <article class="related-record">
+            <div class="related-record__header">
+              <p class="related-record-id">
+                {publication.data.id}
+              </p>
+
+              <span class="record-badge">
+                {publication.data.type}
+              </span>
+            </div>
+
+            <h3>
+              <a href={`/publications/${publication.data.id}`}>
+                {publication.data.title}
+              </a>
+            </h3>
+
+            <p class="related-record__summary">
+              {publication.data.summary}
+            </p>
+
+            <a
+              class="related-record__link"
+              href={`/publications/${publication.data.id}`}
+            >
+              Access Publication →
+            </a>
+          </article>
+        ))
+      }
+    </div>
   </section>
 )}
 
