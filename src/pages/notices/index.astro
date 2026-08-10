@@ -1,0 +1,109 @@
+---
+import { getCollection } from "astro:content";
+
+import Layout from "../../layouts/Layout.astro";
+
+const notices = await getCollection("notices");
+
+const sortedNotices = [...notices].sort((a, b) =>
+  b.data.published.localeCompare(a.data.published)
+);
+
+const currentNotices = sortedNotices.filter(
+  (notice) => notice.data.status === "Current"
+);
+
+const archivedNotices = sortedNotices.filter(
+  (notice) => notice.data.status === "Archived"
+);
+---
+
+<Layout title="Bureau Notices | Bureau of Digital Antiquities">
+  <section class="page-header">
+    <p class="section-label">Public Information</p>
+
+    <h1>Bureau Notices</h1>
+
+    <p class="page-introduction">
+      Bureau Notices provide official public information regarding catalogue
+      releases, preservation activity, administrative changes and other
+      matters issued by the Bureau of Digital Antiquities.
+    </p>
+  </section>
+
+  <section class="record-section">
+    <div class="record-section-heading">
+      <p class="section-label">Current Notices</p>
+      <h2>Active Public Notices</h2>
+    </div>
+
+    {
+      currentNotices.length > 0 ? (
+        <div class="publication-list">
+          {currentNotices.map((notice) => (
+            <article class="publication-entry">
+              <div class="publication-entry__reference">
+                <strong>{notice.data.id}</strong>
+                <span>{notice.data.type}</span>
+              </div>
+
+              <div class="publication-entry__body">
+                <h3>
+                  <a href={`/notices/${notice.data.id}`}>
+                    {notice.data.title}
+                  </a>
+                </h3>
+
+                <p>{notice.data.summary}</p>
+              </div>
+
+              <span class="publication-entry__format">
+                {notice.data.published}
+              </span>
+            </article>
+          ))}
+        </div>
+      ) : (
+        <div class="record-prose">
+          <p>No current Bureau Notices are available.</p>
+        </div>
+      )
+    }
+  </section>
+
+  {
+    archivedNotices.length > 0 && (
+      <section class="record-section">
+        <div class="record-section-heading">
+          <p class="section-label">Notice Archive</p>
+          <h2>Archived Notices</h2>
+        </div>
+
+        <div class="publication-list">
+          {archivedNotices.map((notice) => (
+            <article class="publication-entry">
+              <div class="publication-entry__reference">
+                <strong>{notice.data.id}</strong>
+                <span>{notice.data.type}</span>
+              </div>
+
+              <div class="publication-entry__body">
+                <h3>
+                  <a href={`/notices/${notice.data.id}`}>
+                    {notice.data.title}
+                  </a>
+                </h3>
+
+                <p>{notice.data.summary}</p>
+              </div>
+
+              <span class="publication-entry__format">
+                {notice.data.published}
+              </span>
+            </article>
+          ))}
+        </div>
+      </section>
+    )
+  }
+</Layout>
