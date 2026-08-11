@@ -31,6 +31,11 @@ const latestNotice =
   [...noticesCollection]
     .sort((a, b) => b.data.published.localeCompare(a.data.published))[0];
 
+const featuredCollection =
+  collectionsCollection.find(
+    (collection) => collection.data.status === "Current"
+  ) ?? collectionsCollection[0];
+
 ---
 
 <Layout
@@ -142,20 +147,15 @@ const latestNotice =
 </span>
         </header>
 
-        <div class="featured-record__image" aria-hidden="true">
-          <div class="browser-fragment">
-            <div class="browser-fragment__bar">
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
-
-            <div class="browser-fragment__content">
-              <span>WELCOME TO MY HOMEPAGE</span>
-              <small>Best viewed at 800 × 600</small>
-            </div>
-          </div>
-        </div>
+{featuredObject.data.previewImage && (
+  <div class="featured-record__image">
+    <img
+      src={featuredObject.data.previewImage}
+      alt={`Preview of ${featuredObject.data.title}`}
+      class="featured-record__preview"
+    />
+  </div>
+)}
 
         <div class="featured-record__content">
           <p class="record-type">
@@ -236,6 +236,74 @@ const latestNotice =
         </a>
       </section>
     </div>
+
+{featuredCollection && (
+  <section
+    class="featured-collection"
+    aria-labelledby="featured-collection-heading"
+  >
+    <div class="featured-collection__reference">
+      <p class="section-kicker">Curated Collection</p>
+      <span>{featuredCollection.data.id}</span>
+    </div>
+
+    <div class="featured-collection__content">
+      <h2 id="featured-collection-heading">
+        {featuredCollection.data.title}
+      </h2>
+
+      <p>
+        {featuredCollection.data.summary}
+      </p>
+
+      <dl class="featured-collection__metadata">
+        <div>
+          <dt>Curator</dt>
+          <dd>{featuredCollection.data.curator}</dd>
+        </div>
+
+        <div>
+          <dt>Status</dt>
+          <dd>{featuredCollection.data.status}</dd>
+        </div>
+
+        <div>
+          <dt>Published</dt>
+          <dd>{featuredCollection.data.published}</dd>
+        </div>
+      </dl>
+
+      <a
+        class="text-button"
+        href={`/collections/${featuredCollection.data.id}`}
+      >
+        View Collection
+      </a>
+    </div>
+  </section>
+)}
+
+{!featuredCollection && (
+  <section class="featured-collection featured-collection--empty">
+    <div class="featured-collection__reference">
+      <p class="section-kicker">Curated Collection</p>
+      <span>Collection Register</span>
+    </div>
+
+    <div class="featured-collection__content">
+      <h2>No Curated Collection Currently Published</h2>
+
+      <p>
+        No public curated collection is currently available through the
+        Bureau catalogue. Published collections will appear here when released.
+      </p>
+
+      <a class="text-button" href="/collections">
+        View Collection Register
+      </a>
+    </div>
+  </section>
+)}
 
     <section class="publications-section" aria-labelledby="publications-heading">
       <header class="section-heading">
