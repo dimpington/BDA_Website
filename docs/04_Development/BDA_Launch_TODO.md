@@ -70,10 +70,10 @@ Introduce a protected administrative interface for creating content through form
 - [x] Dynamic organisation directory
 - [x] Dynamic latest Bureau Notice
 - [x] Functional link to the full notice
-- [ ] Add latest or featured Collection
-- [ ] Replace the illustrative browser image with a real record preview
-- [ ] Decide whether the featured heading should remain “Featured Digital Object” or become “Curatorial Selection”
-- [ ] Add graceful empty states for collections containing no content
+- [X] Add latest or featured Collection
+- [X] Replace the illustrative browser image with a real record preview
+- [X] Decide whether the featured heading should remain “Featured Digital Object” or become “Curatorial Selection”
+- [X] Add graceful empty states for collections containing no content
 
 ## FWX Catalogue
 
