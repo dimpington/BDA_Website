@@ -31,6 +31,7 @@ const digitalObjects = defineCollection({
     currentUrl: z.string().url().optional(),
     firstPublished: z.string().optional(),
     lastVerified: z.string().optional(),
+    previewImage: z.string().optional(),
 
   preservation: z
   .object({

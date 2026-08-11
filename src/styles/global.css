@@ -1160,6 +1160,34 @@ img {
   padding: 0.45rem 0.55rem;
 }
 
+.catalogue-filter--collection {
+  grid-column: 1 / 2;
+}
+
+/* FWX Digital Object preview */
+
+.record-preview__figure {
+  margin: 1.5rem 0 0;
+  padding: 1rem;
+  border: 1px solid var(--border-color, #b8b09f);
+  background: #f1eee5;
+}
+
+.record-preview__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid #8f8879;
+}
+
+.record-preview__figure figcaption {
+  margin-top: 0.75rem;
+  padding-top: 0.65rem;
+  border-top: 1px solid #b8b09f;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+}
+
 /* Responsive catalogue filters */
 
 @media (max-width: 1000px) {

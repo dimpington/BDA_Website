@@ -51,7 +51,7 @@ Introduce a protected administrative interface for creating content through form
 - [x] Individual collection pages
 - [x] About the Bureau
 - [x] Individual Bureau Notice pages
-- [ ] Bureau Notices archive at `/notices`
+- [X] Bureau Notices archive at `/notices`
 - [ ] Custom Bureau-themed 404 page
 - [ ] Verify every internal link
 - [ ] Remove obsolete or duplicated routes
@@ -87,13 +87,13 @@ Introduce a protected administrative interface for creating content through form
 - [X] Filter by operational status
 - [X] Filter by preservation status
 - [X] Filter by Classification
-- [ ] Filter by period or first-publication date
-- [ ] Filter by collection
-- [ ] Sort results by title, FWX ID, date and verification date
+- [X] Filter by period or first-publication date
+- [X] Filter by collection
+- [X] Sort results by title, FWX ID, date and verification date
 - [ ] Pagination or progressive result loading when the catalogue grows
 - [X] Clear empty-results message
 - [X] Preserve search state in URL parameters
-- [ ] Add screenshot or preview-image support
+- [X] Add screenshot or preview-image support
 - [X] Add “Appears in Collections”
 - [X] Add “Referenced by Publications”
 - [X] Make observing or responsible offices clickable
@@ -178,7 +178,7 @@ The site should launch with enough real content that it feels intentionally popu
 - [ ] Every record has a verification date
 - [ ] At least four records include relationships
 - [ ] At least three records appear in Collections
-- [ ] At least one record is marked `featured: true`
+- [X] At least one record is marked `featured: true`
 
 Suggested launch records could include:
 
@@ -310,7 +310,7 @@ public/images/emblems/
 
 - [ ] Add meaningful alt text
 - [ ] Convert large photographic images to WebP or AVIF where suitable
-- [ ] Define a consistent FWX screenshot directory
+- [X] Define a consistent FWX screenshot directory
 
 ## CSS
 
@@ -415,7 +415,7 @@ Test at minimum:
 - [ ] Disallow branch deletion
 - [ ] Require pull requests for production
 - [ ] Require successful build checks
-- [ ] Use feature branches
+- [X] Use feature branches
 - [ ] Review Cloudflare preview before merge
 - [ ] Enable Dependabot alerts
 - [ ] Enable Dependabot security updates
@@ -636,7 +636,7 @@ Policy: https://digitalantiquities.org/security
 ## Automated
 
 - [ ] `npm ci`
-- [ ] `npm run build`
+- [X] `npm run build`
 - [ ] TypeScript checks
 - [ ] Link checker
 - [ ] Accessibility scan
@@ -653,7 +653,7 @@ Policy: https://digitalantiquities.org/security
 - [ ] Verify all publication links
 - [ ] Verify every collection member
 - [ ] Verify every notice
-- [ ] Test search
+- [X] Test search
 - [ ] Test 404
 - [ ] Test keyboard navigation
 - [ ] Test browser back and forward

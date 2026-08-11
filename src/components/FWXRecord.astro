@@ -7,6 +7,7 @@ const {
   fwxId,
   title,
   objectType,
+  previewImage,
   classification,
   operationalStatus,
   preservationStatus,
@@ -23,6 +24,7 @@ const {
   fwxId: string;
   title: string;
   objectType: string;
+  previewImage?: string;
   classification: string;
   operationalStatus: string;
   preservationStatus: string;
@@ -128,6 +130,33 @@ const resolvedRelatedObjects = relatedObjects.map((relation) => {
     </div>
   </dl>
 </header>
+
+{previewImage && (
+  <section
+    class="record-section record-preview"
+    aria-labelledby="record-preview-heading"
+  >
+    <div class="record-section-heading">
+      <p class="section-label">Visual Reference</p>
+
+      <h2 id="record-preview-heading">
+        Preserved Preview
+      </h2>
+    </div>
+
+    <figure class="record-preview__figure">
+      <img
+        src={previewImage}
+        alt={`Preview of ${title}`}
+        class="record-preview__image"
+      />
+
+      <figcaption>
+        Visual reference associated with {fwxId}.
+      </figcaption>
+    </figure>
+  </section>
+)}
 
 <section
   class="record-section record-administrative"

@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 
 const objects = await getCollection("digital-objects");
+const collections = await getCollection("collections");
 
 const sortedObjects = objects.sort((a, b) =>
   a.data.fwxId.localeCompare(b.data.fwxId)
@@ -164,6 +165,57 @@ const sortedObjects = objects.sort((a, b) =>
       }
     </select>
   </div>
+
+<div class="catalogue-filter catalogue-filter--collection">
+  <label for="collection-filter">
+    Collection
+  </label>
+
+  <select id="collection-filter" name="collection">
+    <option value="">All collections</option>
+
+    {
+      collections
+        .sort((a, b) => a.data.title.localeCompare(b.data.title))
+        .map((collection) => (
+          <option value={collection.data.id.toLowerCase()}>
+            {collection.data.title}
+          </option>
+        ))
+    }
+  </select>
+</div>
+
+<div class="catalogue-filter">
+  <label for="publication-period-filter">
+    First Publication
+  </label>
+
+  <select id="publication-period-filter" name="period">
+    <option value="">All periods</option>
+    <option value="pre-1995">Before 1995</option>
+    <option value="1995-1999">1995–1999</option>
+    <option value="2000-2004">2000–2004</option>
+    <option value="2005-2009">2005–2009</option>
+    <option value="2010-2014">2010–2014</option>
+    <option value="2015-2019">2015–2019</option>
+    <option value="2020-present">2020–present</option>
+  </select>
+</div>
+
+<div class="catalogue-filter">
+  <label for="sort-filter">
+    Order Records By
+  </label>
+
+  <select id="sort-filter" name="sort">
+    <option value="fwx-id">FWX ID</option>
+    <option value="title">Title</option>
+    <option value="first-published">First Publication</option>
+    <option value="last-verified">Last Verification</option>
+  </select>
+</div>
+
 </div>
 
 <div
@@ -213,6 +265,21 @@ const sortedObjects = objects.sort((a, b) =>
                 .join(" ")
                 .toLowerCase();
 
+              const objectCollections = collections
+              .filter((collection) =>
+                collection.data.featuredObjects.includes(object.data.fwxId)
+              )
+              .map((collection) => collection.data.id.toLowerCase())
+              .join(" ");
+
+              const publicationYear = object.data.firstPublished
+              ? object.data.firstPublished.slice(0, 4)
+              : "";
+
+              const sortTitle = object.data.title.toLowerCase();
+              const sortFirstPublished = object.data.firstPublished ?? "";
+              const sortLastVerified = object.data.lastVerified ?? "";
+
               return (
                 <tr
                   data-search={searchText}
@@ -220,6 +287,11 @@ const sortedObjects = objects.sort((a, b) =>
                   data-preservation-status={object.data.preservationStatus.toLowerCase()}
                   data-operational-status={object.data.operationalStatus.toLowerCase()}
                   data-classification={object.data.classification.toLowerCase()}
+                  data-collections={objectCollections}
+                  data-publication-year={publicationYear}
+                  data-sort-title={sortTitle}
+                  data-sort-first-published={sortFirstPublished}
+                  data-sort-last-verified={sortLastVerified}
                 >
                   <td class="catalogue-id">
                     <a href={`/fwx/${object.data.fwxId}`}>
@@ -321,6 +393,24 @@ const sortedObjects = objects.sort((a, b) =>
   const selectedClassification =
   (params.get("classification") ?? "").trim().toLowerCase();
 
+  const collectionFilter =
+  document.querySelector<HTMLSelectElement>("#collection-filter");
+
+  const selectedCollection =
+  (params.get("collection") ?? "").trim().toLowerCase();
+
+  const periodFilter =
+    document.querySelector<HTMLSelectElement>("#publication-period-filter");
+
+  const selectedPeriod =
+    (params.get("period") ?? "").trim().toLowerCase();
+
+  const sortFilter =
+  document.querySelector<HTMLSelectElement>("#sort-filter");
+
+  const selectedSort =
+    (params.get("sort") ?? "fwx-id").trim().toLowerCase();
+
   let matchCount = 0;
 
   rows.forEach((row) => {
@@ -329,6 +419,8 @@ const sortedObjects = objects.sort((a, b) =>
     const rowPreservation = row.dataset.preservationStatus ?? "";
     const rowOperational = row.dataset.operationalStatus ?? "";
     const rowClassification = row.dataset.classification ?? "";
+    const rowCollections = row.dataset.collections ?? "";
+    const publicationYear = Number(row.dataset.publicationYear ?? "");
 
     const matchesQuery =
       !query || searchableText.includes(query);
@@ -345,12 +437,74 @@ const sortedObjects = objects.sort((a, b) =>
     const matchesClassification =
      !selectedClassification || rowClassification === selectedClassification;
 
+    const matchesCollection =
+      !selectedCollection || rowCollections.split(" ").includes(selectedCollection);
+
+    let matchesPeriod = true;
+
+if (selectedPeriod && publicationYear) {
+  if (selectedPeriod === "pre-1995") {
+    matchesPeriod = publicationYear < 1995;
+  } else if (selectedPeriod === "1995-1999") {
+    matchesPeriod = publicationYear >= 1995 && publicationYear <= 1999;
+  } else if (selectedPeriod === "2000-2004") {
+    matchesPeriod = publicationYear >= 2000 && publicationYear <= 2004;
+  } else if (selectedPeriod === "2005-2009") {
+    matchesPeriod = publicationYear >= 2005 && publicationYear <= 2009;
+  } else if (selectedPeriod === "2010-2014") {
+    matchesPeriod = publicationYear >= 2010 && publicationYear <= 2014;
+  } else if (selectedPeriod === "2015-2019") {
+    matchesPeriod = publicationYear >= 2015 && publicationYear <= 2019;
+  } else if (selectedPeriod === "2020-present") {
+    matchesPeriod = publicationYear >= 2020;
+  }
+}
+
+const tbody = document.querySelector<HTMLTableSectionElement>(
+  ".catalogue-table tbody"
+);
+
+if (tbody) {
+  const sortedRows = [...rows].sort((a, b) => {
+    if (selectedSort === "title") {
+      return (a.dataset.sortTitle ?? "").localeCompare(
+        b.dataset.sortTitle ?? ""
+      );
+    }
+
+    if (selectedSort === "first-published") {
+      return (a.dataset.sortFirstPublished ?? "").localeCompare(
+        b.dataset.sortFirstPublished ?? ""
+      );
+    }
+
+    if (selectedSort === "last-verified") {
+      return (a.dataset.sortLastVerified ?? "").localeCompare(
+        b.dataset.sortLastVerified ?? ""
+      );
+    }
+
+    const aId =
+      a.querySelector(".catalogue-id")?.textContent?.trim() ?? "";
+
+    const bId =
+      b.querySelector(".catalogue-id")?.textContent?.trim() ?? "";
+
+    return aId.localeCompare(bId);
+  });
+
+  sortedRows.forEach((row) => tbody.appendChild(row));
+}
+
     const matches =
       matchesQuery &&
       matchesType &&
       matchesPreservation &&
-      matchesOperational;
-      matchesClassification;
+      matchesOperational &&
+      matchesClassification &&
+      matchesCollection &&
+      matchesCollection &&
+      matchesPeriod;
 
     row.style.display = matches ? "" : "none";
 
@@ -423,6 +577,22 @@ if (classificationFilter) {
   });
 }
 
+if (collectionFilter) {
+  collectionFilter.value = selectedCollection;
+
+  collectionFilter.addEventListener("change", () => {
+    const nextParams = new URLSearchParams(window.location.search);
+
+    if (collectionFilter.value) {
+      nextParams.set("collection", collectionFilter.value);
+    } else {
+      nextParams.delete("collection");
+    }
+
+    window.location.search = nextParams.toString();
+  });
+}
+
   const status = document.getElementById("catalogue-search-status");
   const queryElement = document.getElementById("catalogue-search-query");
   const countElement = document.getElementById("catalogue-search-count");
@@ -442,5 +612,21 @@ if (classificationFilter) {
 
 if (noResults && query && matchCount === 0) {
   noResults.hidden = false;
+}
+
+if (sortFilter) {
+  sortFilter.value = selectedSort;
+
+  sortFilter.addEventListener("change", () => {
+    const nextParams = new URLSearchParams(window.location.search);
+
+    if (sortFilter.value && sortFilter.value !== "fwx-id") {
+      nextParams.set("sort", sortFilter.value);
+    } else {
+      nextParams.delete("sort");
+    }
+
+    window.location.search = nextParams.toString();
+  });
 }
 </script>
