@@ -51,7 +51,7 @@ Introduce a protected administrative interface for creating content through form
 - [x] Individual collection pages
 - [x] About the Bureau
 - [x] Individual Bureau Notice pages
-- [ ] Bureau Notices archive at `/notices`
+- [X] Bureau Notices archive at `/notices`
 - [ ] Custom Bureau-themed 404 page
 - [ ] Verify every internal link
 - [ ] Remove obsolete or duplicated routes
@@ -82,21 +82,22 @@ Introduce a protected administrative interface for creating content through form
 - [x] Preservation assessment
 - [x] Related Digital Objects
 - [x] Publication details
-- [ ] Functional catalogue search
-- [ ] Filter by object type
-- [ ] Filter by operational status
-- [ ] Filter by preservation status
-- [ ] Filter by period or first-publication date
-- [ ] Filter by collection
-- [ ] Sort results by title, FWX ID, date and verification date
+- [X] Functional catalogue search
+- [X] Filter by object type
+- [X] Filter by operational status
+- [X] Filter by preservation status
+- [X] Filter by Classification
+- [X] Filter by period or first-publication date
+- [X] Filter by collection
+- [X] Sort results by title, FWX ID, date and verification date
 - [ ] Pagination or progressive result loading when the catalogue grows
-- [ ] Clear empty-results message
-- [ ] Preserve search state in URL parameters
-- [ ] Add screenshot or preview-image support
-- [ ] Add “Appears in Collections”
-- [ ] Add “Referenced by Publications”
-- [ ] Make observing or responsible offices clickable
-- [ ] Add graceful handling for unresolved related IDs
+- [X] Clear empty-results message
+- [X] Preserve search state in URL parameters
+- [X] Add screenshot or preview-image support
+- [X] Add “Appears in Collections”
+- [X] Add “Referenced by Publications”
+- [X] Make observing or responsible offices clickable
+- [X] Add graceful handling for unresolved related IDs
 
 A static client-side search index is the safest first implementation because it avoids introducing a public API or database. The current search button should not remain apparently operational unless it actually processes the query.
 
@@ -152,10 +153,10 @@ A static client-side search index is the safest first implementation because it 
 - [x] Homepage displays newest notice
 - [x] Dynamic notice route
 - [x] Notice record component
-- [ ] Create `/notices/index.astro`
-- [ ] Sort notices newest first
-- [ ] Separate Current and Archived notices
-- [ ] Display publication date and status
+- [X] Create `/notices/index.astro`
+- [X] Sort notices newest first
+- [X] Separate Current and Archived notices
+- [X] Display publication date and status
 - [ ] Link relevant Notices to FWX releases, Publications or Collections
 - [ ] Add “Superseded by” support if policies change
 
@@ -177,7 +178,7 @@ The site should launch with enough real content that it feels intentionally popu
 - [ ] Every record has a verification date
 - [ ] At least four records include relationships
 - [ ] At least three records appear in Collections
-- [ ] At least one record is marked `featured: true`
+- [X] At least one record is marked `featured: true`
 
 Suggested launch records could include:
 
@@ -309,7 +310,7 @@ public/images/emblems/
 
 - [ ] Add meaningful alt text
 - [ ] Convert large photographic images to WebP or AVIF where suitable
-- [ ] Define a consistent FWX screenshot directory
+- [X] Define a consistent FWX screenshot directory
 
 ## CSS
 
@@ -414,7 +415,7 @@ Test at minimum:
 - [ ] Disallow branch deletion
 - [ ] Require pull requests for production
 - [ ] Require successful build checks
-- [ ] Use feature branches
+- [X] Use feature branches
 - [ ] Review Cloudflare preview before merge
 - [ ] Enable Dependabot alerts
 - [ ] Enable Dependabot security updates
@@ -635,7 +636,7 @@ Policy: https://digitalantiquities.org/security
 ## Automated
 
 - [ ] `npm ci`
-- [ ] `npm run build`
+- [X] `npm run build`
 - [ ] TypeScript checks
 - [ ] Link checker
 - [ ] Accessibility scan
@@ -652,7 +653,7 @@ Policy: https://digitalantiquities.org/security
 - [ ] Verify all publication links
 - [ ] Verify every collection member
 - [ ] Verify every notice
-- [ ] Test search
+- [X] Test search
 - [ ] Test 404
 - [ ] Test keyboard navigation
 - [ ] Test browser back and forward

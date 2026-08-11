@@ -1,0 +1,45 @@
+---
+import { getCollection } from "astro:content";
+
+import Layout from "../../layouts/Layout.astro";
+import DepartmentCard from "../../components/DepartmentCard.astro";
+
+const departments = await getCollection("departments");
+---
+
+<Layout title="Organisation | Bureau of Digital Antiquities">
+
+  <section class="page-header">
+    <p class="section-label">
+      Public Administration
+    </p>
+
+    <h1>Organisation</h1>
+
+    <p class="page-introduction">
+      The Bureau of Digital Antiquities conducts its statutory mission through
+      specialised offices, divisions and operational units responsible for the
+      preservation, documentation and study of historically significant
+      Digital Objects.
+    </p>
+  </section>
+
+  <section class="record-section">
+    <div class="record-section-heading">
+      <p class="section-label">
+        Institutional Structure
+      </p>
+
+      <h2>Departments</h2>
+    </div>
+
+    <div class="department-grid">
+      {
+        departments.map((department) => (
+          <DepartmentCard department={department} />
+        ))
+      }
+    </div>
+  </section>
+
+</Layout>

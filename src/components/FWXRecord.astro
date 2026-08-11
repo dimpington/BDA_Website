@@ -1,10 +1,13 @@
 ---
-import RecordHeader from "./RecordHeader.astro";
+import { getCollection } from "astro:content";
 
 const { object } = Astro.props;
 
 const {
+  fwxId,
+  title,
   objectType,
+  previewImage,
   classification,
   operationalStatus,
   preservationStatus,
@@ -14,85 +17,564 @@ const {
   currentUrl,
   firstPublished,
   lastVerified,
-  tags,
-} = object.data;
+  preservation,
+  relatedObjects = [],
+  tags = [],
+} = object.data as {
+  fwxId: string;
+  title: string;
+  objectType: string;
+  previewImage?: string;
+  classification: string;
+  operationalStatus: string;
+  preservationStatus: string;
+  summary: string;
+  creator?: string;
+  originalUrl?: string;
+  currentUrl?: string;
+  firstPublished?: string;
+  lastVerified?: string;
+
+preservation?: {
+  accessibility?: string;
+  integrity?: string;
+  monitoring?: string;
+  observingOffice?: string;
+};
+
+relatedObjects?: {
+  fwxId: string;
+  relationship?: string;
+}[];
+
+tags?: string[];
+};
+
+const allObjects = await getCollection("digital-objects");
+
+const allCollections = await getCollection("collections");
+
+const appearingCollections = allCollections.filter((collection) =>
+  collection.data.featuredObjects.includes(fwxId)
+);
+
+const allPublications = await getCollection("publications");
+
+const referencingPublications = allPublications.filter((publication) =>
+  publication.data.relatedObjects.includes(fwxId)
+);
+
+const allDepartments = await getCollection("departments");
+
+const observingDepartment = preservation?.observingOffice
+  ? allDepartments.find(
+      (department) =>
+        department.data.name === preservation.observingOffice
+    )
+  : undefined;
+
+const resolvedRelatedObjects = relatedObjects.map((relation) => {
+  const relatedRecord = allObjects.find(
+    (entry) => entry.data.fwxId === relation.fwxId
+  );
+
+  return {
+    fwxId: relation.fwxId,
+    relationship: relation.relationship,
+    record: relatedRecord ?? null,
+  };
+});
 ---
 
 <article class="fwx-record">
-  <RecordHeader object={object} />
+<header class="fwx-record-header">
+  <p class="section-label">Public Digital Object Record</p>
 
-  <section class="record-section" aria-labelledby="record-details">
-    <h2 id="record-details">Record Details</h2>
+  <div class="fwx-record-masthead">
+    <img
+      src="/images/FWX_Logo.png"
+      alt="Forgotten Web Exchange"
+      class="fwx-record-logo"
+    />
 
-    <dl class="record-metadata">
+    <div class="fwx-record-identity">
+      <p class="fwx-record-id">{fwxId}</p>
+
+      <h1>{title}</h1>
+
+      <p class="fwx-record-summary">
+        {summary}
+      </p>
+    </div>
+  </div>
+
+  <dl class="fwx-document-control">
+    <div>
+      <dt>Record Number</dt>
+      <dd>{fwxId}</dd>
+    </div>
+
+    <div>
+      <dt>Release</dt>
+      <dd>{classification}</dd>
+    </div>
+
+    <div>
+      <dt>Record Status</dt>
+      <dd>{preservationStatus}</dd>
+    </div>
+
+    <div>
+      <dt>Authority</dt>
+      <dd>Forgotten Web Exchange</dd>
+    </div>
+  </dl>
+</header>
+
+{previewImage && (
+  <section
+    class="record-section record-preview"
+    aria-labelledby="record-preview-heading"
+  >
+    <div class="record-section-heading">
+      <p class="section-label">Visual Reference</p>
+
+      <h2 id="record-preview-heading">
+        Preserved Preview
+      </h2>
+    </div>
+
+    <figure class="record-preview__figure">
+      <img
+        src={previewImage}
+        alt={`Preview of ${title}`}
+        class="record-preview__image"
+      />
+
+      <figcaption>
+        Visual reference associated with {fwxId}.
+      </figcaption>
+    </figure>
+  </section>
+)}
+
+<section
+  class="record-section record-administrative"
+  aria-labelledby="administrative-record"
+>
+  <div class="record-section-heading">
+    <p class="section-label">Administrative Record</p>
+    <h2 id="administrative-record">Object Registration</h2>
+  </div>
+
+  <dl class="administrative-grid">
+    <div>
+      <dt>Digital Object ID</dt>
+      <dd>{fwxId}</dd>
+    </div>
+
+    <div>
+      <dt>Object Type</dt>
+      <dd>{objectType}</dd>
+    </div>
+
+    <div>
+      <dt>Classification</dt>
+      <dd>
+        <span class="record-badge record-badge--classification">
+          {classification}
+        </span>
+      </dd>
+    </div>
+
+    <div>
+      <dt>Operational Status</dt>
+      <dd>
+        <span class="status-label">
+          {operationalStatus}
+        </span>
+      </dd>
+    </div>
+
+    <div>
+      <dt>Preservation Status</dt>
+      <dd>{preservationStatus}</dd>
+    </div>
+
+    {creator && (
       <div>
-        <dt>Object Type</dt>
-        <dd>{objectType}</dd>
+        <dt>Creator</dt>
+        <dd>{creator}</dd>
+      </div>
+    )}
+
+    {firstPublished && (
+      <div>
+        <dt>First Published</dt>
+        <dd>{firstPublished}</dd>
+      </div>
+    )}
+
+    {lastVerified && (
+      <div>
+        <dt>Last Verified</dt>
+        <dd>{lastVerified}</dd>
+      </div>
+    )}
+
+    {originalUrl && (
+      <div class="administrative-grid__wide">
+        <dt>Original Address</dt>
+        <dd>
+          <a href={originalUrl}>{originalUrl}</a>
+        </dd>
+      </div>
+    )}
+
+    {currentUrl && (
+      <div class="administrative-grid__wide">
+        <dt>Current Address</dt>
+        <dd>
+          <a href={currentUrl}>{currentUrl}</a>
+        </dd>
+      </div>
+    )}
+  </dl>
+</section>
+
+<section
+  class="record-section record-overview"
+  aria-labelledby="historical-overview"
+>
+  <div class="record-section-heading">
+    <p class="section-label">Historical Record</p>
+
+    <h2 id="historical-overview">
+      Historical Overview
+    </h2>
+  </div>
+
+  <div class="record-prose">
+    <p>{summary}</p>
+  </div>
+</section>
+
+{preservation && (
+  <section
+    class="record-section"
+    aria-labelledby="preservation-assessment"
+  >
+    <div class="record-section-heading">
+      <p class="section-label">Preservation Assessment</p>
+
+      <h2 id="preservation-assessment">
+        Current Preservation Status
+      </h2>
+    </div>
+
+    <div class="record-prose">
+<p>
+  The Digital Object remains{" "}
+  <strong>{preservation.accessibility}</strong>{" "}
+  at its original network location.
+</p>
+
+<p>
+  {preservation.monitoring} conducted by the{" "}
+  <strong>{preservation.observingOffice}</strong>{" "}
+  has identified the current integrity status as{" "}
+  <strong>{preservation.integrity}</strong>.
+</p>
+
+<p>
+  Preservation status remains{" "}
+  <strong>{preservationStatus}</strong>.
+</p>
+    </div>
+
+    <dl class="administrative-grid">
+      <div>
+  <dt>Observing Office</dt>
+
+  <dd>
+    {observingDepartment ? (
+      <a href={`/departments/${observingDepartment.id}`}>
+        {preservation.observingOffice}
+      </a>
+    ) : (
+      preservation.observingOffice
+    )}
+  </dd>
+</div>
+
+      <div>
+        <dt>Monitoring Programme</dt>
+        <dd>{preservation.monitoring}</dd>
       </div>
 
       <div>
-        <dt>Classification</dt>
-        <dd>{classification}</dd>
+        <dt>Integrity Status</dt>
+        <dd>{preservation.integrity}</dd>
       </div>
 
       <div>
-        <dt>Operational Status</dt>
-        <dd>{operationalStatus}</dd>
+        <dt>Accessibility</dt>
+        <dd>{preservation.accessibility}</dd>
       </div>
-
-      <div>
-        <dt>Preservation Status</dt>
-        <dd>{preservationStatus}</dd>
-      </div>
-
-      {creator && (
-        <div>
-          <dt>Creator</dt>
-          <dd>{creator}</dd>
-        </div>
-      )}
-
-      {firstPublished && (
-        <div>
-          <dt>First Published</dt>
-          <dd>{firstPublished}</dd>
-        </div>
-      )}
-
-      {lastVerified && (
-        <div>
-          <dt>Last Verified</dt>
-          <dd>{lastVerified}</dd>
-        </div>
-      )}
-
-      {originalUrl && (
-        <div>
-          <dt>Original URL</dt>
-          <dd>
-            <a href={originalUrl}>{originalUrl}</a>
-          </dd>
-        </div>
-      )}
-
-      {currentUrl && (
-        <div>
-          <dt>Current URL</dt>
-          <dd>
-            <a href={currentUrl}>{currentUrl}</a>
-          </dd>
-        </div>
-      )}
     </dl>
   </section>
+)}
 
-  <section class="record-section" aria-labelledby="record-summary">
-    <h2 id="record-summary">Summary</h2>
-    <p>{summary}</p>
+{resolvedRelatedObjects.length > 0 && (
+  <section
+    class="record-section"
+    aria-labelledby="related-digital-objects"
+  >
+    <div class="record-section-heading">
+      <p class="section-label">Related Records</p>
+
+      <h2 id="related-digital-objects">
+        Related Digital Objects
+      </h2>
+    </div>
+
+    <div class="related-records">
+      {
+        resolvedRelatedObjects.map(({ fwxId, relationship, record }) => (
+          <article class="related-record">
+            {record ? (
+              <>
+                <div class="related-record__header">
+                  <p class="related-record-id">
+                    <a href={`/fwx/${record.data.fwxId}`}>
+                      {record.data.fwxId}
+                    </a>
+                  </p>
+
+                  <span class="record-badge">
+                    {record.data.objectType}
+                  </span>
+                </div>
+
+                <h3>
+                  <a href={`/fwx/${record.data.fwxId}`}>
+                    {record.data.title}
+                  </a>
+                </h3>
+
+                {relationship && (
+                  <dl class="related-record__metadata">
+                    <div>
+                      <dt>Relationship</dt>
+                      <dd>{relationship}</dd>
+                    </div>
+                  </dl>
+                )}
+
+                <p class="related-record__summary">
+                  {record.data.summary}
+                </p>
+
+                <a
+                  class="related-record__link"
+                  href={`/fwx/${record.data.fwxId}`}
+                >
+                  Access Public Record →
+                </a>
+              </>
+            ) : (
+              <>
+                <div class="related-record__header">
+                  <p class="related-record-id">
+                    {fwxId}
+                  </p>
+
+                  <span class="record-badge">
+                    Record Unavailable
+                  </span>
+                </div>
+
+                <h3>
+                  Unresolved Digital Object Reference
+                </h3>
+
+                {relationship && (
+                  <dl class="related-record__metadata">
+                    <div>
+                      <dt>Relationship</dt>
+                      <dd>{relationship}</dd>
+                    </div>
+                  </dl>
+                )}
+
+                <p class="related-record__summary">
+                  The referenced Digital Object is not currently available in
+                  the public Forgotten Web Exchange catalogue.
+                </p>
+              </>
+            )}
+          </article>
+        ))
+      }
+    </div>
   </section>
+)}
 
-  <section class="record-section record-body">
-  <slot />
+{appearingCollections.length > 0 && (
+  <section
+    class="record-section"
+    aria-labelledby="appears-in-collections"
+  >
+    <div class="record-section-heading">
+      <p class="section-label">Collections</p>
+
+      <h2 id="appears-in-collections">
+        Appears in Collections
+      </h2>
+    </div>
+
+    <div class="related-records">
+      {
+        appearingCollections.map((collection) => (
+          <article class="related-record">
+            <div class="related-record__header">
+              <p class="related-record-id">
+                {collection.data.id}
+              </p>
+
+              <span class="record-badge">
+                {collection.data.status}
+              </span>
+            </div>
+
+            <h3>
+              <a href={`/collections/${collection.data.id}`}>
+                {collection.data.title}
+              </a>
+            </h3>
+
+            <p class="related-record__summary">
+              {collection.data.summary}
+            </p>
+
+            <a
+              class="related-record__link"
+              href={`/collections/${collection.data.id}`}
+            >
+              Access Collection →
+            </a>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+)}
+
+{referencingPublications.length > 0 && (
+  <section
+    class="record-section"
+    aria-labelledby="referenced-by-publications"
+  >
+    <div class="record-section-heading">
+      <p class="section-label">Publications</p>
+
+      <h2 id="referenced-by-publications">
+        Referenced by Publications
+      </h2>
+    </div>
+
+    <div class="related-records">
+      {
+        referencingPublications.map((publication) => (
+          <article class="related-record">
+            <div class="related-record__header">
+              <p class="related-record-id">
+                {publication.data.id}
+              </p>
+
+              <span class="record-badge">
+                {publication.data.type}
+              </span>
+            </div>
+
+            <h3>
+              <a href={`/publications/${publication.data.id}`}>
+                {publication.data.title}
+              </a>
+            </h3>
+
+            <p class="related-record__summary">
+              {publication.data.summary}
+            </p>
+
+            <a
+              class="related-record__link"
+              href={`/publications/${publication.data.id}`}
+            >
+              Access Publication →
+            </a>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+)}
+
+<section
+  class="record-section record-body"
+  aria-labelledby="narrative-record"
+>
+  <div class="record-section-heading">
+    <p class="section-label">Documentation</p>
+
+    <h2 id="narrative-record">
+      Narrative Record
+    </h2>
+  </div>
+
+  <div class="record-prose">
+    <slot />
+  </div>
+</section>
+
+<section class="record-footer" aria-labelledby="publication-details">
+  <h2 id="publication-details" class="visually-hidden">
+    Publication Details
+  </h2>
+
+  <dl class="record-footer-grid">
+    <div>
+      <dt>Prepared by</dt>
+      <dd>Office of Digital Preservation</dd>
+    </div>
+
+    <div>
+      <dt>Published through</dt>
+      <dd>Forgotten Web Exchange</dd>
+    </div>
+
+    <div>
+      <dt>Issuing Authority</dt>
+      <dd>Bureau of Digital Antiquities</dd>
+    </div>
+
+    <div>
+      <dt>Document Revision</dt>
+      <dd>1.0</dd>
+    </div>
+
+    <div>
+      <dt>Record Identifier</dt>
+      <dd>{fwxId}</dd>
+    </div>
+
+    {lastVerified && (
+      <div>
+        <dt>Last Verification</dt>
+        <dd>{lastVerified}</dd>
+      </div>
+    )}
+  </dl>
 </section>
 
   {tags.length > 0 && (

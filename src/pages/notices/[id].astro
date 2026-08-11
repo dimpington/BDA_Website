@@ -1,0 +1,28 @@
+---
+import { getCollection, render } from "astro:content";
+
+import Layout from "../../layouts/Layout.astro";
+import NoticeRecord from "../../components/NoticeRecord.astro";
+
+export async function getStaticPaths() {
+  const notices = await getCollection("notices");
+
+  return notices.map((notice) => ({
+    params: {
+      id: notice.data.id,
+    },
+    props: {
+      notice,
+    },
+  }));
+}
+
+const { notice } = Astro.props;
+const { Content } = await render(notice);
+---
+
+<Layout title={`${notice.data.title} | Bureau of Digital Antiquities`}>
+  <NoticeRecord notice={notice}>
+    <Content />
+  </NoticeRecord>
+</Layout>

@@ -1,0 +1,30 @@
+---
+import { getCollection, render } from "astro:content";
+
+import Layout from "../../layouts/Layout.astro";
+import PublicationRecord from "../../components/PublicationRecord.astro";
+
+export async function getStaticPaths() {
+  const publications = await getCollection("publications");
+
+  return publications.map((publication) => ({
+    params: {
+      id: publication.data.id,
+    },
+    props: {
+      publication,
+    },
+  }));
+}
+
+const { publication } = Astro.props;
+const { Content } = await render(publication);
+---
+
+<Layout
+  title={`${publication.data.title} | Bureau of Digital Antiquities`}
+>
+  <PublicationRecord publication={publication}>
+    <Content />
+  </PublicationRecord>
+</Layout>

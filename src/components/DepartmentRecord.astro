@@ -1,0 +1,94 @@
+---
+const { department } = Astro.props;
+
+const {
+  id,
+  name,
+  motto,
+  summary,
+  mission,
+  responsibilities,
+  emblem,
+  officeType,
+} = department.data;
+---
+
+<article class="department-record">
+  <header class="department-record__header">
+    <p class="section-label">
+      Bureau Department Record
+    </p>
+
+    <div class="department-record__masthead">
+      <img
+        src={emblem}
+        alt={`${name} emblem`}
+        class="department-record__emblem"
+      />
+
+      <div>
+        <p class="department-record__type">
+          {officeType}
+        </p>
+
+        <h1>{name}</h1>
+
+        <p class="department-record__motto">
+          “{motto}”
+        </p>
+
+        <p class="department-record__summary">
+          {summary}
+        </p>
+      </div>
+    </div>
+  </header>
+
+  <section
+    class="record-section"
+    aria-labelledby="department-mission"
+  >
+    <div class="record-section-heading">
+      <p class="section-label">Department Mandate</p>
+      <h2 id="department-mission">Mission</h2>
+    </div>
+
+    <div class="record-prose">
+      <p>{mission}</p>
+    </div>
+  </section>
+
+  <section
+    class="record-section"
+    aria-labelledby="department-responsibilities"
+  >
+    <div class="record-section-heading">
+      <p class="section-label">Operational Responsibilities</p>
+      <h2 id="department-responsibilities">
+        Primary Responsibilities
+      </h2>
+    </div>
+
+    <ul class="department-responsibility-list">
+      {responsibilities.map((item: string) => (
+        <li>{item}</li>
+      ))}
+    </ul>
+  </section>
+
+  <section
+    class="record-section record-body"
+    aria-labelledby="department-documentation"
+  >
+    <div class="record-section-heading">
+      <p class="section-label">Department Documentation</p>
+      <h2 id="department-documentation">
+        Institutional Record
+      </h2>
+    </div>
+
+    <div class="record-prose">
+      <slot />
+    </div>
+  </section>
+</article>

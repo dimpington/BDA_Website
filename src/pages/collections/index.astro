@@ -1,0 +1,60 @@
+---
+import { getCollection } from "astro:content";
+
+import Layout from "../../layouts/Layout.astro";
+
+const collections = await getCollection("collections");
+
+const sortedCollections = collections.sort((a, b) =>
+  b.data.published.localeCompare(a.data.published)
+);
+---
+
+<Layout title="Collections | Bureau of Digital Antiquities">
+  <section class="page-header">
+    <p class="section-label">Curated Exhibitions</p>
+
+    <h1>Collections</h1>
+
+    <p class="page-introduction">
+      Bureau Collections bring together related Digital Objects and official
+      publications to document broader historical, cultural and technical
+      developments in digital heritage.
+    </p>
+  </section>
+
+  <section class="record-section">
+    <div class="record-section-heading">
+      <p class="section-label">Collection Register</p>
+
+      <h2>Available Collections</h2>
+    </div>
+
+    <div class="publication-list">
+      {
+        sortedCollections.map((collection) => (
+          <article class="publication-entry">
+            <div class="publication-entry__reference">
+              <strong>{collection.data.id}</strong>
+              <span>{collection.data.status}</span>
+            </div>
+
+            <div>
+              <h3>
+                <a href={`/collections/${collection.data.id}`}>
+                  {collection.data.title}
+                </a>
+              </h3>
+
+              <p>{collection.data.summary}</p>
+            </div>
+
+            <span class="publication-entry__format">
+              {collection.data.published}
+            </span>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+</Layout>

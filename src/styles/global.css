@@ -992,3 +992,788 @@ img {
     gap: 0.15rem;
   }
 }
+
+/* =========================================================
+   FWX Catalogue
+   ========================================================= */
+
+.fwx-masthead {
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  align-items: start;
+  gap: 2rem;
+  margin-top: 2rem;
+  padding: 2rem 0;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.fwx-logo {
+  width: 100%;
+  max-width: 240px;
+  height: auto;
+  margin: 0;
+}
+
+.fwx-masthead__text h1 {
+  margin: 0 0 0.75rem;
+}
+
+.fwx-masthead__text .catalogue-lead {
+  margin: 0;
+}
+
+.catalogue-intro {
+  padding: 2.5rem 0 2rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.catalogue-intro h1 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.catalogue-lead {
+  max-width: 48rem;
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+.section-label {
+  margin: 0;
+  color: var(--color-burgundy);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.catalogue-reference {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: 2rem;
+  border: 1px solid var(--color-border);
+  background: var(--color-border);
+}
+
+.catalogue-reference div {
+  padding: 1rem;
+  background: var(--color-paper-light);
+}
+
+.catalogue-reference dt {
+  margin-bottom: 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.catalogue-reference dd {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+}
+
+.catalogue-register {
+  padding: 2.5rem 0;
+}
+
+.catalogue-register__heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 1rem;
+}
+
+.catalogue-register__heading h2 {
+  margin: 0.35rem 0 0;
+}
+
+.catalogue-register__heading > p {
+  margin: 0;
+  font-size: 0.85rem;
+  font-style: italic;
+}
+
+.catalogue-table-wrapper {
+  overflow-x: auto;
+  border-top: 3px solid var(--color-navy);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.catalogue-table {
+  width: 100%;
+  min-width: 950px;
+  border-collapse: collapse;
+}
+
+.catalogue-table th,
+.catalogue-table td {
+  padding: 1rem 0.85rem;
+  border-bottom: 1px solid var(--color-border);
+  text-align: left;
+  vertical-align: top;
+}
+
+.catalogue-table th {
+  background: rgba(23, 50, 74, 0.07);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.catalogue-table tbody tr:hover {
+  background: rgba(23, 50, 74, 0.04);
+}
+
+.catalogue-search {
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.catalogue-search label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.catalogue-filters {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.catalogue-filter label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-weight: 600;
+}
+
+.catalogue-filter select {
+  width: 100%;
+  padding: 0.45rem 0.55rem;
+}
+
+.catalogue-filter--collection {
+  grid-column: 1 / 2;
+}
+
+/* FWX Digital Object preview */
+
+.record-preview__figure {
+  margin: 1.5rem 0 0;
+  padding: 1rem;
+  border: 1px solid var(--border-color, #b8b09f);
+  background: #f1eee5;
+}
+
+.record-preview__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid #8f8879;
+}
+
+.record-preview__figure figcaption {
+  margin-top: 0.75rem;
+  padding-top: 0.65rem;
+  border-top: 1px solid #b8b09f;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+}
+
+/* Responsive catalogue filters */
+
+@media (max-width: 1000px) {
+  .catalogue-filters {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .catalogue-filters {
+    grid-template-columns: 1fr;
+  }
+}
+
+.catalogue-search-status {
+  margin-bottom: 1.5rem;
+} 
+
+.catalogue-id {
+  white-space: nowrap;
+  font-family: var(--font-mono);
+  font-weight: 700;
+}
+
+.catalogue-title {
+  min-width: 18rem;
+}
+
+.catalogue-title > a {
+  font-weight: 700;
+}
+
+.catalogue-title p {
+  max-width: 34rem;
+  margin: 0.4rem 0 0;
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.record-badge {
+  display: inline-block;
+  padding: 0.28rem 0.45rem;
+  border: 1px solid currentColor;
+  font-size: 0.68rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.record-badge--classification {
+  background: rgba(23, 50, 74, 0.07);
+}
+
+/* =========================================================
+   FWX Digital Object Record
+   ========================================================= */
+
+.fwx-record {
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.fwx-record-header {
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.fwx-record-masthead {
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  align-items: start;
+  gap: 2rem;
+  margin-top: 2rem;
+  padding: 2rem 0;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.fwx-record-logo {
+  width: 100%;
+  max-width: 240px;
+  height: auto;
+  margin: 0;
+}
+
+.fwx-record-id {
+  margin: 0 0 0.45rem;
+  color: var(--color-burgundy);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: bold;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.fwx-record-identity h1 {
+  margin: 0;
+  color: var(--color-navy-dark);
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-weight: normal;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+}
+
+.fwx-record-summary {
+  max-width: 48rem;
+  margin: 1rem 0 0;
+  color: var(--color-muted);
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+}
+
+.fwx-document-control {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  margin: 2rem 0 0;
+  border: 1px solid var(--color-border);
+  background: var(--color-border);
+}
+
+.fwx-document-control div {
+  padding: 1rem;
+  background: var(--color-surface-muted);
+}
+
+.fwx-document-control dt {
+  color: var(--color-faint);
+  font-size: 0.67rem;
+  font-weight: bold;
+  letter-spacing: 0.075em;
+  text-transform: uppercase;
+}
+
+.fwx-document-control dd {
+  margin: 0.25rem 0 0;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+}
+
+/* =========================================================
+   FWX Administrative Record
+   ========================================================= */
+
+.record-section {
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.record-section-heading {
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 3px double var(--color-border-dark);
+}
+
+.record-section-heading h2 {
+  margin: 0.25rem 0 0;
+  color: var(--color-navy-dark);
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  font-weight: normal;
+}
+
+.administrative-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 0;
+  border-top: 1px solid var(--color-border);
+  border-left: 1px solid var(--color-border);
+}
+
+.administrative-grid > div {
+  min-width: 0;
+  padding: 1rem;
+  border-right: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.administrative-grid dt {
+  margin-bottom: 0.3rem;
+  color: var(--color-faint);
+  font-size: 0.66rem;
+  font-weight: bold;
+  letter-spacing: 0.075em;
+  text-transform: uppercase;
+}
+
+.administrative-grid dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+}
+
+.administrative-grid__wide {
+  grid-column: span 2;
+}
+
+.administrative-grid__wide dd {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+}
+
+/* =========================================================
+   FWX Record Narrative
+   ========================================================= */
+
+.record-prose {
+  max-width: 760px;
+}
+
+.record-prose p {
+  margin: 0 0 1.4rem;
+  color: var(--color-ink);
+  font-family: var(--font-heading);
+  font-size: 1.08rem;
+  line-height: 1.8;
+}
+
+.record-prose p:last-child {
+  margin-bottom: 0;
+}
+
+.record-prose h3 {
+  margin: 2rem 0 0.75rem;
+  color: var(--color-navy-dark);
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: normal;
+}
+
+.record-prose ul,
+.record-prose ol {
+  margin: 1rem 0 1.5rem 1.5rem;
+}
+
+.record-prose li {
+  margin-bottom: 0.5rem;
+}
+
+.record-prose blockquote {
+  margin: 2rem 0;
+  padding-left: 1.25rem;
+  border-left: 3px solid var(--color-brass);
+  color: var(--color-muted);
+  font-style: italic;
+}
+
+/* =========================================================
+   FWX Related Records
+   ========================================================= */
+
+.related-records {
+  display: grid;
+  gap: 1rem;
+}
+
+.related-record {
+  padding: 1.25rem;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-muted);
+}
+
+.related-record__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.related-record-id {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: bold;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.related-record-id a {
+  color: var(--color-burgundy);
+}
+
+.related-record h3 {
+  margin: 0.45rem 0 1rem;
+  color: var(--color-navy-dark);
+  font-family: var(--font-heading);
+  font-size: 1.45rem;
+  font-weight: normal;
+}
+
+.related-record__metadata {
+  margin: 0 0 1rem;
+}
+
+.related-record__metadata div {
+  padding: 0.75rem;
+  border-left: 4px solid var(--color-brass);
+  background: var(--color-surface);
+}
+
+.related-record__metadata dt {
+  color: var(--color-faint);
+  font-size: 0.66rem;
+  font-weight: bold;
+  letter-spacing: 0.075em;
+  text-transform: uppercase;
+}
+
+.related-record__metadata dd {
+  margin: 0.2rem 0 0;
+  font-family: var(--font-heading);
+}
+
+.related-record__summary {
+  max-width: 48rem;
+  margin: 0 0 1rem;
+  color: var(--color-muted);
+  font-family: var(--font-heading);
+  line-height: 1.7;
+}
+
+.related-record__link {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: bold;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ==========================================================================
+   FWX Publication Footer
+   ========================================================================== */
+
+.record-footer {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.record-footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.record-footer dt {
+  margin-bottom: 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-muted);
+}
+
+.record-footer dd {
+  margin: 0;
+}
+
+/* =========================================================
+   FWX Responsive Layout
+   ========================================================= */
+
+@media (max-width: 760px) {
+  .catalogue-reference {
+    grid-template-columns: 1fr;
+  }
+
+  .catalogue-register__heading {
+    display: block;
+  }
+
+  .catalogue-register__heading > p {
+    margin-top: 0.75rem;
+  }
+
+  .fwx-masthead,
+  .fwx-record-masthead {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .fwx-logo,
+  .fwx-record-logo {
+    max-width: 300px;
+  }
+
+  .fwx-document-control {
+    grid-template-columns: 1fr 1fr;
+  }
+
+.administrative-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.administrative-grid__wide {
+  grid-column: span 2;
+}
+
+}
+
+@media (max-width: 460px) {
+  .fwx-document-control {
+    grid-template-columns: 1fr;
+  }
+
+.administrative-grid {
+  grid-template-columns: 1fr;
+}
+
+.administrative-grid__wide {
+  grid-column: auto;
+}
+
+}
+
+/* =========================================================
+   Department Directory
+   ========================================================= */
+
+.page-header {
+  margin-bottom: 3rem;
+}
+
+.page-introduction {
+  max-width: 46rem;
+  color: var(--color-muted);
+  font-family: var(--font-heading);
+  line-height: 1.7;
+}
+
+.department-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+.department-card {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-muted);
+}
+
+.department-card__emblem {
+  width: 120px;
+  margin: 0 auto 1.5rem;
+}
+
+.department-card h2 {
+  margin: 0.5rem 0;
+}
+
+.department-card__motto {
+  margin-bottom: 1rem;
+  color: var(--color-muted);
+  font-style: italic;
+}
+
+.department-card__summary {
+  line-height: 1.7;
+}
+
+.department-card__responsibilities {
+  margin-top: 1.5rem;
+}
+
+.department-card__responsibilities ul {
+  padding-left: 1.25rem;
+}
+
+.department-card__link {
+  margin-top: auto;
+  padding-top: 1.5rem;
+  font-weight: bold;
+}
+
+/* =========================================================
+   Department Record
+   ========================================================= */
+
+.department-record {
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.department-record__header {
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.department-record__masthead {
+  display: grid;
+  grid-template-columns: 190px minmax(0, 1fr);
+  align-items: center;
+  gap: 2rem;
+  margin-top: 2rem;
+  padding: 2rem 0;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.department-record__emblem {
+  width: 100%;
+  max-width: 170px;
+  height: auto;
+  margin: 0 auto;
+  object-fit: contain;
+}
+
+.department-record__type {
+  margin: 0 0 0.35rem;
+  color: var(--color-burgundy);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.department-record__masthead h1 {
+  margin: 0;
+  color: var(--color-navy-dark);
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 5vw, 3.1rem);
+  font-weight: normal;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+}
+
+.department-record__motto {
+  margin: 0.8rem 0 0;
+  color: var(--color-muted);
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-style: italic;
+}
+
+.department-record__summary {
+  max-width: 48rem;
+  margin: 1rem 0 0;
+  color: var(--color-muted);
+  font-family: var(--font-heading);
+  line-height: 1.7;
+}
+
+.department-responsibility-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  margin: 0;
+  padding: 1px;
+  background: var(--color-border);
+  list-style: none;
+}
+
+.department-responsibility-list li {
+  padding: 1rem;
+  background: var(--color-surface-muted);
+  font-family: var(--font-heading);
+}
+
+.department-responsibility-list li::before {
+  margin-right: 0.55rem;
+  color: var(--color-burgundy);
+  content: "■";
+  font-size: 0.55rem;
+  vertical-align: 0.15em;
+}
+
+@media (max-width: 760px) {
+  .department-record__masthead {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+
+  .department-record__emblem {
+    max-width: 180px;
+    margin: 0;
+  }
+
+  .department-responsibility-list {
+    grid-template-columns: 1fr;
+  }
+}

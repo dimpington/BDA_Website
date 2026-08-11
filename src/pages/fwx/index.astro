@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 
 const objects = await getCollection("digital-objects");
+const collections = await getCollection("collections");
 
 const sortedObjects = objects.sort((a, b) =>
   a.data.fwxId.localeCompare(b.data.fwxId)
@@ -10,59 +11,622 @@ const sortedObjects = objects.sort((a, b) =>
 ---
 
 <Layout title="Forgotten Web Exchange | Bureau of Digital Antiquities">
-  <main class="fwx-catalogue">
-    <header class="catalogue-header">
-      <p class="section-label">Public Catalogue</p>
+  <section class="catalogue-intro">
+    <p class="section-label">Public Catalogue</p>
 
-      <h1>Forgotten Web Exchange</h1>
+    <div class="fwx-masthead">
+      <img
+        src="/images/FWX_Logo.png"
+        alt="Forgotten Web Exchange"
+        class="fwx-logo"
+      />
+
+      <div class="fwx-masthead__text">
+        <h1>Forgotten Web Exchange</h1>
+
+        <p class="catalogue-lead">
+          The Forgotten Web Exchange provides public access to catalogued
+          Digital Objects held by the Bureau of Digital Antiquities.
+        </p>
+      </div>
+    </div>
+
+    <dl class="catalogue-reference">
+      <div>
+        <dt>Document Reference</dt>
+        <dd>BDA-FWX-CATALOGUE-001</dd>
+      </div>
+
+      <div>
+        <dt>Release Status</dt>
+        <dd>Public Release</dd>
+      </div>
+
+      <div>
+        <dt>Catalogue Records</dt>
+        <dd>{sortedObjects.length}</dd>
+      </div>
+    </dl>
+  </section>
+
+  <section class="catalogue-register" aria-labelledby="catalogue-records">
+    <div class="catalogue-register__heading">
+      <div>
+        <p class="section-label">Register</p>
+        <h2 id="catalogue-records">Digital Object Records</h2>
+      </div>
 
       <p>
-        The Forgotten Web Exchange provides public access to catalogued
-        Digital Objects held by the Bureau of Digital Antiquities.
+        Ordered by permanent FWX identifier
       </p>
-    </header>
+    </div>
 
-    <section aria-labelledby="catalogue-records">
-      <div class="catalogue-heading">
-        <h2 id="catalogue-records">Catalogue Records</h2>
-        <p>{sortedObjects.length} records</p>
+<form
+  class="catalogue-search"
+  action="/fwx"
+  method="get"
+  role="search"
+>
+  <label for="fwx-catalogue-query">
+    Search Public Catalogue
+  </label>
+
+  <div class="catalogue-search__controls">
+    <input
+      id="fwx-catalogue-query"
+      name="q"
+      type="search"
+      placeholder="Title, FWX ID, object type, status..."
+    />
+
+    <button type="submit">
+      Search Catalogue
+    </button>
+  </div>
+</form>
+
+<div class="catalogue-filters">
+  <div class="catalogue-filter">
+    <label for="object-type-filter">
+      Object Type
+    </label>
+
+    <select id="object-type-filter" name="type">
+      <option value="">All object types</option>
+
+      {
+        [...new Set(objects.map((object) => object.data.objectType))]
+          .sort()
+          .map((type) => (
+            <option value={type.toLowerCase()}>
+              {type}
+            </option>
+          ))
+      }
+    </select>
+  </div>
+
+  <div class="catalogue-filter">
+    <label for="preservation-status-filter">
+      Preservation Status
+    </label>
+
+    <select id="preservation-status-filter" name="preservation">
+      <option value="">All preservation statuses</option>
+
+      {
+        [...new Set(objects.map((object) => object.data.preservationStatus))]
+          .sort()
+          .map((status) => (
+            <option value={status.toLowerCase()}>
+              {status}
+            </option>
+          ))
+      }
+    </select>
+  </div>
+
+  <div class="catalogue-filter">
+    <label for="operational-status-filter">
+      Operational Status
+    </label>
+
+    <select id="operational-status-filter" name="operational">
+      <option value="">All operational statuses</option>
+
+      {
+        [...new Set(objects.map((object) => object.data.operationalStatus))]
+          .sort()
+          .map((status) => (
+            <option value={status.toLowerCase()}>
+              {status}
+            </option>
+          ))
+      }
+    </select>
+  </div>
+
+  <div class="catalogue-filter">
+    <label for="classification-filter">
+      Classification
+    </label>
+
+    <select id="classification-filter" name="classification">
+      <option value="">All classifications</option>
+
+      {
+        [...new Set(objects.map((object) => object.data.classification))]
+          .sort()
+          .map((classification) => (
+            <option value={classification.toLowerCase()}>
+              {classification}
+            </option>
+          ))
+      }
+    </select>
+  </div>
+
+<div class="catalogue-filter catalogue-filter--collection">
+  <label for="collection-filter">
+    Collection
+  </label>
+
+  <select id="collection-filter" name="collection">
+    <option value="">All collections</option>
+
+    {
+      collections
+        .sort((a, b) => a.data.title.localeCompare(b.data.title))
+        .map((collection) => (
+          <option value={collection.data.id.toLowerCase()}>
+            {collection.data.title}
+          </option>
+        ))
+    }
+  </select>
+</div>
+
+<div class="catalogue-filter">
+  <label for="publication-period-filter">
+    First Publication
+  </label>
+
+  <select id="publication-period-filter" name="period">
+    <option value="">All periods</option>
+    <option value="pre-1995">Before 1995</option>
+    <option value="1995-1999">1995–1999</option>
+    <option value="2000-2004">2000–2004</option>
+    <option value="2005-2009">2005–2009</option>
+    <option value="2010-2014">2010–2014</option>
+    <option value="2015-2019">2015–2019</option>
+    <option value="2020-present">2020–present</option>
+  </select>
+</div>
+
+<div class="catalogue-filter">
+  <label for="sort-filter">
+    Order Records By
+  </label>
+
+  <select id="sort-filter" name="sort">
+    <option value="fwx-id">FWX ID</option>
+    <option value="title">Title</option>
+    <option value="first-published">First Publication</option>
+    <option value="last-verified">Last Verification</option>
+  </select>
+</div>
+
+</div>
+
+<div
+  id="catalogue-search-status"
+  class="catalogue-search-status"
+  hidden
+>
+
+  <p>
+    <strong>Catalogue query:</strong>
+    <span id="catalogue-search-query"></span>
+  </p>
+
+  <p>
+    <span id="catalogue-search-count"></span>
+    ·
+    <a href="/fwx">Clear search & filters</a>
+  </p>
+</div>
+
+    <div class="catalogue-table-wrapper">
+      <table class="catalogue-table">
+        <thead>
+          <tr>
+            <th scope="col">FWX ID</th>
+            <th scope="col">Title</th>
+            <th scope="col">Object Type</th>
+            <th scope="col">Operational Status</th>
+            <th scope="col">Preservation Status</th>
+            <th scope="col">Classification</th>
+          </tr>
+        </thead>
+
+          <tbody>
+          {
+            sortedObjects.map((object) => {
+              const searchText = [
+                object.data.fwxId,
+                object.data.title,
+                object.data.summary,
+                object.data.objectType,
+                object.data.operationalStatus,
+                object.data.preservationStatus,
+                object.data.classification,
+              ]
+                .filter(Boolean)
+                .join(" ")
+                .toLowerCase();
+
+              const objectCollections = collections
+              .filter((collection) =>
+                collection.data.featuredObjects.includes(object.data.fwxId)
+              )
+              .map((collection) => collection.data.id.toLowerCase())
+              .join(" ");
+
+              const publicationYear = object.data.firstPublished
+              ? object.data.firstPublished.slice(0, 4)
+              : "";
+
+              const sortTitle = object.data.title.toLowerCase();
+              const sortFirstPublished = object.data.firstPublished ?? "";
+              const sortLastVerified = object.data.lastVerified ?? "";
+
+              return (
+                <tr
+                  data-search={searchText}
+                  data-object-type={object.data.objectType.toLowerCase()}
+                  data-preservation-status={object.data.preservationStatus.toLowerCase()}
+                  data-operational-status={object.data.operationalStatus.toLowerCase()}
+                  data-classification={object.data.classification.toLowerCase()}
+                  data-collections={objectCollections}
+                  data-publication-year={publicationYear}
+                  data-sort-title={sortTitle}
+                  data-sort-first-published={sortFirstPublished}
+                  data-sort-last-verified={sortLastVerified}
+                >
+                  <td class="catalogue-id">
+                    <a href={`/fwx/${object.data.fwxId}`}>
+                      {object.data.fwxId}
+                    </a>
+                  </td>
+
+                  <td class="catalogue-title">
+                    <a href={`/fwx/${object.data.fwxId}`}>
+                      {object.data.title}
+                    </a>
+
+                    <p>{object.data.summary}</p>
+                  </td>
+
+                  <td>{object.data.objectType}</td>
+
+                  <td>
+                    <span class="record-badge">
+                      {object.data.operationalStatus}
+                    </span>
+                  </td>
+
+                  <td>
+                    <span class="record-badge">
+                      {object.data.preservationStatus}
+                    </span>
+                  </td>
+
+                  <td>
+                    <span class="record-badge record-badge--classification">
+                      {object.data.classification}
+                    </span>
+                  </td>
+                </tr>
+              );
+            })
+          }
+        </tbody>
+      </table>
+            <div
+        id="catalogue-no-results"
+        class="catalogue-no-results"
+        hidden
+      >
+        <p><strong>No records located</strong></p>
+
+        <p>
+          No public catalogue records correspond to the supplied search criteria.
+        </p>
+
+        <p>
+          <a href="/fwx">Return to the complete catalogue</a>
+        </p>
       </div>
-
-      <div class="catalogue-list">
-        {sortedObjects.map((object) => (
-          <article class="catalogue-record">
-            <div class="record-reference">
-              <span>{object.data.fwxId}</span>
-              <span>{object.data.objectType}</span>
-            </div>
-
-            <h3>
-              <a href={`/fwx/${object.data.fwxId}`}>
-                {object.data.title}
-              </a>
-            </h3>
-
-            <p>{object.data.summary}</p>
-
-            <dl class="catalogue-metadata">
-              <div>
-                <dt>Operational Status</dt>
-                <dd>{object.data.operationalStatus}</dd>
-              </div>
-
-              <div>
-                <dt>Preservation Status</dt>
-                <dd>{object.data.preservationStatus}</dd>
-              </div>
-
-              <div>
-                <dt>Classification</dt>
-                <dd>{object.data.classification}</dd>
-              </div>
-            </dl>
-          </article>
-        ))}
-      </div>
-    </section>
-  </main>
+    </div>
+  </section>
 </Layout>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+
+  const query = (params.get("q") ?? "").trim().toLowerCase();
+  const originalQuery = (params.get("q") ?? "").trim();
+
+  const searchInput =
+  document.querySelector<HTMLInputElement>("#fwx-catalogue-query");
+
+  if (searchInput) {
+  searchInput.value = originalQuery;
+}
+
+  const typeFilter =
+  document.querySelector<HTMLSelectElement>("#object-type-filter");
+
+  const selectedType =
+  (params.get("type") ?? "").trim().toLowerCase();
+
+  const preservationFilter =
+  document.querySelector<HTMLSelectElement>("#preservation-status-filter");
+
+  const selectedPreservation =
+  (params.get("preservation") ?? "").trim().toLowerCase();
+
+  const rows = document.querySelectorAll<HTMLTableRowElement>(
+    "tbody tr[data-search]"
+
+  );
+
+  const operationalFilter =
+    document.querySelector<HTMLSelectElement>("#operational-status-filter");
+
+  const selectedOperational =
+    (params.get("operational") ?? "").trim().toLowerCase();
+
+  const classificationFilter =
+  document.querySelector<HTMLSelectElement>("#classification-filter");
+
+  const selectedClassification =
+  (params.get("classification") ?? "").trim().toLowerCase();
+
+  const collectionFilter =
+  document.querySelector<HTMLSelectElement>("#collection-filter");
+
+  const selectedCollection =
+  (params.get("collection") ?? "").trim().toLowerCase();
+
+  const periodFilter =
+    document.querySelector<HTMLSelectElement>("#publication-period-filter");
+
+  const selectedPeriod =
+    (params.get("period") ?? "").trim().toLowerCase();
+
+  const sortFilter =
+  document.querySelector<HTMLSelectElement>("#sort-filter");
+
+  const selectedSort =
+    (params.get("sort") ?? "fwx-id").trim().toLowerCase();
+
+  let matchCount = 0;
+
+  rows.forEach((row) => {
+    const searchableText = row.dataset.search ?? "";
+    const rowType = row.dataset.objectType ?? "";
+    const rowPreservation = row.dataset.preservationStatus ?? "";
+    const rowOperational = row.dataset.operationalStatus ?? "";
+    const rowClassification = row.dataset.classification ?? "";
+    const rowCollections = row.dataset.collections ?? "";
+    const publicationYear = Number(row.dataset.publicationYear ?? "");
+
+    const matchesQuery =
+      !query || searchableText.includes(query);
+
+    const matchesType =
+      !selectedType || rowType === selectedType;
+
+    const matchesPreservation =
+      !selectedPreservation || rowPreservation === selectedPreservation;
+
+    const matchesOperational =
+     !selectedOperational || rowOperational === selectedOperational;
+
+    const matchesClassification =
+     !selectedClassification || rowClassification === selectedClassification;
+
+    const matchesCollection =
+      !selectedCollection || rowCollections.split(" ").includes(selectedCollection);
+
+    let matchesPeriod = true;
+
+if (selectedPeriod && publicationYear) {
+  if (selectedPeriod === "pre-1995") {
+    matchesPeriod = publicationYear < 1995;
+  } else if (selectedPeriod === "1995-1999") {
+    matchesPeriod = publicationYear >= 1995 && publicationYear <= 1999;
+  } else if (selectedPeriod === "2000-2004") {
+    matchesPeriod = publicationYear >= 2000 && publicationYear <= 2004;
+  } else if (selectedPeriod === "2005-2009") {
+    matchesPeriod = publicationYear >= 2005 && publicationYear <= 2009;
+  } else if (selectedPeriod === "2010-2014") {
+    matchesPeriod = publicationYear >= 2010 && publicationYear <= 2014;
+  } else if (selectedPeriod === "2015-2019") {
+    matchesPeriod = publicationYear >= 2015 && publicationYear <= 2019;
+  } else if (selectedPeriod === "2020-present") {
+    matchesPeriod = publicationYear >= 2020;
+  }
+}
+
+const tbody = document.querySelector<HTMLTableSectionElement>(
+  ".catalogue-table tbody"
+);
+
+if (tbody) {
+  const sortedRows = [...rows].sort((a, b) => {
+    if (selectedSort === "title") {
+      return (a.dataset.sortTitle ?? "").localeCompare(
+        b.dataset.sortTitle ?? ""
+      );
+    }
+
+    if (selectedSort === "first-published") {
+      return (a.dataset.sortFirstPublished ?? "").localeCompare(
+        b.dataset.sortFirstPublished ?? ""
+      );
+    }
+
+    if (selectedSort === "last-verified") {
+      return (a.dataset.sortLastVerified ?? "").localeCompare(
+        b.dataset.sortLastVerified ?? ""
+      );
+    }
+
+    const aId =
+      a.querySelector(".catalogue-id")?.textContent?.trim() ?? "";
+
+    const bId =
+      b.querySelector(".catalogue-id")?.textContent?.trim() ?? "";
+
+    return aId.localeCompare(bId);
+  });
+
+  sortedRows.forEach((row) => tbody.appendChild(row));
+}
+
+    const matches =
+      matchesQuery &&
+      matchesType &&
+      matchesPreservation &&
+      matchesOperational &&
+      matchesClassification &&
+      matchesCollection &&
+      matchesCollection &&
+      matchesPeriod;
+
+    row.style.display = matches ? "" : "none";
+
+    if (matches) {
+      matchCount++;
+    }
+  });
+
+    if (typeFilter) {
+      typeFilter.value = selectedType;
+
+      typeFilter.addEventListener("change", () => {
+        const nextParams = new URLSearchParams(window.location.search);
+
+        if (typeFilter.value) {
+          nextParams.set("type", typeFilter.value);
+        } else {
+          nextParams.delete("type");
+        }
+
+        window.location.search = nextParams.toString();
+      });
+    }
+
+    if (preservationFilter) {
+  preservationFilter.value = selectedPreservation;
+
+  preservationFilter.addEventListener("change", () => {
+    const nextParams = new URLSearchParams(window.location.search);
+
+    if (preservationFilter.value) {
+      nextParams.set("preservation", preservationFilter.value);
+    } else {
+      nextParams.delete("preservation");
+    }
+
+    window.location.search = nextParams.toString();
+  });
+}
+
+if (operationalFilter) {
+  operationalFilter.value = selectedOperational;
+
+  operationalFilter.addEventListener("change", () => {
+    const nextParams = new URLSearchParams(window.location.search);
+
+    if (operationalFilter.value) {
+      nextParams.set("operational", operationalFilter.value);
+    } else {
+      nextParams.delete("operational");
+    }
+
+    window.location.search = nextParams.toString();
+  });
+}
+
+if (classificationFilter) {
+  classificationFilter.value = selectedClassification;
+
+  classificationFilter.addEventListener("change", () => {
+    const nextParams = new URLSearchParams(window.location.search);
+
+    if (classificationFilter.value) {
+      nextParams.set("classification", classificationFilter.value);
+    } else {
+      nextParams.delete("classification");
+    }
+
+    window.location.search = nextParams.toString();
+  });
+}
+
+if (collectionFilter) {
+  collectionFilter.value = selectedCollection;
+
+  collectionFilter.addEventListener("change", () => {
+    const nextParams = new URLSearchParams(window.location.search);
+
+    if (collectionFilter.value) {
+      nextParams.set("collection", collectionFilter.value);
+    } else {
+      nextParams.delete("collection");
+    }
+
+    window.location.search = nextParams.toString();
+  });
+}
+
+  const status = document.getElementById("catalogue-search-status");
+  const queryElement = document.getElementById("catalogue-search-query");
+  const countElement = document.getElementById("catalogue-search-count");
+
+  if (query && status && queryElement && countElement) {
+    queryElement.textContent = originalQuery;
+
+    countElement.textContent =
+      matchCount === 1
+        ? "1 record located"
+        : `${matchCount} records located`;
+
+    status.hidden = false;
+  }
+
+  const noResults = document.getElementById("catalogue-no-results");
+
+if (noResults && query && matchCount === 0) {
+  noResults.hidden = false;
+}
+
+if (sortFilter) {
+  sortFilter.value = selectedSort;
+
+  sortFilter.addEventListener("change", () => {
+    const nextParams = new URLSearchParams(window.location.search);
+
+    if (sortFilter.value && sortFilter.value !== "fwx-id") {
+      nextParams.set("sort", sortFilter.value);
+    } else {
+      nextParams.delete("sort");
+    }
+
+    window.location.search = nextParams.toString();
+  });
+}
+</script>
