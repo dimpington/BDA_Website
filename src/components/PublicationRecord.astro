@@ -1,5 +1,11 @@
 ---
+import { getCollection } from "astro:content";
+
 const { publication } = Astro.props;
+
+const allDepartments = await getCollection("departments");
+const allCollections = await getCollection("collections");
+const allPublications = await getCollection("publications");
 
 const {
   id,
@@ -8,12 +14,34 @@ const {
   published,
   summary,
   issuingOffice,
+  authors = [],
   classification,
   documentReference,
   revision,
+  documentStatus,
   relatedObjects = [],
+  relatedPublications = [],
   tags = [],
 } = publication.data;
+
+const issuingDepartment = allDepartments.find(
+  (department) => department.data.name === issuingOffice
+);
+
+const appearingInCollections = allCollections.filter((collection) =>
+  collection.data.relatedPublications.includes(id)
+);
+
+const resolvedRelatedPublications = relatedPublications.map((publicationId: string) => {
+  const relatedPublication = allPublications.find(
+    (entry) => entry.data.id === publicationId
+  );
+
+  return {
+    id: publicationId,
+    publication: relatedPublication ?? null,
+  };
+}); 
 ---
 
 <article class="publication-record">
@@ -50,13 +78,34 @@ const {
       </div>
 
       <div>
+        <dt>Document Status</dt>
+        <dd>{documentStatus}</dd>
+      </div>
+
+      <div>
         <dt>Published</dt>
         <dd>{published}</dd>
       </div>
 
+      {authors.length > 0 && (
+      <div>
+        <dt>{authors.length === 1 ? "Author" : "Authors"}</dt>
+        <dd>{authors.join(", ")}</dd>
+      </div>
+    )}
+
       <div>
         <dt>Issuing Office</dt>
-        <dd>{issuingOffice}</dd>
+
+        <dd>
+          {issuingDepartment ? (
+            <a href={`/departments/${issuingDepartment.id}`}>
+              {issuingOffice}
+            </a>
+          ) : (
+            issuingOffice
+          )}
+        </dd>
       </div>
     </dl>
   </header>
@@ -96,6 +145,126 @@ const {
       </ul>
     </section>
   )}
+
+  {resolvedRelatedPublications.length > 0 && (
+  <section
+    class="record-section"
+    aria-labelledby="publication-related-publications"
+  >
+    <div class="record-section-heading">
+      <p class="section-label">Related Publications</p>
+
+      <h2 id="publication-related-publications">
+        Related Bureau Publications
+      </h2>
+    </div>
+
+    <div class="related-records">
+      {
+        resolvedRelatedPublications.map(
+  ({
+    id,
+    publication,
+  }: {
+    id: string;
+    publication: (typeof allPublications)[number] | null;
+  }) =>
+          publication ? (
+            <article class="related-record">
+              <div class="related-record__header">
+                <p class="related-record-id">
+                  {publication.data.id}
+                </p>
+
+                <span class="record-badge">
+                  {publication.data.type}
+                </span>
+              </div>
+
+              <h3>
+                <a href={`/publications/${publication.data.id}`}>
+                  {publication.data.title}
+                </a>
+              </h3>
+
+              <p class="related-record__summary">
+                {publication.data.summary}
+              </p>
+
+              <a
+                class="related-record__link"
+                href={`/publications/${publication.data.id}`}
+              >
+                Access Publication →
+              </a>
+            </article>
+          ) : (
+            <article class="related-record related-record--unresolved">
+              <p class="related-record-id">{id}</p>
+
+              <h3>Publication unavailable</h3>
+
+              <p class="related-record__summary">
+                This referenced publication could not be resolved in the
+                public catalogue.
+              </p>
+            </article>
+          )
+        )
+      }
+    </div>
+  </section>
+)}
+
+  {appearingInCollections.length > 0 && (
+  <section
+    class="record-section"
+    aria-labelledby="publication-collections"
+  >
+    <div class="record-section-heading">
+      <p class="section-label">Collections</p>
+
+      <h2 id="publication-collections">
+        Appears in Collections
+      </h2>
+    </div>
+
+    <div class="related-records">
+      {
+        appearingInCollections.map((collection) => (
+          <article class="related-record">
+            <div class="related-record__header">
+              <p class="related-record-id">
+                {collection.data.id}
+              </p>
+
+              <span class="record-badge">
+                {collection.data.status}
+              </span>
+            </div>
+
+            <h3>
+              <a href={`/collections/${collection.data.id}`}>
+                {collection.data.title}
+              </a>
+            </h3>
+
+            <p class="related-record__summary">
+              {collection.data.summary}
+            </p>
+
+            <a
+              class="related-record__link"
+              href={`/collections/${collection.data.id}`}
+            >
+              Access Collection →
+            </a>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+)}
 
   {tags.length > 0 && (
     <section class="record-section" aria-labelledby="publication-tags">
