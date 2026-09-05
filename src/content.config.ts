@@ -100,20 +100,33 @@ const publications = defineCollection({
       "Annual Report",
     ]),
 
-    published: z.string(),
+    published: z.string().date(),
     summary: z.string(),
 
     issuingOffice: z.string(),
+    
+    authors: z.array(z.string()).default([]),
 
     classification: z
       .enum(["Public", "Internal", "Restricted"])
       .default("Public"),
 
-    documentReference: z.string(),
+documentReference: z.string(),
 
-    revision: z.string().default("1.0"),
+revision: z.string().default("1.0"),
 
-    relatedObjects: z.array(z.string()).default([]),
+documentStatus: z
+  .enum([
+    "Current",
+    "Superseded",
+    "Archived",
+    "Withdrawn",
+  ])
+  .default("Current"),
+
+relatedObjects: z.array(z.string()).default([]),
+
+relatedPublications: z.array(z.string()).default([]),
 
     tags: z.array(z.string()).default([]),
   }),

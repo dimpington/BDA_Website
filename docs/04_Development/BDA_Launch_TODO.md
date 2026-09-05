@@ -107,16 +107,16 @@ A static client-side search index is the safest first implementation because it 
 - [x] Publication index
 - [x] Dynamic publication pages
 - [x] Related FWX objects
-- [ ] Add a sixth document-control field
-- [ ] Recommended field: `documentStatus`
-- [ ] Support statuses such as Current, Superseded, Archived and Withdrawn
-- [ ] Make issuing office clickable
-- [ ] Add “Appears in Collections”
-- [ ] Add downloadable or print-friendly rendering
-- [ ] Add publication-type filtering
-- [ ] Add publication archive by year
-- [ ] Add related-publication support
-- [ ] Create reusable `PublicationCard.astro`
+- [X] Add a sixth document-control field
+- [X] Recommended field: `documentStatus`
+- [X] Support statuses such as Current, Superseded, Archived and Withdrawn
+- [X] Make issuing office clickable
+- [X] Add “Appears in Collections”
+- [X] Add downloadable or print-friendly rendering
+- [X] Add publication-type filtering
+- [X] Add publication archive by year
+- [X] Add related-publication support
+- [X] Create reusable `PublicationCard.astro`
 
 ## Collections
 
@@ -126,7 +126,7 @@ A static client-side search index is the safest first implementation because it 
 - [x] Resolved featured Digital Objects
 - [x] Resolved related Publications
 - [ ] Create reusable `CollectionCard.astro`
-- [ ] Add featured Collection to homepage
+- [X] Add featured Collection to homepage
 - [ ] Add collection cover or key image
 - [ ] Add object count and publication count
 - [ ] Link curator to the relevant department
@@ -193,13 +193,13 @@ Suggested launch records could include:
 
 ### Publications
 
-- [ ] At least **three Publications**
+- [X] At least **three Publications**
 - [x] One Preservation Bulletin
-- [ ] One Field Report
-- [ ] One Technical Note
+- [X] One Field Report
+- [X] One Technical Note
 - [ ] Optional abbreviated Annual Report or institutional report
-- [ ] Every publication links to a real issuing office
-- [ ] Every related FWX ID resolves correctly
+- [X] Every publication links to a real issuing office
+- [X] Every related FWX ID resolves correctly
 
 ### Collections
 

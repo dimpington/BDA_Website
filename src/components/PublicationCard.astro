@@ -1,0 +1,44 @@
+---
+const { publication } = Astro.props;
+
+const {
+  id,
+  title,
+  type,
+  published,
+  summary,
+  documentStatus,
+} = publication.data;
+---
+
+<article
+  class="publication-entry"
+  data-publication-type={type.toLowerCase().replaceAll(" ", "-")}
+>
+  <div class="publication-entry__reference">
+    <strong>{id}</strong>
+    <span>{type}</span>
+  </div>
+
+  <div class="publication-entry__body">
+    <h3>
+      <a href={`/publications/${id}`}>
+        {title}
+      </a>
+    </h3>
+
+    <p>{summary}</p>
+  </div>
+
+    <div class="publication-entry__format">
+    <span class="publication-entry__date">
+        {published}
+    </span>
+
+    {documentStatus && (
+        <span class="record-badge">
+        {documentStatus}
+        </span>
+    )}
+    </div>
+</article>

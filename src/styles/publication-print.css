@@ -1,0 +1,68 @@
+/* Loaded only by individual publication pages. */
+.publication-actions { margin-bottom: 1.5rem; }
+.publication-actions button {
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-muted);
+  cursor: pointer;
+}
+.publication-actions p { color: var(--color-muted); font-size: 0.85rem; }
+.publication-print-identity { display: none; }
+
+@media print {
+  @page { margin: 18mm; }
+  html, body, .site-shell { background: white; color: black; }
+  .skip-link, .utility-bar, .site-header, .site-nav, .site-footer,
+  .publication-actions { display: none !important; }
+  .site-shell, .site-main {
+    width: auto;
+    max-width: none;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-shadow: none;
+  }
+  .publication-print-identity {
+    display: block;
+    border-bottom: 3px double black;
+    padding-bottom: 8pt;
+    font-family: var(--font-heading);
+  }
+  .publication-record { font-size: 10pt; overflow-wrap: anywhere; }
+  .publication-record * {
+    color: black !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+  .publication-record h1 { font-size: 22pt; line-height: 1.2; }
+  .publication-record h2 { font-size: 15pt; }
+  .publication-record h3 { font-size: 12pt; }
+  .publication-record :is(h1, h2, h3, h4, .record-section-heading) { break-after: avoid; }
+  .publication-record :is(.related-record, .record-section-heading) { break-inside: avoid; }
+  .publication-record :is(p, li) { orphans: 3; widows: 3; }
+  .publication-record .fwx-document-control {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0;
+    margin-top: 12pt;
+  }
+  .publication-record .fwx-document-control > div {
+    padding: 6pt;
+    border-bottom: 1px solid #aaa;
+    break-inside: avoid;
+  }
+  .publication-record .record-section { padding: 12pt 0; }
+  .publication-record .record-section-heading { margin-bottom: 10pt; }
+  .publication-record .record-prose { max-width: none; }
+  .publication-record .record-prose p { font-size: 11pt; line-height: 1.5; }
+  .publication-record .related-records { display: block; }
+  .publication-record .related-record { margin-bottom: 8pt; padding: 8pt; }
+  .publication-record :is(img, table, pre) { max-width: 100%; }
+  .publication-record pre { white-space: pre-wrap; }
+  .publication-record a { text-decoration: underline; }
+  .publication-record a[href^="https://"]::after,
+  .publication-record a[href^="http://"]::after {
+    content: " (" attr(href) ")";
+    font-size: 9pt;
+  }
+}

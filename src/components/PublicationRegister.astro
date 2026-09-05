@@ -1,0 +1,72 @@
+---
+import type { CollectionEntry } from "astro:content";
+import PublicationCard from "./PublicationCard.astro";
+
+interface Props {
+  publications: CollectionEntry<"publications">[];
+  year?: string;
+}
+
+const { publications, year } = Astro.props;
+const years = [...new Set(publications.map((entry) => entry.data.published.slice(0, 4)))].sort().reverse();
+const entries = publications
+  .filter((entry) => !year || entry.data.published.startsWith(`${year}-`))
+  .sort((a, b) => b.data.published.localeCompare(a.data.published) || a.data.id.localeCompare(b.data.id));
+const basePath = year ? `/publications/archive/${year}` : "/publications";
+const types = [
+  ["", "All Types"],
+  ["field-report", "Field Reports"],
+  ["preservation-bulletin", "Preservation Bulletins"],
+  ["technical-note", "Technical Notes"],
+  ["annual-report", "Annual Reports"],
+];
+---
+
+<section class="record-section" data-publication-register aria-labelledby="publication-register">
+  <div class="record-section-heading">
+    <p class="section-label">Publication Register</p>
+    <h2 id="publication-register">{year ? `Publications issued in ${year}` : "Available Publications"}</h2>
+  </div>
+  <nav class="publication-filters" aria-label="Publication archive by year">
+    <a href="/publications" class:list={["publication-filter-link", { "publication-filter-link--active": !year }]} aria-current={!year ? "page" : undefined}>All Years</a>
+    {years.map((archiveYear) => (
+      <a href={`/publications/archive/${archiveYear}`} class:list={["publication-filter-link", { "publication-filter-link--active": year === archiveYear }]} aria-current={year === archiveYear ? "page" : undefined}>
+        {archiveYear} ({publications.filter((entry) => entry.data.published.startsWith(`${archiveYear}-`)).length})
+      </a>
+    ))}
+  </nav>
+  <nav class="publication-filters" aria-label="Filter publications by type">
+    {types.map(([value, label]) => (
+      <a href={value ? `${basePath}?type=${value}` : basePath} class="publication-filter-link" data-type-filter>{label}</a>
+    ))}
+  </nav>
+  <noscript><p>Type filtering requires JavaScript. All publication types are shown for the selected year.</p></noscript>
+  <p data-publication-count aria-live="polite">{entries.length} {entries.length === 1 ? "publication" : "publications"} · Newest first</p>
+  <div class="publication-list">
+    {entries.map((publication) => <PublicationCard publication={publication} />)}
+  </div>
+  <div class="publication-empty-state" hidden={entries.length > 0}>
+    <p class="section-label">No Records Returned</p>
+    <p>No publications matching the selected type are currently available in this register.</p>
+  </div>
+</section>
+
+<script>
+  const register = document.querySelector("[data-publication-register]");
+  const selectedType = new URLSearchParams(window.location.search).get("type") || "";
+  const cards = register?.querySelectorAll<HTMLElement>(".publication-entry") ?? [];
+  let visibleCount = 0;
+  cards.forEach((card) => {
+    card.hidden = !!selectedType && card.dataset.publicationType !== selectedType;
+    if (!card.hidden) visibleCount++;
+  });
+  register?.querySelectorAll<HTMLAnchorElement>("[data-type-filter]").forEach((link) => {
+    const active = (new URL(link.href).searchParams.get("type") || "") === selectedType;
+    link.classList.toggle("publication-filter-link--active", active);
+    if (active) link.setAttribute("aria-current", "true");
+  });
+  const emptyState = register?.querySelector<HTMLElement>(".publication-empty-state");
+  if (emptyState) emptyState.hidden = visibleCount > 0;
+  const count = register?.querySelector<HTMLElement>("[data-publication-count]");
+  if (count) count.textContent = `${visibleCount} of ${cards.length} publications · Newest first`;
+</script>
