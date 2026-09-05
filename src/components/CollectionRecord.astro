@@ -1,5 +1,12 @@
 ---
-import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import { getCollectionDetails } from "../lib/collections";
+import CollectionCard from "./CollectionCard.astro";
+import PublicationCard from "./PublicationCard.astro";
+
+interface Props {
+  collection: CollectionEntry<"collections">;
+}
 
 const { collection } = Astro.props;
 
@@ -10,31 +17,14 @@ const {
   curator,
   published,
   status,
-  featuredObjects = [],
-  relatedPublications = [],
   tags = [],
 } = collection.data;
 
-const allObjects = await getCollection("digital-objects");
-const allPublications = await getCollection("publications");
-
-const resolvedObjects = featuredObjects.flatMap((fwxId: string) => {
-  const record = allObjects.find(
-    (entry) => entry.data.fwxId === fwxId
-  );
-
-  return record ? [record] : [];
-});
-
-const resolvedPublications = relatedPublications.flatMap(
-  (publicationId: string) => {
-    const publication = allPublications.find(
-      (entry) => entry.data.id === publicationId
-    );
-
-    return publication ? [publication] : [];
-  }
-);
+const {
+  curator: curatorDepartment, keyObject, chronology,
+  resolvedObjects, resolvedPublications, resolvedCollections,
+  missingObjects, missingPublications, missingCollections,
+} = await getCollectionDetails(collection);
 ---
 
 <article class="collection-record">
@@ -62,14 +52,30 @@ const resolvedPublications = relatedPublications.flatMap(
 
       <div>
         <dt>Curator</dt>
-        <dd>{curator}</dd>
+        <dd>{curatorDepartment ? <a href={`/departments/${curatorDepartment.id}`}>{curatorDepartment.data.name}</a> : curator}</dd>
       </div>
 
       <div>
         <dt>Published</dt>
         <dd>{published}</dd>
       </div>
+      <div>
+        <dt>Digital Objects</dt>
+        <dd>{resolvedObjects.length}</dd>
+      </div>
+      <div>
+        <dt>Publications</dt>
+        <dd>{resolvedPublications.length}</dd>
+      </div>
     </dl>
+    {keyObject && (
+      <figure class="record-preview__figure">
+        <img class="record-preview__image" src={keyObject.data.previewImage}
+          alt={`Preview of ${keyObject.data.title}, a member of this collection`}
+          width="1600" height="900" />
+        <figcaption>Collection key image: <a href={`/fwx/${keyObject.data.fwxId}`}>{keyObject.data.title}</a> ({keyObject.data.fwxId})</figcaption>
+      </figure>
+    )}
   </header>
 
   <section
@@ -89,7 +95,27 @@ const resolvedPublications = relatedPublications.flatMap(
     </div>
   </section>
 
-  {resolvedObjects.length > 0 && (
+  {chronology.length > 0 && (
+    <section class="record-section" aria-labelledby="collection-chronology">
+      <div class="record-section-heading">
+        <p class="section-label">Collection Chronology</p>
+        <h2 id="collection-chronology">Origins of the Digital Objects</h2>
+      </div>
+      <p>First-publication dates recorded in FWX, from earliest to latest. Date precision follows each record.</p>
+      <ol class="collection-timeline">
+        {chronology.map(({ date, record }) => (
+          <li>
+            <span class="collection-timeline__date">{date}</span>
+            <div>
+              <a href={`/fwx/${record.data.fwxId}`}>{record.data.title}</a>
+              <p>{record.data.fwxId} · First published</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </section>
+  )}
+
     <section
       class="record-section"
       aria-labelledby="featured-digital-objects"
@@ -136,10 +162,10 @@ const resolvedPublications = relatedPublications.flatMap(
           </article>
         ))}
       </div>
+      {resolvedObjects.length === 0 && <p>No Digital Objects are currently available in this collection.</p>}
+      {missingObjects.map((missingId) => <p class="collection-unavailable">{missingId} — Digital Object unavailable in the public catalogue.</p>)}
     </section>
-  )}
 
-  {resolvedPublications.length > 0 && (
     <section
       class="record-section"
       aria-labelledby="related-publications"
@@ -154,28 +180,23 @@ const resolvedPublications = relatedPublications.flatMap(
 
       <div class="publication-list">
         {resolvedPublications.map((publication) => (
-          <article class="publication-entry">
-            <div class="publication-entry__reference">
-              <strong>{publication.data.id}</strong>
-              <span>{publication.data.type}</span>
-            </div>
-
-            <div>
-              <h3>
-                <a href={`/publications/${publication.data.id}`}>
-                  {publication.data.title}
-                </a>
-              </h3>
-
-              <p>{publication.data.summary}</p>
-            </div>
-
-            <span class="publication-entry__format">
-              {publication.data.published}
-            </span>
-          </article>
+          <PublicationCard publication={publication} />
         ))}
       </div>
+      {resolvedPublications.length === 0 && <p>No supporting publications are currently available for this collection.</p>}
+      {missingPublications.map((missingId) => <p class="collection-unavailable">{missingId} — Publication unavailable in the public register.</p>)}
+    </section>
+
+  {(resolvedCollections.length > 0 || missingCollections.length > 0) && (
+    <section class="record-section" aria-labelledby="related-collections">
+      <div class="record-section-heading">
+        <p class="section-label">Related Collections</p>
+        <h2 id="related-collections">Further Curated Collections</h2>
+      </div>
+      <div class="related-records">
+        {resolvedCollections.map((related) => <CollectionCard collection={related} />)}
+      </div>
+      {missingCollections.map((missingId) => <p class="collection-unavailable">{missingId} — Collection unavailable in the public register.</p>)}
     </section>
   )}
 
@@ -191,3 +212,35 @@ const resolvedPublications = relatedPublications.flatMap(
     </section>
   )}
 </article>
+
+<style>
+  .collection-record { min-width: 0; overflow-wrap: anywhere; }
+  @media (min-width: 761px) {
+    .collection-record .fwx-document-control { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
+  .collection-timeline {
+    margin: 1.5rem 0 0;
+    padding: 0;
+    list-style: none;
+    border: 1px solid var(--color-border);
+    border-left: 3px solid var(--color-brass);
+  }
+  .collection-timeline li {
+    display: grid;
+    grid-template-columns: 8rem minmax(0, 1fr);
+    gap: 1rem;
+    padding: 1rem;
+  }
+  .collection-timeline li + li { border-top: 1px solid var(--color-border); }
+  .collection-timeline__date { font-family: var(--font-mono); font-weight: bold; }
+  .collection-timeline p { margin: 0.25rem 0 0; font-size: 0.85rem; }
+  .collection-unavailable { color: var(--color-muted); font-size: 0.9rem; }
+  @media (max-width: 760px) {
+    .collection-record :global(.related-record__header) { flex-wrap: wrap; }
+    .collection-record :global(.publication-entry) { grid-template-columns: minmax(0, 1fr); gap: 0.75rem; }
+    .collection-record :global(.publication-entry__format) { flex-wrap: wrap; padding: 0; }
+  }
+  @media (max-width: 460px) {
+    .collection-timeline li { grid-template-columns: minmax(0, 1fr); gap: 0.5rem; }
+  }
+</style>

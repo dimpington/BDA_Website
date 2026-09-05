@@ -163,7 +163,12 @@ const curatedCollections = defineCollection({
 
     featuredObjects: z.array(z.string()).default([]),
 
+    // Select a member's existing preview as the collection key image.
+    keyObject: z.string().optional(),
+
     relatedPublications: z.array(z.string()).default([]),
+
+    relatedCollections: z.array(z.string()).default([]),
 
     tags: z.array(z.string()).default([]),
   }),
