@@ -1,114 +1,20 @@
 ---
 import { getCollection } from "astro:content";
-
 import Layout from "../../layouts/Layout.astro";
-
-import PublicationCard from "../../components/PublicationCard.astro";
+import PublicationRegister from "../../components/PublicationRegister.astro";
 
 const publications = await getCollection("publications");
-
-const sortedPublications = publications.sort((a, b) =>
-  b.data.published.localeCompare(a.data.published)
-);
-
 ---
 
 <Layout title="Publications | Bureau of Digital Antiquities">
   <section class="page-header">
     <p class="section-label">Official Publications</p>
-
     <h1>Publications</h1>
-
     <p class="page-introduction">
       The Bureau publishes Field Reports, Preservation Bulletins,
       Technical Notes and Annual Reports for public reference.
+      Browse the archive by year of issue.
     </p>
   </section>
-
-  <section class="record-section">
-    <div class="record-section-heading">
-      <p class="section-label">Publication Register</p>
-
-      <h2>Available Publications</h2>
-    </div>
-
-<nav class="publication-filters" aria-label="Filter publications by type">
-  <a href="/publications" class="publication-filter-link">
-    All Publications
-  </a>
-
-  <a href="/publications?type=field-report" class="publication-filter-link">
-    Field Reports
-  </a>
-
-  <a href="/publications?type=preservation-bulletin" class="publication-filter-link">
-    Preservation Bulletins
-  </a>
-
-  <a href="/publications?type=technical-note" class="publication-filter-link">
-    Technical Notes
-  </a>
-
-  <a href="/publications?type=annual-report" class="publication-filter-link">
-    Annual Reports
-  </a>
-</nav>
-
-<div class="publication-list">
-  {
-    sortedPublications.map((publication) => (
-      <PublicationCard publication={publication} />
-    ))
-  }
-</div>
-
-<div class="publication-empty-state" hidden>
-  <p class="section-label">No Records Returned</p>
-  <p>No publications matching the selected type are currently available in the public register.</p>
-</div>
-
-  </section>
-
-<script>
-  const filterLinks = document.querySelectorAll(".publication-filter-link");
-  const publicationCards = document.querySelectorAll(".publication-entry");
-  const emptyState = document.querySelector(".publication-empty-state");
-
-  function applyPublicationFilter() {
-    const params = new URLSearchParams(window.location.search);
-    const selectedType = params.get("type");
-
-    publicationCards.forEach((card) => {
-      if (!(card instanceof HTMLElement)) return;
-
-      const publicationType = card.dataset.publicationType;
-      const shouldShow = !selectedType || publicationType === selectedType;
-
-      card.hidden = !shouldShow;
-    });
-
-    filterLinks.forEach((link) => {
-      if (!(link instanceof HTMLAnchorElement)) return;
-
-      const linkUrl = new URL(link.href);
-      const linkType = linkUrl.searchParams.get("type");
-
-      link.classList.toggle(
-        "publication-filter-link--active",
-        linkType === selectedType
-      );
-    });
-  
-    const visibleCards = [...publicationCards].filter((card) => {
-    return card instanceof HTMLElement && !card.hidden;
-  });
-
-  if (emptyState instanceof HTMLElement) {
-    emptyState.hidden = visibleCards.length > 0;
-  }
-  }
-
-  applyPublicationFilter();
-</script>
-
+  <PublicationRegister publications={publications} />
 </Layout>

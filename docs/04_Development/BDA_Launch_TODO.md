@@ -112,9 +112,9 @@ A static client-side search index is the safest first implementation because it 
 - [X] Support statuses such as Current, Superseded, Archived and Withdrawn
 - [X] Make issuing office clickable
 - [X] Add “Appears in Collections”
-- [ ] Add downloadable or print-friendly rendering
+- [X] Add downloadable or print-friendly rendering
 - [X] Add publication-type filtering
-- [ ] Add publication archive by year
+- [X] Add publication archive by year
 - [X] Add related-publication support
 - [X] Create reusable `PublicationCard.astro`
 

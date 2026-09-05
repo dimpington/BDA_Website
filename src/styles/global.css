@@ -1093,6 +1093,16 @@ img {
 }
 
 @media (max-width: 460px) {
+  [data-publication-register] .publication-entry {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.75rem;
+  }
+
+  [data-publication-register] .publication-entry__format {
+    flex-wrap: wrap;
+    padding: 0;
+  }
+
   .bureau-identity {
     gap: 0.75rem;
     align-items: flex-start;

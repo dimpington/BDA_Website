@@ -100,7 +100,7 @@ const publications = defineCollection({
       "Annual Report",
     ]),
 
-    published: z.string(),
+    published: z.string().date(),
     summary: z.string(),
 
     issuingOffice: z.string(),

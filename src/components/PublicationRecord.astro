@@ -45,6 +45,11 @@ const resolvedRelatedPublications = relatedPublications.map((publicationId: stri
 ---
 
 <article class="publication-record">
+  <div class="publication-actions">
+    <button type="button" class="publication-filter-link" data-print-publication hidden>Print / Save as PDF</button>
+    <p>Use your browser’s Print command to print this publication or save it as a PDF.</p>
+  </div>
+  <p class="publication-print-identity">Bureau of Digital Antiquities · Official Publication</p>
   <header class="publication-record__header">
     <p class="section-label">Official Bureau Publication</p>
 
@@ -278,3 +283,11 @@ const resolvedRelatedPublications = relatedPublications.map((publicationId: stri
     </section>
   )}
 </article>
+
+<script>
+  const printButton = document.querySelector<HTMLButtonElement>("[data-print-publication]");
+  if (printButton) {
+    printButton.hidden = false;
+    printButton.addEventListener("click", () => window.print());
+  }
+</script>
