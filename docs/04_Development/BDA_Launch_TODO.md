@@ -125,13 +125,13 @@ A static client-side search index is the safest first implementation because it 
 - [x] Dynamic collection pages
 - [x] Resolved featured Digital Objects
 - [x] Resolved related Publications
-- [ ] Create reusable `CollectionCard.astro`
+- [X] Create reusable `CollectionCard.astro`
 - [X] Add featured Collection to homepage
-- [ ] Add collection cover or key image
-- [ ] Add object count and publication count
-- [ ] Link curator to the relevant department
-- [ ] Add related Collections
-- [ ] Add collection chronology or timeline where appropriate
+- [X] Add collection cover or key image
+- [X] Add object count and publication count
+- [X] Link curator to the relevant department
+- [X] Add related Collections
+- [X] Add collection chronology or timeline where appropriate
 
 ## Organisation and departments
 

@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 
 import Layout from "../../layouts/Layout.astro";
+import CollectionCard from "../../components/CollectionCard.astro";
 
 const collections = await getCollection("collections");
 
@@ -30,31 +31,13 @@ const sortedCollections = collections.sort((a, b) =>
       <h2>Available Collections</h2>
     </div>
 
-    <div class="publication-list">
+    <div class="related-records">
       {
         sortedCollections.map((collection) => (
-          <article class="publication-entry">
-            <div class="publication-entry__reference">
-              <strong>{collection.data.id}</strong>
-              <span>{collection.data.status}</span>
-            </div>
-
-            <div>
-              <h3>
-                <a href={`/collections/${collection.data.id}`}>
-                  {collection.data.title}
-                </a>
-              </h3>
-
-              <p>{collection.data.summary}</p>
-            </div>
-
-            <span class="publication-entry__format">
-              {collection.data.published}
-            </span>
-          </article>
+          <CollectionCard collection={collection} />
         ))
       }
     </div>
+    {sortedCollections.length === 0 && <p>No collections are currently available in the public register.</p>}
   </section>
 </Layout>

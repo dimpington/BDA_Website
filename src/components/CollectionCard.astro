@@ -1,0 +1,60 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { getCollectionDetails } from "../lib/collections";
+
+interface Props {
+  collection: CollectionEntry<"collections">;
+}
+
+const { collection } = Astro.props;
+const { id, title, summary, status, published } = collection.data;
+const { curator, keyObject, resolvedObjects, resolvedPublications } = await getCollectionDetails(collection);
+---
+
+<article class:list={["related-record", "collection-card", { "collection-card--illustrated": keyObject }]}>
+  {keyObject && (
+    <img class="collection-card__image" src={keyObject.data.previewImage}
+      alt={`Preview of ${keyObject.data.title}, a member of this collection`}
+      width="1600" height="900" loading="lazy" />
+  )}
+  <div class="collection-card__body">
+    <div class="related-record__header">
+      <p class="related-record-id">{id}</p>
+      <span class="record-badge">{status}</span>
+    </div>
+    <h3><a href={`/collections/${id}`}>{title}</a></h3>
+    <p class="related-record__summary">{summary}</p>
+    <p class="collection-card__counts">
+      {resolvedObjects.length} {resolvedObjects.length === 1 ? "Digital Object" : "Digital Objects"}
+      <span aria-hidden="true"> · </span>
+      {resolvedPublications.length} {resolvedPublications.length === 1 ? "Publication" : "Publications"}
+    </p>
+    <p class="collection-card__metadata">
+      Curator: {curator ? <a href={`/departments/${curator.id}`}>{curator.data.name}</a> : collection.data.curator}
+      <br />Published: {published}
+    </p>
+    <a class="related-record__link" href={`/collections/${id}`}>View Collection →</a>
+  </div>
+</article>
+
+<style>
+  .collection-card { min-width: 0; }
+  .collection-card--illustrated {
+    display: grid;
+    grid-template-columns: minmax(0, 220px) minmax(0, 1fr);
+    align-items: start;
+    gap: 1.5rem;
+  }
+  .collection-card__image {
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--color-border);
+  }
+  .collection-card__body { min-width: 0; overflow-wrap: anywhere; }
+  .collection-card .related-record__header { flex-wrap: wrap; }
+  .collection-card__counts { font-weight: bold; font-size: 0.85rem; }
+  .collection-card__metadata { font-size: 0.85rem; }
+  @media (max-width: 760px) {
+    .collection-card--illustrated { grid-template-columns: minmax(0, 1fr); }
+  }
+</style>
