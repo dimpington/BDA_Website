@@ -139,12 +139,12 @@ A static client-side search index is the safest first implementation because it 
 - [x] Organisation directory
 - [x] Dynamic individual department pages
 - [x] Homepage department list
-- [ ] Add dynamic institution statistics to the Organisation page
-- [ ] Show publications issued by each department
-- [ ] Show FWX objects observed or maintained by each department
-- [ ] Add organisational chart
-- [ ] Add Digital Object lifecycle diagram
-- [ ] Add department establishment dates where appropriate
+- [x] Add dynamic institution statistics to the Organisation page
+- [x] Show publications issued by each department
+- [x] Show FWX objects observed or maintained by each department
+- [x] Add organisational chart
+- [x] Add Digital Object lifecycle diagram
+- [x] Add department establishment dates where appropriate
 - [ ] Add parent-unit relationships if the institution becomes more complex
 
 ## Bureau Notices
@@ -208,7 +208,7 @@ Suggested launch records could include:
 - [ ] One additional curated collection
 - [ ] Each Collection contains at least two real Digital Objects
 - [ ] Each Collection contains a curatorial introduction
-- [ ] At least one Collection references a Publication
+- [x] At least one Collection references a Publication
 
 ### Bureau Notices
 
@@ -428,6 +428,7 @@ Test at minimum:
 - [ ] Search repository history for accidentally committed tokens
 - [ ] Use least-privilege tokens
 - [ ] Rotate any token suspected of exposure
+- [x] Configure GitHub Actions CI for branch pushes and main
 
 ## Dependency security
 
@@ -436,11 +437,11 @@ Test at minimum:
 - [ ] Do not blindly run breaking automatic fixes
 - [ ] Remove unused packages
 - [ ] Commit `package-lock.json`
-- [ ] Pin the Node major version for builds
+- [x] Pin the Node major version for builds
 - [ ] Configure Dependabot for npm
 - [ ] Review Astro release notes before major upgrades
 - [ ] Add a monthly dependency-review task
-- [ ] Confirm production build uses a clean dependency install
+- [x] Confirm production build uses a clean dependency install
 
 Recommended CI sequence:
 

@@ -9,6 +9,8 @@ mission: >
   The Unit performs technical examinations and documents evidence supporting
   authenticity, preservation and provenance.
 
+established: 1998
+
 responsibilities:
   - Authenticity verification
   - Technical analysis

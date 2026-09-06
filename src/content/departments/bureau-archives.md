@@ -10,6 +10,8 @@ mission: >
   publications, organisational records and institutional history for
   long-term public reference.
 
+established: 1998
+
 responsibilities:
   - Permanent Bureau records
   - Institutional history

@@ -15,7 +15,8 @@ Director
 ├── Records & Provenance Division
 ├── Recovery Operations Division
 ├── Digital Forensics Unit
-└── Publications Office
+├── Publications Office
+└── Bureau Archives
 ```
 
 ---
@@ -34,7 +35,7 @@ The Forgotten Web Exchange (FWX) serves as the Bureau's central archival and rec
 
 ### OD-001 — Bureau Structure
 
-The Bureau consists of five operational departments reporting directly to the Director.
+The Bureau consists of six operational departments reporting directly to the Director.
 
 **Status:** Accepted
 

@@ -5,6 +5,9 @@ import Layout from "../../layouts/Layout.astro";
 import DepartmentCard from "../../components/DepartmentCard.astro";
 
 const departments = await getCollection("departments");
+const digitalObjects = await getCollection("digital-objects");
+const publications = await getCollection("publications");
+const curatedCollections = await getCollection("collections");
 ---
 
 <Layout title="Organisation | Bureau of Digital Antiquities">
@@ -23,6 +26,134 @@ const departments = await getCollection("departments");
       Digital Objects.
     </p>
   </section>
+
+<section class="record-section">
+  <div class="record-section-heading">
+    <p class="section-label">Institutional Overview</p>
+    <h2>Bureau Statistics</h2>
+  </div>
+
+  <div class="institution-stat-grid">
+    <div class="institution-stat">
+      <span class="institution-stat__value">{digitalObjects.length}</span>
+      <span class="institution-stat__label">Digital Objects</span>
+    </div>
+
+    <div class="institution-stat">
+      <span class="institution-stat__value">{departments.length}</span>
+      <span class="institution-stat__label">Departments</span>
+    </div>
+
+    <div class="institution-stat">
+      <span class="institution-stat__value">{publications.length}</span>
+      <span class="institution-stat__label">Publications</span>
+    </div>
+
+    <div class="institution-stat">
+      <span class="institution-stat__value">{curatedCollections.length}</span>
+      <span class="institution-stat__label">Collections</span>
+    </div>
+  </div>
+</section>
+
+<section class="record-section">
+  <div class="record-section-heading">
+    <p class="section-label">Bureau Administration</p>
+    <h2>Organisational Structure</h2>
+  </div>
+
+  <div class="organisation-chart">
+    <div class="organisation-chart__bureau">
+      <span>Bureau Administration</span>
+      <strong>Bureau of Digital Antiquities</strong>
+      <small>Established 1998</small>
+    </div>
+
+    <div class="organisation-chart__departments">
+      {
+        departments.map((department) => (
+          <a
+            class="organisation-chart__department"
+            href={`/departments/${department.data.id}`}
+          >
+            <span>{department.data.officeType}</span>
+            <strong>{department.data.name}</strong>
+            <small>Established {department.data.established}</small>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<section class="record-section">
+  <div class="record-section-heading">
+    <p class="section-label">Preservation Procedure</p>
+    <h2>Digital Object Lifecycle</h2>
+  </div>
+
+  <p class="record-prose">
+    Digital Objects entering Bureau custody proceed through a controlled
+    lifecycle of assessment, preservation, documentation and continuing review.
+  </p>
+
+<div class="lifecycle">
+  <div class="lifecycle__stage">
+    <span>01</span>
+    <strong>Discovery</strong>
+    <small>Recovery Operations Division</small>
+  </div>
+
+  <div class="lifecycle__stage">
+    <span>02</span>
+    <strong>Assessment</strong>
+    <small>FWX identifier assigned</small>
+  </div>
+
+  <div class="lifecycle__stage">
+    <span>03</span>
+    <strong>Acquisition</strong>
+    <small>Recovery Operations Division</small>
+  </div>
+
+  <div class="lifecycle__stage">
+    <span>04</span>
+    <strong>Verification</strong>
+    <small>Digital Forensics &amp; Provenance</small>
+  </div>
+
+  <div class="lifecycle__stage">
+    <span>05</span>
+    <strong>Preservation</strong>
+    <small>Office of Digital Preservation</small>
+  </div>
+
+  <div class="lifecycle__stage">
+    <span>06</span>
+    <strong>Cataloguing</strong>
+    <small>Formal FWX record established</small>
+  </div>
+
+  <div class="lifecycle__stage">
+    <span>07</span>
+    <strong>Public Access</strong>
+    <small>Subject to access controls</small>
+  </div>
+
+  <div class="lifecycle__stage">
+    <span>08</span>
+    <strong>Ongoing Review</strong>
+    <small>Continuing preservation oversight</small>
+  </div>
+</div>
+ 
+<p class="lifecycle__review-note">
+  <strong>Continuing Review —</strong>
+  Findings arising during ongoing review may return a Digital Object to
+  Assessment, Verification, or Preservation as required.
+</p>
+
+</section>
 
   <section class="record-section">
     <div class="record-section-heading">

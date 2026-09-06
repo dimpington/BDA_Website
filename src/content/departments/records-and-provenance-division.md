@@ -9,6 +9,8 @@ mission: >
   The Division maintains historical documentation supporting authenticity
   and long-term archival value.
 
+established: 1998
+
 responsibilities:
   - Provenance research
   - Ownership documentation

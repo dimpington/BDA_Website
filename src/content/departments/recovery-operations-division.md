@@ -9,6 +9,8 @@ mission: >
   Recovery activities may include archival reconstruction, media acquisition
   and recovery from historical Internet archives or physical media.
 
+established: 1998
+
 responsibilities:
   - Archival recovery
   - Reconstruction of incomplete Digital Objects

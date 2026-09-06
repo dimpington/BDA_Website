@@ -10,6 +10,8 @@ mission: >
   standards and ensures that preserved Digital Objects remain accessible
   for future study.
 
+established: 1998
+
 responsibilities:
   - Preservation policy and standards
   - Long-term accessibility monitoring

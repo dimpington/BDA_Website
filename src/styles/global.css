@@ -819,6 +819,246 @@ img {
   display: none;
 }
 
+.institution-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: 1.5rem;
+  padding: 1px;
+  background: var(--color-border);
+}
+
+.organisation-chart {
+  display: grid;
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.organisation-chart__bureau {
+  position: relative;
+  width: min(460px, 100%);
+  margin: 0 auto;
+  padding: 1.25rem 1.5rem;
+  border: 1px solid var(--color-border-dark);
+  background: var(--color-surface-muted);
+  text-align: center;
+}
+
+.organisation-chart__bureau::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -2rem;
+  width: 1px;
+  height: 2rem;
+  background: var(--color-border-dark);
+  transform: translateX(-50%);
+}
+
+.organisation-chart__bureau span,
+.organisation-chart__department span {
+  display: block;
+  color: var(--color-burgundy);
+  font-size: 0.68rem;
+  font-weight: bold;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.organisation-chart__bureau strong,
+.organisation-chart__department strong {
+  display: block;
+  margin-top: 0.2rem;
+  color: var(--color-navy-dark);
+  font-family: var(--font-heading);
+  font-weight: normal;
+}
+
+.organisation-chart__bureau strong {
+  font-size: 1.35rem;
+}
+
+.organisation-chart__bureau small,
+.organisation-chart__department small {
+  display: block;
+  margin-top: 0.35rem;
+  color: var(--color-faint);
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  text-transform: uppercase;
+}
+
+.organisation-chart__departments {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  padding: 1px;
+  background: var(--color-border);
+}
+
+.organisation-chart__department {
+  min-width: 0;
+  padding: 1.25rem;
+  background: var(--color-surface-muted);
+  color: inherit;
+  text-decoration: none;
+}
+
+.organisation-chart__department strong {
+  font-size: 1rem;
+}
+
+.organisation-chart__department:hover {
+  background: var(--color-paper-light);
+}
+
+.lifecycle {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: 1.5rem;
+  padding: 1px;
+  background: var(--color-border);
+}
+
+.lifecycle__stage {
+  min-width: 0;
+  padding: 1.25rem;
+  background: var(--color-surface-muted);
+}
+
+.lifecycle__stage:nth-child(5) {
+  grid-column: 4;
+  grid-row: 2;
+}
+
+.lifecycle__stage:nth-child(6) {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+.lifecycle__stage:nth-child(7) {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.lifecycle__stage:nth-child(8) {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.lifecycle__stage {
+  position: relative;
+}
+
+.lifecycle__stage:nth-child(1)::after,
+.lifecycle__stage:nth-child(2)::after,
+.lifecycle__stage:nth-child(3)::after {
+  content: "→";
+  position: absolute;
+  top: 50%;
+  right: -0.75rem;
+  z-index: 2;
+  transform: translateY(-50%);
+  color: var(--color-burgundy);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: bold;
+}
+
+.lifecycle__stage:nth-child(4)::after {
+  content: "↓";
+  position: absolute;
+  left: 50%;
+  bottom: -0.75rem;
+  z-index: 2;
+  transform: translateX(-50%);
+  color: var(--color-burgundy);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: bold;
+}
+
+.lifecycle__stage:nth-child(5)::after,
+.lifecycle__stage:nth-child(6)::after,
+.lifecycle__stage:nth-child(7)::after {
+  content: "←";
+  position: absolute;
+  top: 50%;
+  left: -0.75rem;
+  z-index: 2;
+  transform: translateY(-50%);
+  color: var(--color-burgundy);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: bold;
+}
+
+.lifecycle__stage span {
+  display: block;
+  margin-bottom: 0.35rem;
+  color: var(--color-burgundy);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: bold;
+}
+
+.lifecycle__stage strong {
+  display: block;
+  color: var(--color-navy-dark);
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: normal;
+}
+
+.lifecycle__stage small {
+  display: block;
+  margin-top: 0.4rem;
+  color: var(--color-faint);
+  font-size: 0.7rem;
+  line-height: 1.4;
+}
+
+.lifecycle__review-note {
+  margin: 1rem 0 0;
+  padding: 0.85rem 1rem;
+  border-left: 4px solid var(--color-burgundy);
+  background: var(--color-surface-muted);
+  color: var(--color-muted);
+  font-size: 0.82rem;
+}
+
+.lifecycle__review-note strong {
+  color: var(--color-burgundy);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.institution-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 1.25rem;
+  background: var(--color-surface-muted);
+}
+
+.institution-stat__value {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  line-height: 1;
+  color: var(--color-heading);
+}
+
+.institution-stat__label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 .department-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1017,12 +1257,33 @@ img {
   .footer-grid section:first-child {
     grid-column: 1 / -1;
   }
+
+  .institution-stat-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
 }
 
 @media (max-width: 620px) {
   .utility-bar__reference {
     display: none;
   }
+
+  .lifecycle {
+  grid-template-columns: 1fr;
+}
+
+.lifecycle__stage:nth-child(5),
+.lifecycle__stage:nth-child(6),
+.lifecycle__stage:nth-child(7),
+.lifecycle__stage:nth-child(8) {
+  grid-column: auto;
+  grid-row: auto;
+}
+
+.lifecycle__stage::after {
+  display: none;
+}
 
   .bureau-identity {
     align-items: flex-start;
@@ -1090,6 +1351,15 @@ img {
   .footer-grid section:first-child {
     grid-column: auto;
   }
+
+  .institution-stat-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .organisation-chart__departments {
+    grid-template-columns: 1fr;
+  }
+
 }
 
 @media (max-width: 460px) {
@@ -1855,6 +2125,15 @@ img {
   text-transform: uppercase;
 }
 
+.department-record__established {
+  margin: 0.25rem 0 0.75rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
 .department-record__masthead h1 {
   margin: 0;
   color: var(--color-navy-dark);
@@ -1895,6 +2174,10 @@ img {
   padding: 1rem;
   background: var(--color-surface-muted);
   font-family: var(--font-heading);
+}
+
+.department-responsibility-list__full {
+  grid-column: 1 / -1;
 }
 
 .department-responsibility-list li::before {

@@ -18,11 +18,28 @@ export async function getStaticPaths() {
 }
 
 const { department } = Astro.props;
+const digitalObjects = await getCollection("digital-objects");
+const publications = await getCollection("publications");
+
+const associatedDigitalObjects = digitalObjects.filter(
+  (object) =>
+    object.data.preservation?.observingOffice === department.data.name
+);
+
 const { Content } = await render(department);
+
+const issuedPublications = publications.filter(
+  (publication) =>
+    publication.data.issuingOffice === department.data.name
+);
 ---
 
 <Layout title={`${department.data.name} | Bureau of Digital Antiquities`}>
-  <DepartmentRecord department={department}>
+<DepartmentRecord
+  department={department}
+  associatedDigitalObjects={associatedDigitalObjects}
+  issuedPublications={issuedPublications}
+>
     <Content />
   </DepartmentRecord>
 </Layout>

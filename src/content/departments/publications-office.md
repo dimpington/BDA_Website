@@ -8,6 +8,8 @@ mission: >
   The Office is responsible for Field Reports, Preservation Bulletins,
   Technical Notes and Annual Reports.
 
+established: 1998
+
 responsibilities:
   - Field Reports
   - Preservation Bulletins

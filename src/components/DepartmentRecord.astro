@@ -1,5 +1,9 @@
 ---
-const { department } = Astro.props;
+const {
+  department,
+  associatedDigitalObjects = [],
+  issuedPublications = [],
+} = Astro.props;
 
 const {
   id,
@@ -7,6 +11,7 @@ const {
   motto,
   summary,
   mission,
+  established,
   responsibilities,
   emblem,
   officeType,
@@ -30,6 +35,10 @@ const {
         <p class="department-record__type">
           {officeType}
         </p>
+
+      <p class="department-record__established">
+  Established {established}
+</p>
 
         <h1>{name}</h1>
 
@@ -70,9 +79,7 @@ const {
     </div>
 
     <ul class="department-responsibility-list">
-      {responsibilities.map((item: string) => (
-        <li>{item}</li>
-      ))}
+
     </ul>
   </section>
 
@@ -91,4 +98,65 @@ const {
       <slot />
     </div>
   </section>
+
+  <section
+  class="record-section"
+  aria-labelledby="department-digital-objects"
+>
+  <div class="record-section-heading">
+    <p class="section-label">FWX Catalogue</p>
+    <h2 id="department-digital-objects">
+      Associated Digital Objects
+    </h2>
+  </div>
+
+  {
+    associatedDigitalObjects.length > 0 ? (
+      <ul>
+        {associatedDigitalObjects.map((object: any) => (
+          <li>
+            <a href={`/fwx/${object.data.fwxId}`}>
+              {object.data.fwxId} — {object.data.title}
+            </a>
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <p class="record-prose">
+        No Digital Objects are currently associated with this department.
+      </p>
+    )
+  }
+</section>
+
+<section
+  class="record-section"
+  aria-labelledby="department-publications"
+>
+  <div class="record-section-heading">
+    <p class="section-label">Bureau Publications</p>
+    <h2 id="department-publications">
+      Issued Publications
+    </h2>
+  </div>
+
+  {
+    issuedPublications.length > 0 ? (
+      <ul>
+        {issuedPublications.map((publication: any) => (
+          <li>
+            <a href={`/publications/${publication.data.id}`}>
+              {publication.data.id} — {publication.data.title}
+            </a>
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <p class="record-prose">
+        No publications are currently issued by this department.
+      </p>
+    )
+  }
+</section>
+
 </article>

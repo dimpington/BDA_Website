@@ -69,6 +69,7 @@ const departments = defineCollection({
     motto: z.string(),
     summary: z.string(),
     mission: z.string(),
+    established: z.number().int(),
 
     responsibilities: z.array(z.string()),
 
