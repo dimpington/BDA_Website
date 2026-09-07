@@ -170,14 +170,14 @@ The site should launch with enough real content that it feels intentionally popu
 
 ### Digital Objects
 
-- [ ] At least **8 complete FWX records**
-- [ ] Include several different object types or historical contexts
+- [x] At least **8 complete FWX records**
+- [x] Include several different object types or historical contexts
 - [ ] Every record has a checked title, summary and URL
-- [ ] Every record has classification and status values
-- [ ] Every record has a preservation assessment
-- [ ] Every record has a verification date
-- [ ] At least four records include relationships
-- [ ] At least three records appear in Collections
+- [x] Every record has classification and status values
+- [x] Every record has a preservation assessment
+- [x] Every record has a verification date
+- [x] At least four records include relationships
+- [x] At least three records appear in Collections
 - [X] At least one record is marked `featured: true`
 
 Suggested launch records could include:
@@ -203,11 +203,11 @@ Suggested launch records could include:
 
 ### Collections
 
-- [ ] At least **two Collections**
+- [x] At least **two Collections**
 - [x] The Dawn of Commercial Websites
-- [ ] One additional curated collection
-- [ ] Each Collection contains at least two real Digital Objects
-- [ ] Each Collection contains a curatorial introduction
+- [x] One additional curated collection
+- [x] Each Collection contains at least two real Digital Objects
+- [x] Each Collection contains a curatorial introduction
 - [x] At least one Collection references a Publication
 
 ### Bureau Notices
@@ -225,7 +225,7 @@ Suggested launch records could include:
 - [ ] Confirm terminology matches `Lexicon.md`
 - [ ] Confirm department responsibilities match `Departments.md`
 - [ ] Confirm FWX terminology matches the Digital Object specification
-- [ ] Confirm establishment year is consistently 1998
+- [x] Confirm establishment year is consistently 1998
 - [ ] Remove any remaining placeholder organisations, IDs and dates
 
 ---
@@ -368,9 +368,9 @@ Test at minimum:
 - [ ] Every meaningful image has alt text
 - [ ] Decorative images use empty alt text where appropriate
 - [ ] Full keyboard navigation
-- [ ] Visible focus indicators
-- [ ] Skip-to-content link
-- [ ] Navigation has accessible labels
+- [x] Visible focus indicators
+- [x] Skip-to-content link
+- [x] Navigation has accessible labels
 - [ ] Form errors are announced clearly
 - [ ] Colour contrast reviewed
 - [ ] Page works at 200% zoom
@@ -436,7 +436,7 @@ Test at minimum:
 - [ ] Review every high or critical result
 - [ ] Do not blindly run breaking automatic fixes
 - [ ] Remove unused packages
-- [ ] Commit `package-lock.json`
+- [x] Commit `package-lock.json`
 - [x] Pin the Node major version for builds
 - [ ] Configure Dependabot for npm
 - [ ] Review Astro release notes before major upgrades

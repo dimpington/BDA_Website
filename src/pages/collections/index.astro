@@ -6,9 +6,15 @@ import CollectionCard from "../../components/CollectionCard.astro";
 
 const collections = await getCollection("collections");
 
-const sortedCollections = collections.sort((a, b) =>
-  b.data.published.localeCompare(a.data.published)
-);
+const sortedCollections = collections.sort((a, b) => {
+  const publishedComparison = b.data.published.localeCompare(a.data.published);
+
+  if (publishedComparison !== 0) {
+    return publishedComparison;
+  }
+
+  return b.data.id.localeCompare(a.data.id);
+});
 ---
 
 <Layout title="Collections | Bureau of Digital Antiquities">
