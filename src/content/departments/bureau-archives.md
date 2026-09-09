@@ -19,7 +19,7 @@ responsibilities:
   - Organisational archives
   - Public archival access
 
-emblem: /images/Bureau_Archives_Emblem.png
+emblem: /images/emblems/bureau-archives-emblem.png
 officeType: Archives
 ---
 

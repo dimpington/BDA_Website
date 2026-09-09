@@ -18,7 +18,7 @@ responsibilities:
   - Metadata examination
   - Digital evidence documentation
 
-emblem: /images/Digital_Forensics_Unit_Emblem.png
+emblem: /images/emblems/digital-forensics-unit-emblem.png
 officeType: Unit
 ---
 

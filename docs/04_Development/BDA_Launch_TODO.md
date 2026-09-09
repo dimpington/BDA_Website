@@ -293,16 +293,16 @@ Draft
 
 ## Emblems and assets
 
-- [ ] Create final Office of Digital Preservation emblem
-- [ ] Rework all department emblems as one consistent set
+- [x] Create final Office of Digital Preservation emblem
+- [x] Rework all department emblems as one consistent set
 - [ ] Same canvas size
 - [ ] Same apparent emblem size
 - [ ] Same border weight
 - [ ] Same typography treatment
-- [ ] Transparent backgrounds
+- [x] Transparent backgrounds
 - [ ] High-resolution source exports
-- [ ] Standardize filenames using lowercase kebab-case
-- [ ] Move them into:
+- [x] Standardize filenames using lowercase kebab-case
+- [x] Move them into:
 
 ```text
 public/images/emblems/

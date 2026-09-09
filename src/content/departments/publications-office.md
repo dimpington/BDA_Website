@@ -17,7 +17,7 @@ responsibilities:
   - Annual Reports
   - Public guidance
 
-emblem: /images/Publications_Office_Emblem.png
+emblem: /images/emblems/publications-office-emblem.png
 officeType: Office
 ---
 

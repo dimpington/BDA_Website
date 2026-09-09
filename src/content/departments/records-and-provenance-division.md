@@ -18,7 +18,7 @@ responsibilities:
   - Archival citations
   - Authenticity documentation
 
-emblem: /images/Records_Provenance_Division_Emblem.png
+emblem: /images/emblems/records-provenance-division-emblem.png
 officeType: Division
 ---
 

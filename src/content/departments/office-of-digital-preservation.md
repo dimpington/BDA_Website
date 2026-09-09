@@ -19,7 +19,7 @@ responsibilities:
   - Preservation assessments
   - Oversight of Digital Object stewardship
 
-emblem: /images/Office_of_Digital_Preservation.png
+emblem: /images/emblems/office-of-digital-preservation-emblem.png
 officeType: Office
 ---
 

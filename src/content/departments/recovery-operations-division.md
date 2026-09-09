@@ -18,7 +18,7 @@ responsibilities:
   - External archive coordination
   - Recovery case documentation
 
-emblem: /images/Recovery_Operations_Emblem.png
+emblem: /images/emblems/recovery-operations-division-emblem.png
 officeType: Division
 ---
 
