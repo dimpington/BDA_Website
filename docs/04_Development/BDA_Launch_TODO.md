@@ -251,16 +251,16 @@ templates/
 
 Each template should contain:
 
-- [ ] Required frontmatter
-- [ ] Optional frontmatter
-- [ ] Example values
-- [ ] Writing guidance
-- [ ] ID format
-- [ ] Allowed enum values
-- [ ] Recommended section headings
-- [ ] Related-record syntax
-- [ ] Image naming convention
-- [ ] Verification checklist
+- [x] Required frontmatter
+- [x] Optional frontmatter
+- [x] Example values
+- [x] Writing guidance
+- [x] ID format
+- [x] Allowed enum values
+- [x] Recommended section headings
+- [x] Related-record syntax
+- [x] Image naming convention
+- [x] Verification checklist
 
 ## Content workflow
 
@@ -276,16 +276,16 @@ Draft
 → Public release
 ```
 
-- [ ] Assign unique IDs before drafting
-- [ ] Check for duplicate IDs
-- [ ] Validate related records
-- [ ] Check external URLs
-- [ ] Review facts and citations
-- [ ] Run `npm run build`
-- [ ] Open the Cloudflare preview
-- [ ] Approve and merge
-- [ ] Verify the production page
-- [ ] Record the release in a Bureau Notice when appropriate
+- [x] Assign unique IDs before drafting
+- [x] Check for duplicate IDs
+- [x] Validate related records
+- [x] Check external URLs
+- [x] Review facts and citations
+- [x] Run `npm run build`
+- [x] Open the Cloudflare preview
+- [x] Approve and merge
+- [x] Verify the production page
+- [x] Record the release in a Bureau Notice when appropriate
 
 ---
 
