@@ -1,0 +1,265 @@
+@media (max-width: 850px) {
+  .catalogue-hero,
+  .home-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .catalogue-hero__content {
+    border-right: 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .footer-grid section:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .institution-stat-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+}
+
+@media (max-width: 620px) {
+  .utility-bar__reference {
+    display: none;
+  }
+
+  .lifecycle {
+  grid-template-columns: 1fr;
+}
+
+.lifecycle__stage:nth-child(5),
+.lifecycle__stage:nth-child(6),
+.lifecycle__stage:nth-child(7),
+.lifecycle__stage:nth-child(8) {
+  grid-column: auto;
+  grid-row: auto;
+}
+
+.lifecycle__stage::after {
+  display: none;
+}
+
+  .bureau-identity {
+    align-items: flex-start;
+  }
+
+  .bureau-logo {
+    width: 76px;
+  }
+
+  .site-nav__inner {
+    padding: 0;
+  }
+
+  .site-nav a {
+    flex: 1 1 50%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.17);
+    text-align: center;
+  }
+
+  .catalogue-search__controls {
+    display: grid;
+  }
+
+  .catalogue-search input {
+    border-right: 2px solid var(--color-navy-dark);
+    border-bottom: 0;
+  }
+
+  .record-metadata,
+  .department-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .department-entry,
+  .department-entry:nth-child(even) {
+    border-right: 0;
+  }
+
+  .publication-entry {
+    grid-template-columns: 1fr auto;
+  }
+
+  .publication-entry__reference {
+    grid-column: 1 / -1;
+  }
+
+  .about-bureau {
+    grid-template-columns: 1fr;
+  }
+
+  .about-bureau__date {
+    justify-items: start;
+    border-right: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.28);
+  }
+
+  .about-bureau__date strong {
+    font-size: 2rem;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-grid section:first-child {
+    grid-column: auto;
+  }
+
+  .institution-stat-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .organisation-chart__departments {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+@media (max-width: 460px) {
+  [data-publication-register] .publication-entry {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.75rem;
+  }
+
+  [data-publication-register] .publication-entry__format {
+    flex-wrap: wrap;
+    padding: 0;
+  }
+
+  .bureau-identity {
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+
+  .bureau-logo {
+    width: 64px;
+  }
+
+  .site-title {
+    font-size: 1.6rem;
+  }
+
+  .site-nav a {
+    flex-basis: 100%;
+    text-align: left;
+  }
+
+  .panel-heading,
+  .section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .bureau-notice__heading {
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+}
+
+@media (max-width: 760px) {
+  .department-record__masthead {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+
+  .department-record__emblem {
+    max-width: 180px;
+    margin: 0;
+  }
+
+  .department-responsibility-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .featured-collection {
+    grid-template-columns: 1fr;
+  }
+
+  .featured-collection__reference {
+    border-right: 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .featured-collection__metadata {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Responsive catalogue filters */
+
+@media (max-width: 1000px) {
+  .catalogue-filters {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .catalogue-filters {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================================================
+   FWX Responsive Layout
+   ========================================================= */
+
+@media (max-width: 760px) {
+  .catalogue-reference {
+    grid-template-columns: 1fr;
+  }
+
+  .catalogue-register__heading {
+    display: block;
+  }
+
+  .catalogue-register__heading > p {
+    margin-top: 0.75rem;
+  }
+
+  .fwx-masthead,
+  .fwx-record-masthead {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .fwx-logo,
+  .fwx-record-logo {
+    max-width: 300px;
+  }
+
+  .fwx-document-control {
+    grid-template-columns: 1fr 1fr;
+  }
+
+.administrative-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.administrative-grid__wide {
+  grid-column: span 2;
+}
+
+}
+
+@media (max-width: 460px) {
+  .fwx-document-control {
+    grid-template-columns: 1fr;
+  }
+
+.administrative-grid {
+  grid-template-columns: 1fr;
+}
+
+.administrative-grid__wide {
+  grid-column: auto;
+}
+
+}

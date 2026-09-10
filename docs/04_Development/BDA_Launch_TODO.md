@@ -309,13 +309,13 @@ public/images/emblems/
 ```
 
 - [x] Add meaningful alt text
-- [ ] Convert large photographic images to WebP or AVIF where suitable
+- [x] Convert large photographic images to WebP or AVIF where suitable
 - [X] Define a consistent FWX screenshot directory
 
 ## CSS
 
-- [ ] Refactor `global.css`
-- [ ] Suggested structure:
+- [x] Refactor `global.css`
+- [x] Suggested structure:
 
 ```text
 src/styles/
@@ -331,7 +331,7 @@ src/styles/
 └── responsive.css
 ```
 
-- [ ] Remove duplicate declarations
+- [x] Remove duplicate declarations
 - [ ] Standardize spacing values
 - [ ] Standardize borders
 - [ ] Standardize buttons and text links

@@ -1,0 +1,32 @@
+:root {
+  --color-paper: #e9e2d3;
+  --color-paper-light: #f5f1e7;
+  --color-surface: #fbfaf6;
+  --color-surface-muted: #f0ece2;
+
+  --color-ink: #20221f;
+  --color-muted: #5d625b;
+  --color-faint: #777a72;
+
+  --color-navy: #17324a;
+  --color-navy-dark: #0d2437;
+  --color-green: #314b3a;
+  --color-burgundy: #6b302d;
+  --color-brass: #89713f;
+
+  --color-border: #a9a493;
+  --color-border-dark: #686b62;
+
+  --font-heading: Georgia, "Times New Roman", serif;
+  --font-body: Arial, Helvetica, sans-serif;
+  --font-mono: "Courier New", Courier, monospace;
+
+  --page-width: 1180px;
+
+  --space-xs: 0.35rem;
+  --space-sm: 0.65rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2.5rem;
+  --space-2xl: 4rem;
+}
