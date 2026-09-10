@@ -295,12 +295,12 @@ Draft
 
 - [x] Create final Office of Digital Preservation emblem
 - [x] Rework all department emblems as one consistent set
-- [ ] Same canvas size
-- [ ] Same apparent emblem size
-- [ ] Same border weight
-- [ ] Same typography treatment
+- [x] Same canvas size
+- [x] Same apparent emblem size
+- [x] Same border weight
+- [x] Same typography treatment
 - [x] Transparent backgrounds
-- [ ] High-resolution source exports
+- [x] High-resolution source exports
 - [x] Standardize filenames using lowercase kebab-case
 - [x] Move them into:
 
@@ -308,7 +308,7 @@ Draft
 public/images/emblems/
 ```
 
-- [ ] Add meaningful alt text
+- [x] Add meaningful alt text
 - [ ] Convert large photographic images to WebP or AVIF where suitable
 - [X] Define a consistent FWX screenshot directory
 
@@ -365,8 +365,8 @@ Test at minimum:
 - [ ] One meaningful `<h1>` per page
 - [ ] Correct heading hierarchy
 - [ ] Every input has a label
-- [ ] Every meaningful image has alt text
-- [ ] Decorative images use empty alt text where appropriate
+- [x] Every meaningful image has alt text
+- [x] Decorative images use empty alt text where appropriate
 - [ ] Full keyboard navigation
 - [x] Visible focus indicators
 - [x] Skip-to-content link
