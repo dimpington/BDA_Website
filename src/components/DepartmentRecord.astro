@@ -79,7 +79,11 @@ const {
     </div>
 
     <ul class="department-responsibility-list">
-
+      {
+        responsibilities.map((item: string) => (
+          <li>{item}</li>
+        ))
+      }
     </ul>
   </section>
 

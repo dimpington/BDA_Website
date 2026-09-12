@@ -52,8 +52,8 @@ Introduce a protected administrative interface for creating content through form
 - [x] About the Bureau
 - [x] Individual Bureau Notice pages
 - [X] Bureau Notices archive at `/notices`
-- [ ] Custom Bureau-themed 404 page
-- [ ] Verify every internal link
+- [x] Custom Bureau-themed 404 page
+- [x] Verify every internal link
 - [ ] Remove obsolete or duplicated routes
 - [ ] Confirm all route folders and URLs use lowercase
 - [ ] Verify no navigation item leads to an empty page

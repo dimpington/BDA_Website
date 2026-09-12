@@ -6,6 +6,7 @@ const { publication } = Astro.props;
 const allDepartments = await getCollection("departments");
 const allCollections = await getCollection("collections");
 const allPublications = await getCollection("publications");
+const allDigitalObjects = await getCollection("digital-objects");
 
 const {
   id,
@@ -42,6 +43,17 @@ const resolvedRelatedPublications = relatedPublications.map((publicationId: stri
     publication: relatedPublication ?? null,
   };
 }); 
+
+const resolvedRelatedObjects = relatedObjects.map((fwxId: string) => {
+  const object = allDigitalObjects.find(
+    (entry) => entry.data.fwxId === fwxId
+  );
+
+  return {
+    id: fwxId,
+    object: object ?? null,
+  };
+});
 ---
 
 <article class="publication-record">
@@ -141,12 +153,29 @@ const resolvedRelatedPublications = relatedPublications.map((publicationId: stri
         </h2>
       </div>
 
-      <ul>
-        {relatedObjects.map((fwxId: string) => (
-          <li>
-            <a href={`/fwx/${fwxId}`}>{fwxId}</a>
-          </li>
-        ))}
+          <ul>
+        {
+                      resolvedRelatedObjects.map(
+              ({
+                id,
+                object,
+              }: {
+                id: string;
+                object: (typeof allDigitalObjects)[number] | null;
+              }) => (
+            <li>
+              {object ? (
+                <a href={`/fwx/${object.data.fwxId}`}>
+                  {object.data.fwxId} — {object.data.title}
+                </a>
+              ) : (
+                <span>
+                  {id} — Digital Object unavailable in the public catalogue
+                </span>
+              )}
+            </li>
+          ))
+        }
       </ul>
     </section>
   )}
