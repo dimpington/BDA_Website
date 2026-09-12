@@ -221,12 +221,12 @@ Suggested launch records could include:
 - [x] Six departments
 - [x] About page
 - [x] Organisation page
-- [ ] Review mission wording across all pages
-- [ ] Confirm terminology matches `Lexicon.md`
-- [ ] Confirm department responsibilities match `Departments.md`
-- [ ] Confirm FWX terminology matches the Digital Object specification
+- [x] Review mission wording across all pages
+- [x] Confirm terminology matches `Lexicon.md`
+- [x] Confirm department responsibilities match `Departments.md`
+- [x] Confirm FWX terminology matches the Digital Object specification
 - [x] Confirm establishment year is consistently 1998
-- [ ] Remove any remaining placeholder organisations, IDs and dates
+- [x] Remove any remaining placeholder organisations, IDs and dates
 
 ---
 
