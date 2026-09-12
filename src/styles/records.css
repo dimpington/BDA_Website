@@ -35,7 +35,7 @@
 
 .catalogue-intro h1 {
   margin-top: 0;
-  margin-bottom: 1rem;
+  margin-bottom: var(--space-md);
 }
 
 .catalogue-lead {
@@ -63,12 +63,12 @@
 }
 
 .catalogue-reference div {
-  padding: 1rem;
+  padding: var(--space-md);
   background: var(--color-paper-light);
 }
 
 .catalogue-reference dt {
-  margin-bottom: 0.35rem;
+  margin-bottom: var(--space-xs);
   font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -90,7 +90,7 @@
   align-items: end;
   justify-content: space-between;
   gap: 2rem;
-  margin-bottom: 1rem;
+  margin-bottom: var(--space-md);
 }
 
 .catalogue-register__heading h2 {
@@ -135,8 +135,8 @@
 }
 
 .catalogue-search {
-  margin-top: 1.5rem;
-  margin-bottom: 1rem;
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-md);
 }
 
 .catalogue-search label {
@@ -150,8 +150,8 @@
 .catalogue-filters {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1rem;
-  margin-bottom: 1.5rem;
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
 }
 
 .catalogue-filter label {
@@ -172,8 +172,8 @@
 /* FWX Digital Object preview */
 
 .record-preview__figure {
-  margin: 1.5rem 0 0;
-  padding: 1rem;
+  margin: var(--space-lg) 0 0;
+  padding: var(--space-md);
   border: 1px solid var(--border-color, #b8b09f);
   background: #f1eee5;
 }
@@ -191,20 +191,6 @@
   border-top: 1px solid #b8b09f;
   font-size: 0.85rem;
   letter-spacing: 0.04em;
-}
-
-/* Responsive catalogue filters */
-
-@media (max-width: 1000px) {
-  .catalogue-filters {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 600px) {
-  .catalogue-filters {
-    grid-template-columns: 1fr;
-  }
 }
 
 .catalogue-search-status {
@@ -302,7 +288,7 @@
 
 .fwx-record-summary {
   max-width: 48rem;
-  margin: 1rem 0 0;
+  margin: var(--space-md) 0 0;
   color: var(--color-muted);
   font-family: var(--font-heading);
   font-size: 1.05rem;
@@ -318,7 +304,7 @@
 }
 
 .fwx-document-control div {
-  padding: 1rem;
+  padding: var(--space-md);
   background: var(--color-surface-muted);
 }
 
@@ -345,11 +331,11 @@
 }
 
 .record-section + .record-section {
-  padding-top: 1.5rem;
+  padding-top: var(--space-lg);
 }
 
 .record-section-heading {
-  margin-bottom: 1.5rem;
+  margin-bottom: var(--space-lg);
   padding-bottom: 0.8rem;
   border-bottom: 3px double var(--color-border-dark);
 }
@@ -372,7 +358,7 @@
 
 .administrative-grid > div {
   min-width: 0;
-  padding: 1rem;
+  padding: var(--space-md);
   border-right: 1px solid var(--color-border);
   border-bottom: 1px solid var(--color-border);
   background: var(--color-surface);
@@ -454,7 +440,7 @@
 
 .related-records {
   display: grid;
-  gap: 1rem;
+  gap: var(--space-md);
 }
 
 .related-record {
@@ -467,7 +453,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
+  gap: var(--space-md);
 }
 
 .related-record-id {
@@ -484,7 +470,7 @@
 }
 
 .related-record h3 {
-  margin: 0.45rem 0 1rem;
+  margin: 0.45rem 0 var(--space-md);
   color: var(--color-navy-dark);
   font-family: var(--font-heading);
   font-size: 1.45rem;
@@ -492,7 +478,7 @@
 }
 
 .related-record__metadata {
-  margin: 0 0 1rem;
+  margin: 0 0 var(--space-md);
 }
 
 .related-record__metadata div {
@@ -516,7 +502,7 @@
 
 .related-record__summary {
   max-width: 48rem;
-  margin: 0 0 1rem;
+  margin: 0 0 var(--space-md);
   color: var(--color-muted);
   font-family: var(--font-heading);
   line-height: 1.7;
@@ -528,61 +514,4 @@
   font-weight: bold;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-}
-
-/* =========================================================
-   FWX Responsive Layout
-   ========================================================= */
-
-@media (max-width: 760px) {
-  .catalogue-reference {
-    grid-template-columns: 1fr;
-  }
-
-  .catalogue-register__heading {
-    display: block;
-  }
-
-  .catalogue-register__heading > p {
-    margin-top: 0.75rem;
-  }
-
-  .fwx-masthead,
-  .fwx-record-masthead {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-
-  .fwx-logo,
-  .fwx-record-logo {
-    max-width: 300px;
-  }
-
-  .fwx-document-control {
-    grid-template-columns: 1fr 1fr;
-  }
-
-.administrative-grid {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.administrative-grid__wide {
-  grid-column: span 2;
-}
-
-}
-
-@media (max-width: 460px) {
-  .fwx-document-control {
-    grid-template-columns: 1fr;
-  }
-
-.administrative-grid {
-  grid-template-columns: 1fr;
-}
-
-.administrative-grid__wide {
-  grid-column: auto;
-}
-
 }

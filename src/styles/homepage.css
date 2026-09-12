@@ -36,7 +36,7 @@
 
 .catalogue-search label {
   display: block;
-  margin-bottom: 0.35rem;
+  margin-bottom: var(--space-xs);
   font-size: 0.72rem;
   font-weight: bold;
   letter-spacing: 0.07em;
@@ -79,13 +79,13 @@
 .catalogue-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.55rem 1.5rem;
-  margin-top: 1rem;
+  gap: 0.55rem var(--space-lg);
+  margin-top: var(--space-md);
   font-size: 0.84rem;
 }
 
 .public-information {
-  padding: 1.5rem;
+  padding: var(--space-lg);
   background:
     repeating-linear-gradient(
       -45deg,
@@ -98,7 +98,7 @@
 }
 
 .public-information__label {
-  margin: 0 0 1rem;
+  margin: 0 0 var(--space-md);
   padding-bottom: 0.6rem;
   border-bottom: 3px double var(--color-border-dark);
   color: var(--color-navy-dark);
@@ -141,8 +141,8 @@
 .bureau-notice__heading {
   display: flex;
   justify-content: space-between;
-  gap: 1rem;
-  padding: 0.55rem 1rem;
+  gap: var(--space-md);
+  padding: 0.55rem var(--space-md);
   border-bottom: 1px solid var(--color-border);
   background: #dfd7c5;
   color: var(--color-burgundy);
@@ -187,8 +187,8 @@
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  gap: 1rem;
-  padding: 1rem 1.25rem;
+  gap: var(--space-md);
+  padding: var(--space-md) 1.25rem;
   border-bottom: 3px double var(--color-border-dark);
   background: var(--color-surface-muted);
 }
@@ -215,7 +215,7 @@
 }
 
 .featured-record__image {
-  padding: 1.5rem;
+  padding: var(--space-lg);
   border-bottom: 1px solid var(--color-border);
   background: #d7d1c3;
 }
@@ -231,7 +231,7 @@
 .browser-fragment__bar {
   display: flex;
   gap: 0.3rem;
-  padding: 0.35rem;
+  padding: var(--space-xs);
   border-bottom: 2px solid #31312f;
   background: #b8b5ae;
 }
@@ -262,12 +262,12 @@
 }
 
 .browser-fragment__content small {
-  margin-top: 1rem;
+  margin-top: var(--space-md);
   color: #c0c8df;
 }
 
 .featured-record__content {
-  padding: 1.5rem;
+  padding: var(--space-lg);
 }
 
 .record-type {
@@ -280,7 +280,7 @@
 }
 
 .featured-record h3 {
-  margin: 0.2rem 0 0.65rem;
+  margin: 0.2rem 0 var(--space-sm);
   font-family: var(--font-heading);
   font-size: 1.65rem;
   font-weight: normal;
@@ -362,7 +362,7 @@
 .record-list a {
   display: grid;
   gap: 0.15rem;
-  padding: 1rem 1.25rem;
+  padding: var(--space-md) 1.25rem;
   color: inherit;
   text-decoration: none;
 }
@@ -427,7 +427,7 @@
 }
 
 .department-entry p {
-  margin: 0.35rem 0 0;
+  margin: var(--space-xs) 0 0;
   color: var(--color-muted);
   font-size: 0.82rem;
 }

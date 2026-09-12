@@ -76,7 +76,7 @@
 }
 
 .site-reference {
-  margin: 0.65rem 0 0;
+  margin: var(--space-sm) 0 0;
   color: var(--color-faint);
   font-family: var(--font-mono);
   font-size: 0.66rem;

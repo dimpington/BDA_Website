@@ -6,7 +6,7 @@
 }
 
 .featured-collection__reference {
-  padding: 1.5rem;
+  padding: var(--space-lg);
   border-right: 1px solid var(--color-border);
   background: var(--color-surface-muted);
 }
@@ -21,7 +21,7 @@
 }
 
 .featured-collection__content {
-  padding: 1.5rem 2rem;
+  padding: var(--space-lg) 2rem;
 }
 
 .featured-collection__content h2 {
