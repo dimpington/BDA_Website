@@ -332,14 +332,14 @@ src/styles/
 ```
 
 - [x] Remove duplicate declarations
-- [ ] Standardize spacing values
-- [ ] Standardize borders
-- [ ] Standardize buttons and text links
-- [ ] Equalize card heights where useful
-- [ ] Review empty grid cells
-- [ ] Review typography hierarchy
-- [ ] Review hover and focus states
-- [ ] Verify no horizontal overflow
+- [x] Standardize spacing values
+- [x] Standardize borders
+- [x] Standardize buttons and text links
+- [x] Equalize card heights where useful
+- [x] Review empty grid cells
+- [x] Review typography hierarchy
+- [x] Review hover and focus states
+- [x] Verify no horizontal overflow
 
 ## Responsive testing
 
