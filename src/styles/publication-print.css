@@ -1,5 +1,5 @@
 /* Loaded only by individual publication pages. */
-.publication-actions { margin-bottom: 1.5rem; }
+.publication-actions { margin-bottom: var(--space-lg); }
 .publication-actions button {
   border: 1px solid var(--color-border);
   background: var(--color-surface-muted);

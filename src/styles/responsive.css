@@ -226,8 +226,8 @@
 
   .fwx-masthead,
   .fwx-record-masthead {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
   }
 
   .fwx-logo,
