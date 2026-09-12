@@ -29,7 +29,7 @@
 }
 
 .catalogue-intro {
-  padding: 2.5rem 0 2rem;
+  padding: var(--space-xl) 0 2rem;
   border-bottom: 1px solid var(--color-border);
 }
 
@@ -82,7 +82,7 @@
 }
 
 .catalogue-register {
-  padding: 2.5rem 0;
+  padding: var(--space-xl) 0;
 }
 
 .catalogue-register__heading {
@@ -94,7 +94,7 @@
 }
 
 .catalogue-register__heading h2 {
-  margin: 0.35rem 0 0;
+  margin: var(--space-xs) 0 0;
 }
 
 .catalogue-register__heading > p {
@@ -117,7 +117,7 @@
 
 .catalogue-table th,
 .catalogue-table td {
-  padding: 1rem 0.85rem;
+  padding: var(--space-md) 0.85rem;
   border-bottom: 1px solid var(--color-border);
   text-align: left;
   vertical-align: top;
@@ -174,7 +174,7 @@
 .record-preview__figure {
   margin: var(--space-lg) 0 0;
   padding: var(--space-md);
-  border: 1px solid var(--border-color, #b8b09f);
+  border: 1px solid var(--color-border);
   background: #f1eee5;
 }
 
@@ -182,19 +182,19 @@
   display: block;
   width: 100%;
   height: auto;
-  border: 1px solid #8f8879;
+  border: 1px solid var(--color-border-dark);
 }
 
 .record-preview__figure figcaption {
   margin-top: 0.75rem;
-  padding-top: 0.65rem;
-  border-top: 1px solid #b8b09f;
+  padding-top: var(--space-sm);
+  border-top: 1px solid var(--color-border);
   font-size: 0.85rem;
   letter-spacing: 0.04em;
 }
 
 .catalogue-search-status {
-  margin-bottom: 1.5rem;
+  margin-bottom: var(--space-lg);
 } 
 
 .catalogue-id {
@@ -419,7 +419,7 @@
 
 .record-prose ul,
 .record-prose ol {
-  margin: 1rem 0 1.5rem 1.5rem;
+  margin: var(--space-md) 0 var(--space-lg) var(--space-lg);
 }
 
 .record-prose li {

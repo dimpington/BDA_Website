@@ -34,7 +34,7 @@
 
 .site-nav {
   background: var(--color-navy);
-  border-bottom: 1px solid #091a27;
+  border-bottom: 1px solid var(--color-border-dark);
 }
 
 .site-nav__inner {
@@ -59,6 +59,7 @@
 }
 
 .site-nav a:hover,
+.site-nav a:focus-visible,
 .site-nav a.is-current {
   background: #f0eadb;
   color: var(--color-navy-dark);

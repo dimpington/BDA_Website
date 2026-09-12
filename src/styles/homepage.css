@@ -72,7 +72,8 @@
   text-transform: uppercase;
 }
 
-.catalogue-search button:hover {
+.catalogue-search button:hover,
+.catalogue-search button:focus-visible {
   background: var(--color-burgundy);
 }
 
@@ -343,7 +344,8 @@
   text-transform: uppercase;
 }
 
-.text-button:hover {
+.text-button:hover,
+.text-button:focus-visible {
   background: var(--color-burgundy);
   color: white;
   text-decoration: none;
@@ -367,7 +369,8 @@
   text-decoration: none;
 }
 
-.record-list a:hover {
+.record-list a:hover,
+.record-list a:focus-visible {
   background: #f1ede3;
 }
 
@@ -488,7 +491,8 @@
   color: var(--color-navy-dark);
 }
 
-.about-bureau .text-button:hover {
+.about-bureau .text-button:hover,
+.about-bureau .text-button:focus-visible {
   border-color: white;
   background: white;
 }

@@ -255,7 +255,8 @@
   font-size: 1rem;
 }
 
-.organisation-chart__department:hover {
+.organisation-chart__department:hover,
+.organisation-chart__department:focus-visible {
   background: var(--color-paper-light);
 }
 

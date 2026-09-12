@@ -30,7 +30,8 @@
   text-decoration: none;
 }
 
-.bureau-identity:hover {
+.bureau-identity:hover,
+.bureau-identity:focus-visible {
   color: inherit;
   text-decoration: none;
 }

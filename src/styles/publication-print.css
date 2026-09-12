@@ -1,9 +1,20 @@
 /* Loaded only by individual publication pages. */
 .publication-actions { margin-bottom: var(--space-lg); }
 .publication-actions button {
-  border: 1px solid var(--color-border);
+  padding: 0.6rem 0.85rem;
+  border: 1px solid var(--color-border-dark);
   background: var(--color-surface-muted);
+  color: var(--color-navy-dark);
   cursor: pointer;
+  font-size: 0.75rem;
+  font-weight: bold;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.publication-actions button:hover,
+.publication-actions button:focus-visible {
+  background: var(--color-paper-light);
 }
 .publication-actions p { color: var(--color-muted); font-size: 0.85rem; }
 .publication-print-identity { display: none; }
