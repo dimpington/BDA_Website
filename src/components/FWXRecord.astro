@@ -401,11 +401,12 @@ const resolvedRelatedObjects = relatedObjects.map((relation) => {
                 </p>
 
                 <a
-                  class="related-record__link"
-                  href={`/fwx/${record.data.fwxId}`}
-                >
-                  Access Public Record →
-                </a>
+                class="related-record__link"
+                href={`/fwx/${record.data.fwxId}`}
+                aria-label={`Access Public Record: ${record.data.title}`}
+              >
+                Access Public Record →
+              </a>
               </>
             ) : (
               <>
@@ -483,11 +484,12 @@ const resolvedRelatedObjects = relatedObjects.map((relation) => {
             </p>
 
             <a
-              class="related-record__link"
-              href={`/collections/${collection.data.id}`}
-            >
-              Access Collection →
-            </a>
+            class="related-record__link"
+            href={`/collections/${collection.data.id}`}
+            aria-label={`Access Collection: ${collection.data.title}`}
+          >
+            Access Collection →
+          </a>
           </article>
         ))
       }
@@ -533,11 +535,12 @@ const resolvedRelatedObjects = relatedObjects.map((relation) => {
             </p>
 
             <a
-              class="related-record__link"
-              href={`/publications/${publication.data.id}`}
-            >
-              Access Publication →
-            </a>
+            class="related-record__link"
+            href={`/publications/${publication.data.id}`}
+            aria-label={`Access Publication: ${publication.data.title}`}
+          >
+            Access Publication →
+          </a>
           </article>
         ))
       }

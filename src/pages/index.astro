@@ -47,7 +47,7 @@ const featuredCollection =
       <div class="catalogue-hero__content">
         <p class="section-kicker">Forgotten Web Exchange</p>
 
-        <h2 id="catalogue-heading">Search the Public Catalogue</h2>
+        <h1 id="catalogue-heading">Search the Public Catalogue</h1>
 
         <p class="catalogue-hero__introduction">
           Search published records of historically significant websites,
@@ -193,9 +193,13 @@ const featuredCollection =
 </div>
           </dl>
 
-          <a class="text-button" href={`/fwx/${featuredObject.data.fwxId}`}>
-            View catalogue record
-          </a>
+          <a
+          class="text-button"
+          href={`/collections/${featuredCollection.data.id}`}
+          aria-label={`View Collection: ${featuredCollection.data.title}`}
+        >
+          View Collection
+        </a>
         </div>
       </section>
 

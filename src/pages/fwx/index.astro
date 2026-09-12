@@ -221,6 +221,9 @@ const sortedObjects = objects.sort((a, b) =>
 <div
   id="catalogue-search-status"
   class="catalogue-search-status"
+  role="status"
+  aria-live="polite"
+  aria-atomic="true"
   hidden
 >
 
@@ -333,10 +336,12 @@ const sortedObjects = objects.sort((a, b) =>
         </tbody>
       </table>
             <div
-        id="catalogue-no-results"
-        class="catalogue-no-results"
-        hidden
-      >
+            id="catalogue-no-results"
+            class="catalogue-no-results"
+            role="status"
+            aria-live="polite"
+            hidden
+          >
         <p><strong>No records located</strong></p>
 
         <p>

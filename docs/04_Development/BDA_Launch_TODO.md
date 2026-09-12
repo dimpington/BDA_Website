@@ -213,7 +213,7 @@ Suggested launch records could include:
 ### Bureau Notices
 
 - [x] Initial public catalogue release
-- [ ] One additional launch or institutional notice
+- [x] One additional launch or institutional notice
 - [ ] Optional notice describing the Bureau’s public-access policy
 
 ### Institutional content
@@ -362,24 +362,24 @@ Test at minimum:
 
 # 5. Accessibility
 
-- [ ] One meaningful `<h1>` per page
-- [ ] Correct heading hierarchy
-- [ ] Every input has a label
+- [x] One meaningful `<h1>` per page
+- [x] Correct heading hierarchy
+- [x] Every input has a label
 - [x] Every meaningful image has alt text
 - [x] Decorative images use empty alt text where appropriate
-- [ ] Full keyboard navigation
+- [x] Full keyboard navigation
 - [x] Visible focus indicators
 - [x] Skip-to-content link
 - [x] Navigation has accessible labels
-- [ ] Form errors are announced clearly
-- [ ] Colour contrast reviewed
-- [ ] Page works at 200% zoom
-- [ ] Reduced-motion preference respected
-- [ ] Tables use appropriate headers
-- [ ] Links make sense out of context
-- [ ] Run automated accessibility checks
-- [ ] Perform a manual keyboard-only test
-- [ ] Test at least one screen reader workflow
+- [x] Form errors are announced clearly
+- [x] Colour contrast reviewed
+- [x] Page works at 200% zoom
+- [x] Reduced-motion preference respected
+- [x] Tables use appropriate headers
+- [x] Links make sense out of context
+- [x] Run automated accessibility checks
+- [x] Perform a manual keyboard-only test
+- [x] Test at least one screen reader workflow
 
 ---
 

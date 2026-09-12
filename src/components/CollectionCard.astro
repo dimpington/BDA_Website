@@ -33,7 +33,13 @@ const { curator, keyObject, resolvedObjects, resolvedPublications } = await getC
       Curator: {curator ? <a href={`/departments/${curator.id}`}>{curator.data.name}</a> : collection.data.curator}
       <br />Published: {published}
     </p>
-    <a class="related-record__link" href={`/collections/${id}`}>View Collection →</a>
+    <a
+  class="related-record__link"
+  href={`/collections/${id}`}
+  aria-label={`View Collection: ${title}`}
+>
+  View Collection →
+</a>
   </div>
 </article>
 

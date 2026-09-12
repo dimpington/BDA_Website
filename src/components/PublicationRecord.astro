@@ -226,11 +226,12 @@ const resolvedRelatedObjects = relatedObjects.map((fwxId: string) => {
               </p>
 
               <a
-                class="related-record__link"
-                href={`/publications/${publication.data.id}`}
-              >
-                Access Publication →
-              </a>
+              class="related-record__link"
+              href={`/publications/${publication.data.id}`}
+              aria-label={`Access Publication: ${publication.data.title}`}
+            >
+              Access Publication →
+            </a>
             </article>
           ) : (
             <article class="related-record related-record--unresolved">
@@ -288,11 +289,12 @@ const resolvedRelatedObjects = relatedObjects.map((fwxId: string) => {
             </p>
 
             <a
-              class="related-record__link"
-              href={`/collections/${collection.data.id}`}
-            >
-              Access Collection →
-            </a>
+            class="related-record__link"
+            href={`/collections/${collection.data.id}`}
+            aria-label={`Access Collection: ${collection.data.title}`}
+          >
+            Access Collection →
+          </a>
           </article>
         ))
       }

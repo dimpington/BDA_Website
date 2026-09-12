@@ -41,10 +41,11 @@ const {
     </ul>
   </div>
 
-  <a
-    href={`/departments/${id}`}
-    class="department-card__link"
-  >
-    View Department →
-  </a>
+<a
+  href={`/departments/${id}`}
+  class="department-card__link"
+  aria-label={"View Department: " + name}
+>
+  View Department →
+</a>
 </article>
