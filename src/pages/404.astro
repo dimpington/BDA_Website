@@ -1,0 +1,171 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+  title="Record Not Located | Bureau of Digital Antiquities"
+  description="The requested Bureau record or public resource could not be located."
+>
+  <section class="error-record">
+    <p class="section-label">Public Access Exception</p>
+
+    <div class="error-record__code">
+      404
+    </div>
+
+    <h1>Record Not Located</h1>
+
+    <p class="error-record__lead">
+      The requested record, catalogue entry, or public resource could not be
+      retrieved from the Bureau's current public holdings.
+    </p>
+
+    <div class="error-record__notice">
+      <p>
+        This may indicate that the record has been relocated, withdrawn from
+        public access, assigned a new catalogue reference, or was never entered
+        into the public register.
+      </p>
+    </div>
+
+    <dl class="error-record__details">
+      <div>
+        <dt>Response Code</dt>
+        <dd>404 / RECORD_NOT_LOCATED</dd>
+      </div>
+
+      <div>
+        <dt>Access System</dt>
+        <dd>BDA-WEB-PUBLIC</dd>
+      </div>
+
+      <div>
+        <dt>Record Status</dt>
+        <dd>Unresolved</dd>
+      </div>
+    </dl>
+
+    <div class="error-record__actions">
+      <a class="text-button" href="/">
+        Return to Bureau Home
+      </a>
+
+      <a href="/fwx">
+        Search the FWX Catalogue
+      </a>
+
+      <a href="/collections">
+        Browse Collections
+      </a>
+    </div>
+
+    <p class="error-record__reference">
+      Public retrieval notice · Bureau of Digital Antiquities
+    </p>
+  </section>
+</Layout>
+
+<style>
+  .error-record {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .error-record__code {
+    margin: var(--space-md) 0 var(--space-xs);
+    color: var(--color-burgundy);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: bold;
+    letter-spacing: 0.14em;
+  }
+
+  .error-record h1 {
+    margin: 0;
+    color: var(--color-navy-dark);
+    font-family: var(--font-heading);
+    font-size: clamp(2.4rem, 7vw, 4.4rem);
+    font-weight: normal;
+    letter-spacing: -0.035em;
+    line-height: 1;
+  }
+
+  .error-record__lead {
+    max-width: 46rem;
+    margin: var(--space-lg) 0;
+    color: var(--color-muted);
+    font-family: var(--font-heading);
+    font-size: 1.12rem;
+    line-height: 1.7;
+  }
+
+  .error-record__notice {
+    margin: var(--space-xl) 0;
+    padding: var(--space-lg);
+    border-left: 5px solid var(--color-burgundy);
+    background: var(--color-surface-muted);
+  }
+
+  .error-record__notice p {
+    margin: 0;
+  }
+
+  .error-record__details {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin: var(--space-xl) 0;
+    border-top: 1px solid var(--color-border);
+    border-left: 1px solid var(--color-border);
+  }
+
+  .error-record__details div {
+    padding: var(--space-md);
+    border-right: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .error-record__details dt {
+    color: var(--color-faint);
+    font-size: 0.66rem;
+    font-weight: bold;
+    letter-spacing: 0.075em;
+    text-transform: uppercase;
+  }
+
+  .error-record__details dd {
+    margin: 0.3rem 0 0;
+    overflow-wrap: anywhere;
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+  }
+
+  .error-record__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-md) var(--space-lg);
+    margin-top: var(--space-xl);
+  }
+
+  .error-record__reference {
+    margin: var(--space-xl) 0 0;
+    padding-top: var(--space-md);
+    border-top: 3px double var(--color-border-dark);
+    color: var(--color-faint);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 620px) {
+    .error-record__details {
+      grid-template-columns: 1fr;
+    }
+
+    .error-record__actions {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  }
+</style>
