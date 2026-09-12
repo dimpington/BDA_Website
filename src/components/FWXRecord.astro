@@ -14,6 +14,7 @@ const {
   summary,
   creator,
   originalUrl,
+  originalUrlActive = true,
   currentUrl,
   firstPublished,
   lastVerified,
@@ -31,6 +32,7 @@ const {
   summary: string;
   creator?: string;
   originalUrl?: string;
+  originalUrlActive?: boolean;
   currentUrl?: string;
   firstPublished?: string;
   lastVerified?: string;
@@ -224,21 +226,34 @@ const resolvedRelatedObjects = relatedObjects.map((relation) => {
 
     {originalUrl && (
       <div class="administrative-grid__wide">
-        <dt>Original Address</dt>
+        <dt>Historical Address</dt>
         <dd>
-          <a href={originalUrl}>{originalUrl}</a>
+          {originalUrlActive ? (
+            <a href={originalUrl}>{originalUrl}</a>
+          ) : (
+            <>
+              <span>{originalUrl}</span>
+              <span class="record-address-warning">
+                Historical address — current destination is unrelated to the archived Digital Object.
+              </span>
+            </>
+          )}
         </dd>
       </div>
     )}
 
-    {currentUrl && (
-      <div class="administrative-grid__wide">
-        <dt>Current Address</dt>
-        <dd>
+    <div class={originalUrl ? "administrative-grid__wide" : "administrative-grid__full"}>
+      <dt>Current Address</dt>
+      <dd>
+        {currentUrl ? (
           <a href={currentUrl}>{currentUrl}</a>
-        </dd>
-      </div>
-    )}
+        ) : (
+          <span class="record-unavailable">
+            Not available — original service discontinued.
+          </span>
+        )}
+      </dd>
+    </div>
   </dl>
 </section>
 
@@ -274,9 +289,19 @@ const resolvedRelatedObjects = relatedObjects.map((relation) => {
 
     <div class="record-prose">
 <p>
-  The Digital Object remains{" "}
-  <strong>{preservation.accessibility}</strong>{" "}
-  at its original network location.
+  {operationalStatus === "Defunct" ? (
+    <>
+      The original Digital Object is no longer operational. Its historical
+      record remains{" "}
+      <strong>{preservation.accessibility}</strong>.
+    </>
+  ) : (
+    <>
+      The Digital Object remains{" "}
+      <strong>{preservation.accessibility}</strong>{" "}
+      at a currently recorded network location.
+    </>
+  )}
 </p>
 
 <p>

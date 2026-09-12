@@ -54,9 +54,9 @@ Introduce a protected administrative interface for creating content through form
 - [X] Bureau Notices archive at `/notices`
 - [x] Custom Bureau-themed 404 page
 - [x] Verify every internal link
-- [ ] Remove obsolete or duplicated routes
+- [x] Remove obsolete or duplicated routes
 - [ ] Confirm all route folders and URLs use lowercase
-- [ ] Verify no navigation item leads to an empty page
+- [x] Verify no navigation item leads to an empty page
 
 ## Homepage
 
@@ -172,7 +172,7 @@ The site should launch with enough real content that it feels intentionally popu
 
 - [x] At least **8 complete FWX records**
 - [x] Include several different object types or historical contexts
-- [ ] Every record has a checked title, summary and URL
+- [x] Every record has a checked title, summary and URL
 - [x] Every record has classification and status values
 - [x] Every record has a preservation assessment
 - [x] Every record has a verification date

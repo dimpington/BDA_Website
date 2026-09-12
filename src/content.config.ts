@@ -28,6 +28,7 @@ const digitalObjects = defineCollection({
     // Optional metadata
     creator: z.string().optional(),
     originalUrl: z.string().url().optional(),
+    originalUrlActive: z.boolean().optional(),
     currentUrl: z.string().url().optional(),
     firstPublished: z.string().optional(),
     lastVerified: z.string().optional(),

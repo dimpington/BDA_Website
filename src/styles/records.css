@@ -384,9 +384,19 @@
   grid-column: span 2;
 }
 
+.administrative-grid__full {
+  grid-column: 1 / -1;
+}
+
 .administrative-grid__wide dd {
   font-family: var(--font-mono);
   font-size: 0.78rem;
+}
+
+.record-address-warning {
+  display: block;
+  margin-top: 0.35rem;
+  color: var(--color-muted);
 }
 
 /* =========================================================
