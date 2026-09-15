@@ -455,11 +455,11 @@ Treat `npm audit` carefully: a reported issue should be assessed for actual expo
 
 ## Content security
 
-- [ ] Do not render untrusted raw HTML from Markdown
-- [ ] Avoid `set:html` unless content is fully trusted and reviewed
-- [ ] Validate all URLs through Zod
-- [ ] Use enums for controlled classifications and statuses
-- [ ] Validate all relationship IDs
+- [x] Do not render untrusted raw HTML from Markdown
+- [x] Avoid `set:html` unless content is fully trusted and reviewed
+- [x] Validate all URLs through Zod
+- [x] Use enums for controlled classifications and statuses
+- [x] Validate all relationship IDs
 - [ ] Restrict image types
 - [ ] Disallow user-supplied SVG in the future admin console unless sanitized
 - [ ] Generate filenames rather than trusting uploaded names
