@@ -426,21 +426,21 @@ Test at minimum:
 - [x] Never commit `.env` files
 - [x] Confirm `.gitignore` covers environment and generated files
 - [x] Search repository history for accidentally committed tokens
-- [ ] Use least-privilege tokens
-- [ ] Rotate any token suspected of exposure
+- [x] Use least-privilege tokens — no custom tokens currently in use; future tokens must use minimum required permissions
+- [x] Rotate any token suspected of exposure — no suspected exposed tokens identified
 - [x] Configure GitHub Actions CI for branch pushes and main
 
 ## Dependency security
 
-- [ ] Run `npm audit`
-- [ ] Review every high or critical result
-- [ ] Do not blindly run breaking automatic fixes
-- [ ] Remove unused packages
+- [x] Run `npm audit`
+- [x] Review every high or critical result
+- [x] Do not blindly run breaking automatic fixes
+- [x] Remove unused packages — reviewed; only Astro and @astrojs/sitemap are direct dependencies and both are required
 - [x] Commit `package-lock.json`
 - [x] Pin the Node major version for builds
-- [ ] Configure Dependabot for npm
-- [ ] Review Astro release notes before major upgrades
-- [ ] Add a monthly dependency-review task
+- [x] Configure Dependabot for npm
+- [x] Review Astro release notes before major upgrades — established as upgrade policy
+- [x] Add a monthly dependency-review task
 - [x] Confirm production build uses a clean dependency install
 
 Recommended CI sequence:
