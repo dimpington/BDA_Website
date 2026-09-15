@@ -385,7 +385,7 @@ Test at minimum:
 
 # 6. SEO and public metadata
 
-- [ ] Unique page title for every route
+- [x] Unique page title for every route
 - [ ] Unique meta description
 - [ ] Canonical URL
 - [ ] Open Graph title
