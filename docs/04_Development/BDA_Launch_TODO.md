@@ -410,11 +410,11 @@ Test at minimum:
 
 - [x] Enable MFA on GitHub
 - [x] Enable MFA on Cloudflare
-- [ ] Protect the production branch
-- [ ] Disallow force pushes
-- [ ] Disallow branch deletion
-- [ ] Require pull requests for production
-- [ ] Require successful build checks
+- [x] Protect the production branch
+- [x] Disallow force pushes
+- [x] Disallow branch deletion
+- [x] Require pull requests for production
+- [x] Require successful build checks
 - [X] Use feature branches
 - [ ] Review Cloudflare preview before merge
 - [ ] Enable Dependabot alerts
