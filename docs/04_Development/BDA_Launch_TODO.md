@@ -417,15 +417,15 @@ Test at minimum:
 - [x] Require successful build checks
 - [X] Use feature branches
 - [ ] Review Cloudflare preview before merge
-- [ ] Enable Dependabot alerts
-- [ ] Enable Dependabot security updates
-- [ ] Enable secret scanning where available
-- [ ] Review repository security notifications
-- [ ] Add `CODEOWNERS` later if additional maintainers join
+- [x] Enable Dependabot alerts
+- [x] Enable Dependabot security updates
+- [x] Enable secret scanning where available — unavailable for current private-repository configuration; personal push protection enabled
+- [x] Review repository security notifications
+- [ ] Add `CODEOWNERS` later if additional maintainers join — deferred until multiple maintainers
 - [ ] Store secrets only in GitHub or Cloudflare secret storage
-- [ ] Never commit `.env` files
-- [ ] Confirm `.gitignore` covers environment and generated files
-- [ ] Search repository history for accidentally committed tokens
+- [x] Never commit `.env` files
+- [x] Confirm `.gitignore` covers environment and generated files
+- [x] Search repository history for accidentally committed tokens
 - [ ] Use least-privilege tokens
 - [ ] Rotate any token suspected of exposure
 - [x] Configure GitHub Actions CI for branch pushes and main
