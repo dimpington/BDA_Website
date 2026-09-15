@@ -1,6 +1,13 @@
 import { defineCollection, z } from "astro:content";
 import { glob } from "astro/loaders";
 
+const imagePath = z
+  .string()
+  .regex(
+    /\.(png|jpe?g|webp)$/i,
+    "Image must be a PNG, JPEG, or WebP file"
+  );
+
 const digitalObjects = defineCollection({
   loader: glob({
     pattern: "**/*.{md,mdx}",
@@ -32,7 +39,7 @@ const digitalObjects = defineCollection({
     currentUrl: z.string().url().optional(),
     firstPublished: z.string().optional(),
     lastVerified: z.string().optional(),
-    previewImage: z.string().optional(),
+    previewImage: imagePath.optional(),
 
   preservation: z
   .object({
@@ -74,7 +81,7 @@ const departments = defineCollection({
 
     responsibilities: z.array(z.string()),
 
-    emblem: z.string(),
+    emblem: imagePath,
 
     officeType: z.enum([
       "Office",

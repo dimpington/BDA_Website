@@ -460,11 +460,11 @@ Treat `npm audit` carefully: a reported issue should be assessed for actual expo
 - [x] Validate all URLs through Zod
 - [x] Use enums for controlled classifications and statuses
 - [x] Validate all relationship IDs
-- [ ] Restrict image types
-- [ ] Disallow user-supplied SVG in the future admin console unless sanitized
-- [ ] Generate filenames rather than trusting uploaded names
-- [ ] Set file-size limits
-- [ ] Avoid embedding third-party scripts unless necessary
+- [x] Restrict image types
+- [ ] Disallow user-supplied SVG in the future admin console unless sanitized — deferred to Administration Console; current content schema rejects SVG
+- [ ] Generate filenames rather than trusting uploaded names — deferred to Administration Console; MK1 has no user uploads
+- [ ] Set file-size limits — deferred to Administration Console; MK1 has no user uploads
+- [x] Avoid embedding third-party scripts unless necessary
 
 ---
 
