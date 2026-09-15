@@ -6,7 +6,10 @@ import PublicationRegister from "../../components/PublicationRegister.astro";
 const publications = await getCollection("publications");
 ---
 
-<Layout title="Publications | Bureau of Digital Antiquities">
+<Layout
+  title="Publications | Bureau of Digital Antiquities"
+  description="Browse official Bureau publications including Field Reports, Preservation Bulletins, Technical Notes and Annual Reports."
+>
   <section class="page-header">
     <p class="section-label">Official Publications</p>
     <h1>Publications</h1>

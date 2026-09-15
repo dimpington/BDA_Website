@@ -14,7 +14,10 @@ type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 const { year, publications } = Astro.props;
 ---
 
-<Layout title={`${year} Publication Archive | Bureau of Digital Antiquities`}>
+<Layout
+  title={`${year} Publication Archive | Bureau of Digital Antiquities`}
+  description={`Browse Bureau of Digital Antiquities publications issued in ${year}, including their publication dates and document status.`}
+>
   <section class="page-header">
     <p class="section-label">Official Publications · Annual Archive</p>
     <h1>Publication Archive: {year}</h1>

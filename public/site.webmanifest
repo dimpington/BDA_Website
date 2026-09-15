@@ -1,0 +1,16 @@
+{
+  "name": "Bureau of Digital Antiquities",
+  "short_name": "BDA",
+  "description": "Preserving historically significant digital heritage since 1998.",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#e9e2d3",
+  "theme_color": "#17324a",
+  "icons": [
+    {
+      "src": "/images/favicons/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

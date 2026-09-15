@@ -386,21 +386,21 @@ Test at minimum:
 # 6. SEO and public metadata
 
 - [x] Unique page title for every route
-- [ ] Unique meta description
-- [ ] Canonical URL
-- [ ] Open Graph title
-- [ ] Open Graph description
-- [ ] Open Graph image
-- [ ] Twitter/X card metadata if desired
-- [ ] `robots.txt`
-- [ ] XML sitemap
-- [ ] Favicon set
-- [ ] Web app manifest if useful
-- [ ] Structured data for the organisation
-- [ ] Structured data for articles or publications where suitable
-- [ ] Redirect `www` to the chosen canonical hostname
-- [ ] Redirect `pages.dev` production URL to the custom domain
-- [ ] Confirm Cloudflare previews remain non-indexed
+- [x] Unique meta description
+- [x] Canonical URL
+- [x] Open Graph title
+- [x] Open Graph description
+- [x] Open Graph image
+- [x] Twitter/X card metadata if desired
+- [x] `robots.txt`
+- [x] XML sitemap
+- [x] Favicon set
+- [x] Web app manifest if useful
+- [x] Structured data for the organisation
+- [x] Structured data for articles or publications where suitable
+- [ ] Redirect www canonical — configure during Cloudflare production deployment
+- [ ] Redirect pages.dev production URL — configure during Cloudflare production deployment
+- [ ] Cloudflare previews non-indexed — configure during Cloudflare preview deployment
 
 ---
 
@@ -408,8 +408,8 @@ Test at minimum:
 
 ## GitHub account and repository
 
-- [ ] Enable MFA on GitHub
-- [ ] Enable MFA on Cloudflare
+- [x] Enable MFA on GitHub
+- [x] Enable MFA on Cloudflare
 - [ ] Protect the production branch
 - [ ] Disallow force pushes
 - [ ] Disallow branch deletion

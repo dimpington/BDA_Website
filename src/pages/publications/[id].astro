@@ -20,11 +20,37 @@ export async function getStaticPaths() {
 
 const { publication } = Astro.props;
 const { Content } = await render(publication);
+
+const publicationUrl = new URL(
+  `/publications/${publication.data.id}`,
+  Astro.site
+);
+
+const publicationSchema = {
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  name: publication.data.title,
+  description: publication.data.summary,
+  identifier: publication.data.id,
+  url: publicationUrl.toString(),
+  publisher: {
+    "@type": "Organization",
+    name: "Bureau of Digital Antiquities",
+    url: "https://digitalantiquities.org"
+  }
+};
 ---
 
 <Layout
   title={`${publication.data.title} | Bureau of Digital Antiquities`}
+  description={publication.data.summary}
 >
+
+<script
+  type="application/ld+json"
+  set:html={JSON.stringify(publicationSchema)}
+/>
+
   <PublicationRecord publication={publication}>
     <Content />
   </PublicationRecord>

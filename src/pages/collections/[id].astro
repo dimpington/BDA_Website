@@ -21,7 +21,10 @@ const { collection } = Astro.props;
 const { Content } = await render(collection);
 ---
 
-<Layout title={`${collection.data.title} | Bureau of Digital Antiquities`}>
+<Layout
+  title={`${collection.data.title} | Bureau of Digital Antiquities`}
+  description={collection.data.summary}
+>
   <CollectionRecord collection={collection}>
     <Content />
   </CollectionRecord>

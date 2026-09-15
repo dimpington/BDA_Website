@@ -21,7 +21,10 @@ const { notice } = Astro.props;
 const { Content } = await render(notice);
 ---
 
-<Layout title={`${notice.data.title} | Bureau of Digital Antiquities`}>
+<Layout
+  title={`${notice.data.title} | Bureau of Digital Antiquities`}
+  description={notice.data.summary}
+>
   <NoticeRecord notice={notice}>
     <Content />
   </NoticeRecord>

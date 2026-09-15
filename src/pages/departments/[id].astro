@@ -34,7 +34,10 @@ const issuedPublications = publications.filter(
 );
 ---
 
-<Layout title={`${department.data.name} | Bureau of Digital Antiquities`}>
+<Layout
+  title={`${department.data.name} | Bureau of Digital Antiquities`}
+  description={department.data.summary}
+>
 <DepartmentRecord
   department={department}
   associatedDigitalObjects={associatedDigitalObjects}

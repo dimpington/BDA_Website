@@ -20,7 +20,10 @@ const { object } = Astro.props;
 const { Content } = await render(object);
 ---
 
-<Layout title={`${object.data.title} | Forgotten Web Exchange`}>
+<Layout
+  title={`${object.data.title} | Forgotten Web Exchange`}
+  description={object.data.summary}
+>
   <FWXRecord object={object}>
     <Content />
   </FWXRecord>
