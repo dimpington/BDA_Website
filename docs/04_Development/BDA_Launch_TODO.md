@@ -489,7 +489,7 @@ Initial policy:
 
 Launch tasks:
 
-- [ ] Add `_headers`
+- [x] Add `_headers`
 - [ ] Test all pages
 - [ ] Confirm CSS is not blocked
 - [ ] Confirm fonts are not blocked
