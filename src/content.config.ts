@@ -40,6 +40,10 @@ const digitalObjects = defineCollection({
     firstPublished: z.string().optional(),
     lastVerified: z.string().optional(),
     previewImage: imagePath.optional(),
+    previewImageSource: z.string().optional(),
+    previewImageSourceUrl: z.string().url().optional(),
+    previewImageType: z.string().optional(),
+    previewImageCredit: z.string().optional(),
 
   preservation: z
   .object({

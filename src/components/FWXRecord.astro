@@ -8,6 +8,10 @@ const {
   title,
   objectType,
   previewImage,
+  previewImageSource,
+  previewImageSourceUrl,
+  previewImageType,
+  previewImageCredit,
   classification,
   operationalStatus,
   preservationStatus,
@@ -26,6 +30,10 @@ const {
   title: string;
   objectType: string;
   previewImage?: string;
+  previewImageSource?: string;
+  previewImageSourceUrl?: string;
+  previewImageType?: string;
+  previewImageCredit?: string;
   classification: string;
   operationalStatus: string;
   preservationStatus: string;
@@ -153,9 +161,38 @@ const resolvedRelatedObjects = relatedObjects.map((relation) => {
         class="record-preview__image"
       />
 
-      <figcaption>
-        Visual reference associated with {fwxId}.
-      </figcaption>
+<figcaption>
+  {previewImageType && <strong>{previewImageType}</strong>}
+
+  {previewImageSource && (
+    <>
+      {previewImageType ? " — " : ""}
+      {previewImageSource}
+    </>
+  )}
+
+  {(previewImageType || previewImageSource) && <br />}
+
+  {previewImageCredit && (
+    <>
+      {previewImageCredit}.
+      {previewImageSourceUrl && " "}
+    </>
+  )}
+
+  {previewImageSourceUrl && (
+    <a href={previewImageSourceUrl}>
+      Source website
+    </a>
+  )}
+
+  {!previewImageType &&
+    !previewImageSource &&
+    !previewImageCredit &&
+    !previewImageSourceUrl && (
+      <>Visual reference associated with {fwxId}.</>
+    )}
+</figcaption>
     </figure>
   </section>
 )}

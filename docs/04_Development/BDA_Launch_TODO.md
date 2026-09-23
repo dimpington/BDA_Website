@@ -608,9 +608,9 @@ Still prepare rules for:
 - [x] Decide whether Cloudflare Web Analytics is needed
 - [ ] Document what logs are retained
 - [x] Do not collect personal data without a defined purpose
-- [ ] Provide a contact address
-- [ ] Provide a security contact
-- [ ] Add:
+- [x] Provide a contact address
+- [x] Provide a security contact
+- [x] Add:
 
 ```text
 public/.well-known/security.txt
@@ -625,11 +625,11 @@ Canonical: https://digitalantiquities.org/.well-known/security.txt
 Policy: https://digitalantiquities.org/security
 ```
 
-- [ ] Add copyright and content-use information
-- [ ] Clarify that BDA is a fictional institution where appropriate
-- [ ] Review whether external website screenshots can be reproduced
-- [ ] Attribute source material and archival captures properly
-- [ ] Avoid presenting fabricated historical claims as real-world fact outside the fictional framing
+- [x] Add copyright and content-use information
+- [x] Clarify that BDA is a fictional institution where appropriate
+- [x] Review whether external website screenshots can be reproduced
+- [x] Attribute source material and archival captures properly
+- [x] Avoid presenting fabricated historical claims as real-world fact outside the fictional framing
 
 ---
 
