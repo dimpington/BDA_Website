@@ -491,15 +491,16 @@ Launch tasks:
 
 - [x] Add `_headers`
 - [ ] Test all pages
-- [ ] Confirm CSS is not blocked
+- [x] Confirm CSS is not blocked
 - [ ] Confirm fonts are not blocked
-- [ ] Confirm images load
+- [x] Confirm images load
 - [ ] Confirm Cloudflare challenges still work
 - [ ] Inspect the browser console
-- [ ] Confirm iframe embedding is denied
+- [x] Confirm iframe embedding is denied
 - [ ] Add `Strict-Transport-Security` only after HTTPS is fully verified
 - [ ] Consider CSP report-only testing before enforcement
-- [ ] Avoid adding `'unsafe-inline'` to scripts
+- [x] Avoid adding `'unsafe-inline'` to scripts
+- [ ] FWX inline catalogue script blocked by CSP; resolve before MK1 public launch.
 
 ---
 
@@ -507,23 +508,23 @@ Launch tasks:
 
 ## Initial Pages project
 
-- [ ] Connect the GitHub repository
+- [x] Connect the GitHub repository
 - [ ] Framework preset: Astro
-- [ ] Build command: `npm run build`
+- [x] Build command: `npm run build`
 - [ ] Output directory: `dist`
-- [ ] Production branch: `main`
-- [ ] Confirm deployment uses the correct Node version
+- [x] Production branch: `main`
+- [x] Confirm deployment uses the correct Node version
 - [ ] Confirm all generated routes exist
 - [ ] Verify case-sensitive paths
 - [ ] Verify assets resolve on Linux
-- [ ] Review production build logs
+- [x] Review production build logs
 
 ## Preview environment
 
-- [ ] Enable automatic preview deployments
-- [ ] Test feature branches
+- [x] Enable automatic preview deployments
+- [x] Test feature branches
 - [ ] Test pull-request builds
-- [ ] Protect preview deployments with Cloudflare Access
+- [x] Protect preview deployments with Cloudflare Access
 - [ ] Optionally create:
 
 ```text
@@ -531,17 +532,17 @@ staging.digitalantiquities.org
 ```
 
 - [ ] Point staging to a dedicated branch
-- [ ] Verify previews have `noindex`
+- [x] Verify previews have `noindex`
 - [ ] Do not place production secrets in preview environments
 
 ## Custom domain
 
-- [ ] Add `digitalantiquities.org` to Pages
-- [ ] Confirm Cloudflare nameservers are active
+- [x] Add `digitalantiquities.org` to Pages
+- [x] Confirm Cloudflare nameservers are active
 - [ ] Decide canonical hostname:
   - `digitalantiquities.org`
   - or `www.digitalantiquities.org`
-- [ ] Redirect the non-canonical hostname
+- [x] Redirect the non-canonical hostname
 - [ ] Redirect the production `pages.dev` URL
 - [ ] Verify certificate issuance
 - [ ] Check CAA records if certificate issuance fails
@@ -555,28 +556,28 @@ staging.digitalantiquities.org
 
 ## DNS and TLS
 
-- [ ] Enable DNSSEC
-- [ ] Use HTTPS only
-- [ ] Enable Always Use HTTPS
-- [ ] Set minimum TLS to 1.2
-- [ ] Review TLS 1.3 availability
-- [ ] Confirm no mixed content
-- [ ] Add HSTS only after stable HTTPS testing
-- [ ] Do not preload HSTS until configuration is proven
-- [ ] Review certificate renewal status
+- [x] Enable DNSSEC
+- [x] Use HTTPS only
+- [x] Enable Always Use HTTPS
+- [x] Set minimum TLS to 1.2
+- [x] Review TLS 1.3 availability
+- [x] Confirm no mixed content
+- [x] Add HSTS only after stable HTTPS testing
+- [x] Do not preload HSTS until configuration is proven
+- [x] Review certificate renewal status
 
 ## DDoS, bots and WAF
 
 For the initial static site:
 
-- [ ] Confirm Cloudflare proxy is active
-- [ ] Confirm automatic DDoS protection
-- [ ] Enable Bot Fight Mode on Free, or Super Bot Fight Mode on a paid plan
+- [x] Confirm Cloudflare proxy is active
+- [x] Confirm automatic DDoS protection
+- [x] Enable Bot Fight Mode on Free, or Super Bot Fight Mode on a paid plan
 - [ ] Review Security Events after launch
-- [ ] Avoid aggressive country blocking
-- [ ] Allow verified search crawlers
-- [ ] Confirm monitoring services are not challenged
-- [ ] Enable the managed protections available on the selected plan
+- [x] Avoid aggressive country blocking
+- [x] Allow verified search crawlers
+- [x] Confirm monitoring services are not challenged
+- [x] Enable the managed protections available on the selected plan
 - [ ] Do not enable every rule without testing
 - [ ] Begin uncertain rules in Log or Managed Challenge mode
 
@@ -602,11 +603,11 @@ Still prepare rules for:
 # 11. Privacy, legal and public trust
 
 - [ ] Publish a Privacy Notice
-- [ ] Publish a Cookie Notice only if cookies are introduced
-- [ ] Avoid unnecessary analytics identifiers
-- [ ] Decide whether Cloudflare Web Analytics is needed
+- [x] Publish a Cookie Notice only if cookies are introduced
+- [x] Avoid unnecessary analytics identifiers
+- [x] Decide whether Cloudflare Web Analytics is needed
 - [ ] Document what logs are retained
-- [ ] Do not collect personal data without a defined purpose
+- [x] Do not collect personal data without a defined purpose
 - [ ] Provide a contact address
 - [ ] Provide a security contact
 - [ ] Add:
