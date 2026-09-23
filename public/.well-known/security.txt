@@ -1,0 +1,5 @@
+Contact: mailto:security@digitalantiquities.org
+Expires: 2027-09-23T00:00:00Z
+Canonical: https://digitalantiquities.org/.well-known/security.txt
+Policy: https://digitalantiquities.org/privacy
+Preferred-Languages: en, sv
