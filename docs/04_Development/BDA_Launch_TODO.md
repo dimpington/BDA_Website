@@ -637,35 +637,35 @@ Policy: https://digitalantiquities.org/security
 
 ## Automated
 
-- [ ] `npm ci`
+- [x] `npm ci`
 - [X] `npm run build`
-- [ ] TypeScript checks
-- [ ] Link checker
-- [ ] Accessibility scan
-- [ ] Lighthouse run
-- [ ] Dependency audit
-- [ ] HTML validation where practical
-- [ ] Ensure CI fails on build errors
+- [x] TypeScript checks
+- [x] Link checker
+- [x] Accessibility scan
+- [x] Lighthouse run
+- [x] Dependency audit
+- [x] HTML validation where practical
+- [x] Ensure CI fails on build errors
 
 ## Manual
 
-- [ ] Click every navigation item
-- [ ] Click every card and record
-- [ ] Verify all related-record links
-- [ ] Verify all publication links
-- [ ] Verify every collection member
-- [ ] Verify every notice
+- [x] Click every navigation item
+- [x] Click every card and record
+- [x] Verify all related-record links
+- [x] Verify all publication links
+- [x] Verify every collection member
+- [x] Verify every notice
 - [X] Test search
-- [ ] Test 404
-- [ ] Test keyboard navigation
-- [ ] Test browser back and forward
-- [ ] Test direct URL entry
-- [ ] Test with JavaScript disabled where possible
-- [ ] Test at slow connection speed
-- [ ] Inspect browser console for errors
-- [ ] Inspect network panel for failed assets
-- [ ] Check page source for accidentally exposed secrets
-- [ ] Verify headers with:
+- [x] Test 404
+- [x] Test keyboard navigation
+- [x] Test browser back and forward
+- [x] Test direct URL entry
+- [x] Test with JavaScript disabled where possible
+- [x] Test at slow connection speed
+- [x] Inspect browser console for errors
+- [x] Inspect network panel for failed assets
+- [x] Check page source for accidentally exposed secrets
+- [x] Verify headers with:
 
 ```bash
 curl -I https://digitalantiquities.org
@@ -673,14 +673,14 @@ curl -I https://digitalantiquities.org
 
 ## Performance
 
-- [ ] Optimize emblem files
-- [ ] Optimize screenshot files
-- [ ] Add image dimensions to prevent layout shift
-- [ ] Lazy-load off-screen images
-- [ ] Limit third-party scripts
-- [ ] Review font loading
-- [ ] Test Core Web Vitals
-- [ ] Ensure catalogue pages remain fast with more records
+- [x] Optimize emblem files
+- [x] Optimize screenshot files
+- [x] Add image dimensions to prevent layout shift
+- [x] Lazy-load off-screen images
+- [x] Limit third-party scripts
+- [x] Review font loading
+- [x] Test Core Web Vitals
+- [x] Ensure catalogue pages remain fast with more records
 
 ---
 

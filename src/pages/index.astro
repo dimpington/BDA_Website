@@ -149,9 +149,11 @@ const featuredCollection =
 {featuredObject.data.previewImage && (
   <div class="featured-record__image">
     <img
-      src={featuredObject.data.previewImage}
+      src={featuredObject.data.previewImage.replace("/images/fwx/", "/images/fwx/thumbs/")}
       alt={`Preview of ${featuredObject.data.title}`}
       class="featured-record__preview"
+      width="640"
+      height="400"
     />
   </div>
 )}

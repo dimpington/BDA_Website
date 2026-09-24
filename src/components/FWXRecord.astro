@@ -101,11 +101,14 @@ const resolvedRelatedObjects = relatedObjects.map((relation) => {
   <p class="section-label">Public Digital Object Record</p>
 
   <div class="fwx-record-masthead">
-    <img
-      src="/images/fwx-logo.png"
-      alt="Forgotten Web Exchange"
-      class="fwx-record-logo"
-    />
+  <img
+    src="/images/fwx-logo.png"
+    alt="Forgotten Web Exchange"
+    class="fwx-record-logo"
+    width="801"
+    height="364"
+    fetchpriority="high"
+  />
 
     <div class="fwx-record-identity">
       <p class="fwx-record-id">{fwxId}</p>
@@ -155,11 +158,14 @@ const resolvedRelatedObjects = relatedObjects.map((relation) => {
     </div>
 
     <figure class="record-preview__figure">
-      <img
-        src={previewImage}
-        alt={`Preview of ${title}`}
-        class="record-preview__image"
-      />
+    <img
+      src={previewImage}
+      alt={`Preview of ${title}`}
+      class="record-preview__image"
+      width="1600"
+      height="1000"
+      loading="lazy"
+    />
 
 <figcaption>
   {previewImageType && <strong>{previewImageType}</strong>}

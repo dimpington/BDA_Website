@@ -221,6 +221,12 @@
   background: #d7d1c3;
 }
 
+.featured-record__preview {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .browser-fragment {
   max-width: 520px;
   margin: auto;
