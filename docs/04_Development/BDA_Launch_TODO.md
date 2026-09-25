@@ -686,19 +686,19 @@ curl -I https://digitalantiquities.org
 
 # 13. Monitoring, backup and recovery
 
-- [ ] Enable Cloudflare security-event monitoring
-- [ ] Review deployment notifications
-- [ ] Subscribe to GitHub security alerts
-- [ ] Define who receives operational alerts
-- [ ] Document rollback procedure
-- [ ] Test restoring a previous Cloudflare deployment
-- [ ] Confirm Git history contains all content
-- [ ] Keep a local clone or secondary backup
-- [ ] Export Cloudflare DNS configuration periodically
-- [ ] Document custom rules and Access policies
-- [ ] Review security settings quarterly
-- [ ] Review dependencies monthly
-- [ ] Test restore before launch
+- [x] Enable Cloudflare security-event monitoring
+- [x] Review deployment notifications
+- [x] Subscribe to GitHub security alerts
+- [x] Define who receives operational alerts
+- [x] Document rollback procedure
+- [x] Test restoring a previous Cloudflare deployment
+- [x] Confirm Git history contains all content
+- [x] Keep a local clone or secondary backup
+- [x] Export Cloudflare DNS configuration periodically
+- [x] Document custom rules and Access policies
+- [x] Review security settings quarterly
+- [x] Review dependencies monthly
+- [x] Test restore before launch
 
 ---
 
