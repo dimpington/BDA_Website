@@ -794,27 +794,27 @@ The site is ready to go public only when all **Launch Blockers** below are compl
 
 ## Launch blockers
 
-- [ ] Production build succeeds
-- [ ] Every navigation route works
-- [ ] No dead links
-- [ ] No fake operational records or statistics
-- [ ] Search works or is clearly unavailable
-- [ ] Minimum content inventory is complete
-- [ ] Emblem refresh complete
-- [ ] Mobile review complete
-- [ ] Accessibility review complete
-- [ ] Security headers deployed and tested
-- [ ] GitHub and Cloudflare MFA enabled
-- [ ] Production branch protected
-- [ ] Dependabot and secret alerts enabled
-- [ ] Cloudflare preview tested
-- [ ] HTTPS and custom domain verified
-- [ ] DNSSEC enabled
-- [ ] Bot and WAF settings reviewed
-- [ ] Custom 404 exists
-- [ ] Privacy and security contact pages exist
-- [ ] Backup and rollback procedure tested
-- [ ] Final production smoke test completed
+- [x] Production build succeeds
+- [x] Every navigation route works
+- [x] No dead links
+- [x] No fake operational records or statistics
+- [x] Search works or is clearly unavailable
+- [x] Minimum content inventory is complete
+- [x] Emblem refresh complete
+- [x] Mobile review complete
+- [x] Accessibility review complete
+- [x] Security headers deployed and tested
+- [x] GitHub and Cloudflare MFA enabled
+- [x] Production branch protected
+- [x] Dependabot and secret alerts enabled
+- [x] Cloudflare preview tested
+- [x] HTTPS and custom domain verified
+- [x] DNSSEC enabled
+- [x] Bot and WAF settings reviewed
+- [x] Custom 404 exists
+- [x] Privacy and security contact pages exist
+- [x] Backup and rollback procedure tested
+- [x] Final production smoke test completed
 
 ## Launch-day sequence
 

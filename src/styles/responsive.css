@@ -263,3 +263,119 @@
 }
 
 }
+
+/* =========================================================
+   Final mobile overflow safeguards
+   ========================================================= */
+
+@media (max-width: 620px) {
+  .department-card {
+    min-width: 0;
+  }
+
+  .department-card__emblem {
+    width: min(120px, 100%);
+    height: auto;
+    object-fit: contain;
+  }
+
+.publication-list {
+  min-width: 0;
+  width: 100%;
+  max-width: 100%;
+}
+
+.publication-entry {
+  box-sizing: border-box;
+  grid-template-columns: minmax(0, 1fr);
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.publication-entry > * {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.publication-entry__body {
+  overflow-wrap: anywhere;
+}
+
+.publication-entry__format {
+  justify-self: start;
+  width: auto;
+  max-width: 100%;
+}
+
+  /* FWX catalogue: convert the desktop register to stacked mobile records */
+
+  .catalogue-table-wrapper {
+    overflow-x: visible;
+  }
+
+  .catalogue-table {
+    display: block;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .catalogue-table thead {
+    display: none;
+  }
+
+  .catalogue-table tbody {
+    display: grid;
+  }
+
+  .catalogue-table tr {
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .catalogue-table th,
+  .catalogue-table td {
+    display: block;
+    min-width: 0;
+    padding: 0.25rem 0.85rem;
+    border-bottom: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .catalogue-table .catalogue-title {
+    min-width: 0;
+  }
+
+  .catalogue-table tbody tr:hover {
+    background: transparent;
+  }
+
+/* Related record cards */
+.related-records,
+.related-record {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.related-record {
+  box-sizing: border-box;
+}
+
+.related-record__header {
+  flex-wrap: wrap;
+}
+
+.related-record > * {
+  min-width: 0;
+}
+
+.related-record h3,
+.related-record__summary,
+.related-record__metadata,
+.related-record__metadata dd {
+  overflow-wrap: anywhere;
+}
+
+}
