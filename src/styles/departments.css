@@ -28,7 +28,9 @@
 }
 
 .department-card__emblem {
+  display: block;
   width: 120px;
+  height: auto;
   margin: 0 auto var(--space-lg);
 }
 

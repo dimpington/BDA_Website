@@ -111,7 +111,7 @@
 
 .catalogue-table {
   width: 100%;
-  min-width: 950px;
+  min-width: 850px;
   border-collapse: collapse;
 }
 
@@ -204,7 +204,7 @@
 }
 
 .catalogue-title {
-  min-width: 18rem;
+  min-width: 14rem;
 }
 
 .catalogue-title > a {
