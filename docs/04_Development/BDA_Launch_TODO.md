@@ -523,7 +523,7 @@ Launch tasks:
 
 - [x] Enable automatic preview deployments
 - [x] Test feature branches
-- [ ] Test pull-request builds
+- [x] Test pull-request builds
 - [x] Protect preview deployments with Cloudflare Access
 - [ ] Optionally create:
 
