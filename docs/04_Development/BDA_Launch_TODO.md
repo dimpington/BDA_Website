@@ -55,7 +55,7 @@ Introduce a protected administrative interface for creating content through form
 - [x] Custom Bureau-themed 404 page
 - [x] Verify every internal link
 - [x] Remove obsolete or duplicated routes
-- [ ] Confirm all route folders and URLs use lowercase
+- [x] Confirm all route folders and URLs use lowercase
 - [x] Verify no navigation item leads to an empty page
 
 ## Homepage
@@ -197,7 +197,7 @@ Suggested launch records could include:
 - [x] One Preservation Bulletin
 - [X] One Field Report
 - [X] One Technical Note
-- [ ] Optional abbreviated Annual Report or institutional report
+- [x] Optional abbreviated Annual Report or institutional report
 - [X] Every publication links to a real issuing office
 - [X] Every related FWX ID resolves correctly
 
@@ -345,17 +345,17 @@ src/styles/
 
 Test at minimum:
 
-- [ ] 320 px
-- [ ] 375 px
-- [ ] 430 px
-- [ ] 768 px
-- [ ] 1024 px
-- [ ] 1440 px
-- [ ] Large desktop
-- [ ] Real iPhone
+- [x] 320 px
+- [x] 375 px
+- [x] 430 px
+- [x] 768 px
+- [x] 1024 px
+- [x] 1440 px
+- [x] Large desktop
+- [x] Real iPhone
 - [ ] Real Android device if available
-- [ ] Windows Firefox
-- [ ] Windows Chromium browser
+- [x] Windows Firefox
+- [x] Windows Chromium browser
 - [ ] Safari or WebKit
 
 ---
@@ -398,9 +398,9 @@ Test at minimum:
 - [x] Web app manifest if useful
 - [x] Structured data for the organisation
 - [x] Structured data for articles or publications where suitable
-- [ ] Redirect www canonical — configure during Cloudflare production deployment
-- [ ] Redirect pages.dev production URL — configure during Cloudflare production deployment
-- [ ] Cloudflare previews non-indexed — configure during Cloudflare preview deployment
+- [x] Redirect www canonical — configure during Cloudflare production deployment
+- [x] Redirect pages.dev production URL — configure during Cloudflare production deployment
+- [x] Cloudflare previews non-indexed — configure during Cloudflare preview deployment
 
 ---
 
@@ -422,7 +422,7 @@ Test at minimum:
 - [x] Enable secret scanning where available — unavailable for current private-repository configuration; personal push protection enabled
 - [x] Review repository security notifications
 - [ ] Add `CODEOWNERS` later if additional maintainers join — deferred until multiple maintainers
-- [ ] Store secrets only in GitHub or Cloudflare secret storage
+- [x] Store secrets only in GitHub or Cloudflare secret storage — no application secrets currently required; future secrets must use managed secret storage
 - [x] Never commit `.env` files
 - [x] Confirm `.gitignore` covers environment and generated files
 - [x] Search repository history for accidentally committed tokens
@@ -490,40 +490,40 @@ Initial policy:
 Launch tasks:
 
 - [x] Add `_headers`
-- [ ] Test all pages
+- [x] Test all pages
 - [x] Confirm CSS is not blocked
-- [ ] Confirm fonts are not blocked
+- [x] Confirm fonts are not blocked
 - [x] Confirm images load
 - [ ] Confirm Cloudflare challenges still work
-- [ ] Inspect the browser console
+- [x] Inspect the browser console
 - [x] Confirm iframe embedding is denied
-- [ ] Add `Strict-Transport-Security` only after HTTPS is fully verified
-- [ ] Consider CSP report-only testing before enforcement
+- [x] Add `Strict-Transport-Security` only after HTTPS is fully verified
+- [x] Consider CSP report-only testing before enforcement — not required; enforced CSP tested successfully in production
 - [x] Avoid adding `'unsafe-inline'` to scripts
-- [ ] FWX inline catalogue script blocked by CSP; resolve before MK1 public launch.
+- [x] FWX inline catalogue script blocked by CSP; resolve before MK1 public launch.
 
 ---
 
 # 9. Cloudflare Pages deployment
 
-## Initial Pages project
+## Initial production deployment
 
 - [x] Connect the GitHub repository
-- [ ] Framework preset: Astro
+- [x] Framework preset: Astro — N/A under current Workers static-assets deployment; Astro builds to `dist`
 - [x] Build command: `npm run build`
-- [ ] Output directory: `dist`
+- [x] Output directory: `dist`
 - [x] Production branch: `main`
 - [x] Confirm deployment uses the correct Node version
-- [ ] Confirm all generated routes exist
-- [ ] Verify case-sensitive paths
-- [ ] Verify assets resolve on Linux
+- [x] Confirm all generated routes exist
+- [x] Verify case-sensitive paths
+- [x] Verify assets resolve on Linux
 - [x] Review production build logs
 
 ## Preview environment
 
 - [x] Enable automatic preview deployments
 - [x] Test feature branches
-- [ ] Test pull-request builds
+- [x] Test pull-request builds
 - [x] Protect preview deployments with Cloudflare Access
 - [ ] Optionally create:
 
@@ -533,22 +533,20 @@ staging.digitalantiquities.org
 
 - [ ] Point staging to a dedicated branch
 - [x] Verify previews have `noindex`
-- [ ] Do not place production secrets in preview environments
+- [x] Do not place production secrets in preview environments — no production application secrets currently configured
 
 ## Custom domain
 
-- [x] Add `digitalantiquities.org` to Pages
+- [x] Add `digitalantiquities.org` to production Workers deployment
 - [x] Confirm Cloudflare nameservers are active
-- [ ] Decide canonical hostname:
-  - `digitalantiquities.org`
-  - or `www.digitalantiquities.org`
+- [x] Decide canonical hostname: `digitalantiquities.org`
 - [x] Redirect the non-canonical hostname
-- [ ] Redirect the production `pages.dev` URL
-- [ ] Verify certificate issuance
-- [ ] Check CAA records if certificate issuance fails
-- [ ] Verify apex and `www`
-- [ ] Test IPv4 and IPv6
-- [ ] Verify DNS propagation
+- [x] Redirect production `pages.dev` URL — N/A; production uses Workers static assets rather than Cloudflare Pages
+- [x] Verify certificate issuance
+- [x] Check CAA records if certificate issuance fails — N/A; certificate issuance succeeded
+- [x] Verify apex and `www`
+- [ ] Test IPv4 and IPv6 — IPv4 HTTP verified; IPv6 AAAA records verified, but end-to-end IPv6 unavailable from current test network
+- [x] Verify DNS propagation
 
 ---
 
@@ -573,7 +571,7 @@ For the initial static site:
 - [x] Confirm Cloudflare proxy is active
 - [x] Confirm automatic DDoS protection
 - [x] Enable Bot Fight Mode on Free, or Super Bot Fight Mode on a paid plan
-- [ ] Review Security Events after launch
+- [x] Review Security Events after launch
 - [x] Avoid aggressive country blocking
 - [x] Allow verified search crawlers
 - [x] Confirm monitoring services are not challenged
@@ -602,11 +600,11 @@ Still prepare rules for:
 
 # 11. Privacy, legal and public trust
 
-- [ ] Publish a Privacy Notice
+- [x] Publish a Privacy Notice
 - [x] Publish a Cookie Notice only if cookies are introduced
 - [x] Avoid unnecessary analytics identifiers
 - [x] Decide whether Cloudflare Web Analytics is needed
-- [ ] Document what logs are retained
+- [x] Document what logs are retained
 - [x] Do not collect personal data without a defined purpose
 - [x] Provide a contact address
 - [x] Provide a security contact
