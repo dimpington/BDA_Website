@@ -416,7 +416,7 @@ Test at minimum:
 - [x] Require pull requests for production
 - [x] Require successful build checks
 - [X] Use feature branches
-- [ ] Review Cloudflare preview before merge
+- [x] Review Cloudflare preview before merge
 - [x] Enable Dependabot alerts
 - [x] Enable Dependabot security updates
 - [x] Enable secret scanning where available — unavailable for current private-repository configuration; personal push protection enabled
@@ -576,8 +576,8 @@ For the initial static site:
 - [x] Allow verified search crawlers
 - [x] Confirm monitoring services are not challenged
 - [x] Enable the managed protections available on the selected plan
-- [ ] Do not enable every rule without testing
-- [ ] Begin uncertain rules in Log or Managed Challenge mode
+- [x] Do not enable every rule without testing
+- [x] Begin uncertain rules in Log or Managed Challenge mode
 
 ## Rate limiting
 
