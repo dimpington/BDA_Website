@@ -111,6 +111,7 @@ const publications = defineCollection({
       "Preservation Bulletin",
       "Technical Note",
       "Annual Report",
+      "Publications Manual",
     ]),
 
     published: z.string().date(),
